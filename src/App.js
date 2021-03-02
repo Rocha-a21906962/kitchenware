@@ -15,6 +15,9 @@ import Orders from './pages/Orders.js';
 import MealsAndEvents from './pages/MealsAndEvents.js';
 import About from './pages/About.js';
 import Settings from './pages/Settings.js';
+/* temporary (just for testing) */
+import Ingredients from './pages/Ingredients.js';
+import Ingredient from './pages/Ingredient.js';
 
 function App() {
   return (
@@ -62,6 +65,12 @@ function App() {
           <Profile />
         </Route>
         */}
+        <Route path="/ingredients" exact>
+          <Ingredients />
+        </Route>
+        <Route path="/ingredient" exact>
+          <Ingredient />
+        </Route>
       </Switch>
     </div>
   );
