@@ -30,6 +30,7 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Inter',sans-serif;
         // background: linear-gradient(135deg, rgb(179,187,207),  #373737);
         // background: linear-gradient(155deg, rgb(255 255 255), #848484);
+        // background-color: #050d33;
         background-image: url("ting-tian.jpg");
         background-size: cover;
         background-position: center;
@@ -83,9 +84,13 @@ const GlobalStyles = createGlobalStyle`
         position: absolute;
         top: 10vh;
         left: 10rem;
+        width: calc(100vw - 10rem);
+        min-height: calc(90vh);
         display: flex;
         overflow-y: auto;
         // border: 1px solid green;
+        // border-top-left-radius: 1.5rem;
+        background: linear-gradient(to bottom right,#17171766 5%,#13152f66 65%,#10141b66 100%); /* W3C */
     }
 `
 

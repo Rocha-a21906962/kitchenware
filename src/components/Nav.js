@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Icon, InlineIcon } from '@iconify/react';
@@ -9,9 +9,19 @@ import kitchenware_logo from "../img/kitchenware.svg";
 
 const Nav = () => {
 
+    let history = useHistory();
+    const redirectToSearchPage = () => {
+        history.push('/search')
+    }
+
     const [isSearchBarVisible, setSearchBarVisible] = useState(false);
 
     const showSearchBar = (event) => {
+        /* open search page automatically
+        if (!isSearchBarVisible) {
+            redirectToSearchPage();
+        }
+        */
         setSearchBarVisible(!isSearchBarVisible);
       }
 
@@ -61,6 +71,7 @@ const Nav = () => {
 
 const StyledNav = styled.nav`
     position: fixed;
+    z-index: 1000;
     height: 10vh;
     width: 100vw;
     display: flex;
@@ -69,6 +80,10 @@ const StyledNav = styled.nav`
     align-items: center;
     // padding: 1rem 10rem;
     background-color: #000000;
+    // background: linear-gradient(to right,#000000 15%, #222 100%); /* W3C */
+    // background: linear-gradient(to right,#0e184d 15%, #323560 65%, #445c80 100%); /* W3C */
+    // background: linear-gradient(to right,#050d33 15%,#13152f 65%,#10141b 100%); /* W3C */
+    // background: linear-gradient(to right,#3c3c3c 15%,#888 65%,#727374 100%); /* W3C */
     // border-bottom: 2px solid #2b2b2b;
     a {
         color: white;
@@ -154,6 +169,7 @@ const StyledSearch = styled.div`
             width: 100%;
             height: 100%;
             background-color: #1c1c1c;
+            // background-color: #050c2c;
             color: #b1b1b1;
             border-style: none;
         }

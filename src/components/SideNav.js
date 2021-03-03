@@ -10,6 +10,7 @@ import analyticsIcon from '@iconify/icons-carbon/analytics';
 import forkAndKnifeWithPlate from '@iconify/icons-emojione-monotone/fork-and-knife-with-plate';
 import birthdayCake from '@iconify/icons-fa-solid/birthday-cake';
 import closedBook from '@iconify/icons-emojione-monotone/closed-book';
+import favoriteSolid from '@iconify/icons-clarity/favorite-solid';
 
 
 
@@ -80,6 +81,14 @@ const SideNav = () => {
                     <Link to="/stats">
                         <Icon icon={analyticsIcon} />
                         <h5>Stats</h5>
+                    </Link>
+                </StyledSideNavButton>
+            </li>
+            <li>
+                <StyledSideNavButton>
+                    <Link to="/favourites">
+                        <Icon icon={favoriteSolid} />
+                        <h5>Favourites</h5>
                     </Link>
                 </StyledSideNavButton>
             </li>
@@ -165,6 +174,10 @@ const StyledSideNav = styled.nav`
     top: 10vh;
     left: 0;
     background-color: #000;
+    // background: linear-gradient(to bottom,#000000 15%, #222 100%); /* W3C */
+    // background: linear-gradient(to bottom,#0e184d 0%, #323560 65%, #445c80 100%); /* W3C */
+    // background: linear-gradient(to bottom,#050d33 15%,#13152f 65%,#10141b 100%); /* W3C */
+    // background: linear-gradient(to bottom,#3c3c3c 15%,#666 65%,#727374 100%); /* W3C */
     // box-shadow: 2px 2px 50px rgb(212, 211, 211);
     display: flex;
     flex-direction: column;

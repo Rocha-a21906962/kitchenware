@@ -15,7 +15,9 @@ const Recipe = () => {
                     <img src={recipe.image} alt={`${recipe.name} image`}/>
                     <div className="recipe_name">
                         <h2>Recipe: <span>{recipe.name}</span></h2>
+                        <button name="" id="">Set as favourite</button>
                     </div>
+                    <button name="" id="">Set as favourite</button>
                     <div className="main_details">
                         <p><span>5</span> ingredients</p>
                         <p>|</p>
@@ -24,9 +26,27 @@ const Recipe = () => {
                         <p><span>20</span> minutes</p>
                     </div>
                 </StyledPhoto>
+                <StyledDescription>
+                    <h3>Recipe short description</h3>
+                    <h5>sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
+                </StyledDescription>
                 <StyledDetails>
+                    <h3>Number of servings:</h3>
+                    <h5>3</h5> 
+                    <h5>(should be an input: ingred. requirements will change accordingly)</h5> 
+                    <h3>Ingredient list:</h3>
+                    <h5><span>X</span> 750g Salmon</h5>
+                    <h5><span>V</span> 10ml Pesto</h5>
+                    <h5><span>V</span> 1/2ts Salt</h5>
+                    <h3>Immediate availability:</h3>
+                    <h5>Current ingredient stock allows for this dish to be cooked 4 times.</h5>
+                    <h3>Automatic stock management:</h3>
+                    <h5>20 meals</h5>
+                    <h5>(immediate availability => nr servings * nr immediate avail. = 20).</h5>
+                    <h5>(should be an input)</h5> 
+                    <h3>Nutrition per serving:</h3>
+                    <h5>240 cal</h5>
                     {/* Delete everything: just for testing
-
                     <h5>Current stock: <span>{ingredient.in_stock} kg</span></h5>
                     <h5>Forecasted consumption</h5>
                     <p>7 days: 1.2 kg</p>
@@ -41,8 +61,31 @@ const Recipe = () => {
                     <p></p>
                     */}
                 </StyledDetails>
+                <StyledDetails>
+                    <h3>Preparation (a la Tasty):</h3>
+                    <h3>Preparation time:</h3>
+                    <h5>5 minutes</h5> 
+                    <h3>Cooking time:</h3>
+                    <h5>15 minutes</h5> 
+                    <button name="" id="">Step-by-step mode button (opens pop-up)</button>
+                    <h3>Instructions:</h3>
+                    <h5>Step 1 - Blablabla</h5>
+                    <h5>Step 2 - Blablabla</h5>
+                    <h5>Step 3 - Blablabla</h5>
+                    <h5>Step 4 - Blablabla</h5>
+                    <h5>Step 5 - Blablabla</h5>
+                    <h5>Step 6 - Blablabla</h5>
+                    <h5>Step 7 - Blablabla</h5>
+                    <h5>Step 8 - Blablabla</h5>
+                    <h5>Step 9 - Blablabla</h5>
+                    <h5>Step 10 - Blablabla</h5>
+                    <h5>Step 11 - Blablabla</h5>
+                    <h5>Step 12 - Blablabla</h5>
+                </StyledDetails>
                 {/* buttons */}
-                <div></div>
+                    <button name="" id="">Order ingredients (opens pop-up)</button>
+                    <button name="" id="">Schedule meal (opens pop-up)</button>
+                    <button name="" id="">Stats (changes page)</button>
             </StyledRecipe>
         </div>
     )
@@ -89,7 +132,7 @@ const StyledPhoto = styled.div`
         left: 0;
         top: 50%;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         width: 100%;
         z-index: 5;
         h2 {
@@ -133,8 +176,17 @@ const StyledPhoto = styled.div`
     }
 `
 
+const StyledDescription = styled.div`
+    width: 80vw;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    font-family: GTAmericaRegular;
+    color: #b1b1b1;
+`
+
 const StyledDetails = styled.div`
-    width: 35%;
+    width: 40vw;
+    padding-left: 1rem;
     font-family: GTAmericaRegular;
     color: #b1b1b1;
 `

@@ -22,15 +22,52 @@ const Ingredient = () => {
                         <h2>Ingredient: <span>{ingredient.name}</span></h2>
                     </div>
                     <div className="main_details">
-                        <p><span>5</span> ingredients</p>
+                        <p><span>5</span> recipes</p>
                         <p>|</p>
-                        <p><span>240</span> calories</p>
+                        <p><span>240</span>/? calories</p>
                         <p>|</p>
-                        <p><span>20</span> minutes</p>
-                        <p>|</p>
-                        <p>Auto-order: <span>Yes</span></p>
+                        <p>On auto-order: <span>Yes</span></p>
                     </div>
                 </StyledPhoto>
+                <StyledDescription>
+                    <h3>Ingredient short description</h3>
+                    <h5>sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
+                </StyledDescription>
+                <StyledDetails>
+                    <h3>Categories:</h3>
+                    <h5>Fish</h5>
+                    <h5>Healthy</h5>
+                    <h3>Nutritional value:</h3>
+                    <h5>240 cal/?</h5>
+                    <h3>Restrictions and alerts:</h3>
+                    <h5>Diet: Non-vegetarian</h5>
+                    <h5>Allergies and intolerances: Fish</h5>
+                    <h3>Typical expiration date:</h3>
+                    <h5>1 year</h5>
+                    <h5>(has implications on how stock management should be performed.. and should be abstracted for now)</h5>
+                </StyledDetails>
+                <StyledDetails>
+                    <h3>Current stock:</h3>
+                    <h5>4.8kg</h5>
+                    <h3>Automatic stock management:</h3>
+                    <h3>Minimum stock:</h3>
+                    <h5>3kg</h5>
+                    <h5>(should be an input)</h5> 
+                    <h3>Action:</h3>
+                    <h5>Auto-order / Issue alert</h5>
+                    <h5>(should be a select input)</h5> 
+                    <h3>Auto-order quantity:</h3>
+                    <h5>2kg</h5>
+                    <h5>(should be an input)</h5> 
+                    <h3>Incoming orders:</h3>
+                    <h5>None</h5>
+                </StyledDetails>
+                {/* buttons */}
+                    <button name="" id="">Show recipes (opens pop-up)</button>
+                    <button name="" id="">Order ingredient (opens pop-up)</button>
+                    <button name="" id="">Current stock details (opens pop-up)</button>
+                    <button name="" id="">Stats (changes page)</button>
+                    <button name="" id="">Order history (opens pop-up)</button>
                 <StyledDetails>
                     {/* Delete everything: just for testing
 
@@ -142,11 +179,21 @@ const StyledPhoto = styled.div`
     }
 `
 
-const StyledDetails = styled.div`
-    width: 35%;
+const StyledDescription = styled.div`
+    width: 80vw;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
     font-family: GTAmericaRegular;
     color: #b1b1b1;
 `
+
+const StyledDetails = styled.div`
+    width: 40vw;
+    padding-left: 1rem;
+    font-family: GTAmericaRegular;
+    color: #b1b1b1;
+`
+
 
 const StyledStockDetails = styled.div`
     color: white;

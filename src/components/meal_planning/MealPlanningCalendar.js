@@ -2,9 +2,7 @@ import Calendar from "../calendar/Calendar";
 
 const MealPlanningCalendar = () => {
     return (
-        <div>
-            MealPlanningCalendar
-        </div>
+        <Calendar />
     )
 }
 

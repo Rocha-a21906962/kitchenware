@@ -62,9 +62,13 @@ const Recipes = () => {
         <div className="content">
             {/* Show N recipes */}
             <div className="ingredients">
-                <StyledHeader>
-                {/* <h3>Recipes?</h3> */}
-                </StyledHeader>
+                <StyledContentHeader>
+                    <div className="gradient_overlay"></div>
+                    <img src={recipe_category.image} alt={`${recipe_category.name} image`}/>
+                    <div className="recipe_name">
+                        <h2><span>{recipe_category.name}</span> (recipe category)</h2>
+                    </div>
+                </StyledContentHeader>
                 {/* Show N recipes from this category */}
                 <StyledCategories>
                     {
@@ -97,6 +101,56 @@ const StyledCategories = styled.div`
     padding-top: 3rem;
     padding-left: 1rem;
     padding-right: 1rem;
+`
+
+const StyledContentHeader = styled.div`
+    position: relative;
+    width: calc(100vw - 10rem); // 100%;
+    height: 15vh;
+    img {
+        position: absolute;
+        display: block;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 2;
+    }
+    .gradient_overlay {
+        position: absolute;
+        display: block;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        // background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+        background: linear-gradient(to bottom,rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.65) 50%,rgba(0,0,0,0.95) 100%); /* W3C */
+        z-index: 3;
+
+    }
+    .recipe_name {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        z-index: 5;
+        h2 {
+            padding-left: 2.5rem;
+            display: block;
+            font-size: 1.5rem;
+            color: #b1b1b1;
+            z-index: 5;
+        }
+        span {
+            font-size: 3rem;
+            font-style: normal;
+            color: white;
+            text-transform: capitalize;
+        }
+    }
 `
 
 export default Recipes;
