@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import IngredientCategoryCell from "./IngredientCategoryCell";
 
+/* bogus ingredient data */
 const ingredient_categories = [
     {
         name: 'fish',

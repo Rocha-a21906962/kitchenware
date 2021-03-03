@@ -16,8 +16,12 @@ import MealsAndEvents from './pages/MealsAndEvents.js';
 import About from './pages/About.js';
 import Settings from './pages/Settings.js';
 /* temporary (just for testing) */
-import Ingredients from './pages/Ingredients.js';
+import IngredientList from './pages/IngredientList.js';
 import Ingredient from './pages/Ingredient.js';
+import RecipeList from './pages/RecipeList.js';
+import Recipe from './pages/Recipe.js';
+import IngredientCategories from "./components/categories/IngredientCategories";
+import RecipeCategories from "./components/categories/RecipeCategories";
 
 function App() {
   return (
@@ -65,11 +69,29 @@ function App() {
           <Profile />
         </Route>
         */}
-        <Route path="/ingredients" exact>
-          <Ingredients />
+        <Route path="/ingredient_category" exact>
+          <IngredientList />
         </Route>
         <Route path="/ingredient" exact>
           <Ingredient />
+        </Route>
+        <Route path="/recipe_category" exact>
+          <RecipeList />
+        </Route>
+        <Route path="/recipe" exact>
+          <Recipe />
+        </Route>
+        <Route path="/most_used_ingredients" exact>
+          <IngredientList />
+        </Route>
+        <Route path="/individual_ingredient_stats" exact>
+          <IngredientCategories />
+        </Route>
+        <Route path="/most_used_recipes" exact>
+          <RecipeList />
+        </Route>
+        <Route path="/individual_recipe_stats" exact>
+          <RecipeCategories />
         </Route>
       </Switch>
     </div>

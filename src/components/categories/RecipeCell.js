@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const IngredientCell = ({ingredient}) => {
-    const inStock = ingredient.in_stock;
+const RecipeCell = ({recipe}) => {
     return (
         <StyledCell>
-            <Link to="/ingredient">
-                <img src={ingredient.image} alt={`${ingredient.name}  image`} class={`${inStock ? "" : "unavailable"}`}/>
-                {ingredient.name}
+            <Link to="/recipe">
+                <img src={recipe.image} alt={`${recipe.name}  image`}/>
+                {recipe.name}
             </Link>
         </StyledCell>
     )
@@ -44,4 +43,4 @@ const StyledCell = styled.div`
     }
 `
 
-export default IngredientCell;
+export default RecipeCell;

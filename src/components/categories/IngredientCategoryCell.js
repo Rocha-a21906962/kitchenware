@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const IngredientCategoryCell = ({category}) => {
     return (
         <StyledCell>
-            <Link to="/ingredients">
+            <Link to="/ingredient_category">
                 <img src={category.image} alt={`${category.name} image`} />
                 {category.name}
             </Link>

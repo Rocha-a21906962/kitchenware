@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import IngredientCell from "../components/categories/IngredientCell";
 
+/* bogus ingredient data */
 const ingredient_category = {
         name: 'fish',
         image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
@@ -23,12 +24,12 @@ const ingredient_category = {
             {
                 name: 'mackerel',
                 image: 'https://images.trustinnews.pt/uploads/sites/5/2019/10/e-se-trocarmos-a-sardinha-pelo-carapau-2-1024x683.jpeg',
-                in_stock: 0,
+                in_stock: 14,
             },
             {
                 name: 'sea bass',
                 image: 'https://orders.booths.co.uk/media/catalog/product/cache/59b906c9f4a6503cc9c6cc39e925f9a1/5/4/544_1.jpg',
-                in_stock: 15,
+                in_stock: 0,
             },
             {
                 name: 'sardines',
@@ -44,9 +45,9 @@ const Ingredients = () => {
             {/* Show N ingredients */}
             <div className="ingredients">
                 <StyledHeader>
-                    {/* <h3>Ingredients?</h3> */}
+                {/* <h3>Ingredients?</h3> */}
                 </StyledHeader>
-                {/* Show N ingredient categories */}
+                {/* Show N ingredients from this category */}
                 <StyledCategories>
                     {
                         ingredient_category.ingredients.map((ingredient) => {

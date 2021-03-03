@@ -18,6 +18,7 @@ const AlertBubble = () => {
 
 const StyledAlertBubble = styled.div`
     position: fixed;
+    z-index: 100;
     right: 5vw;
     bottom: 5vh;
     display: flex;

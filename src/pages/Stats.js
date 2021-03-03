@@ -1,9 +1,9 @@
-
+import StatCategories from "../components/categories/StatCategories";
 
 const Stats = () => {
     return (
         <div className="content">
-            Stats
+            <StatCategories />
         </div>
     )
 }
