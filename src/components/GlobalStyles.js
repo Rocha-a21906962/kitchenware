@@ -92,6 +92,23 @@ const GlobalStyles = createGlobalStyle`
         // border-top-left-radius: 1.5rem;
         background: linear-gradient(to bottom right,#17171766 5%,#13152f66 65%,#10141b66 100%); /* W3C */
     }
+
+    #order_popup {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        height: 90vh;
+        width: 24vw;
+        opacity: 1;
+        transform: translateY(-90vh);
+        // transform: translateX(30vw);
+        transition: transform 0.5s ease, opacity 0.5s ease;
+        &.open {
+            transform: none;
+        }
+    }
 `
 
 export default GlobalStyles;

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Icon, InlineIcon } from '@iconify/react';
 import bxSearch from '@iconify/icons-bx/bx-search';
 import settings28Filled from '@iconify/icons-fluent/settings-28-filled';
+import fluent28alert from '@iconify/icons-fluent/alert-28-filled';
 
 import kitchenware_logo from "../img/kitchenware.svg";
 
@@ -55,6 +56,14 @@ const Nav = () => {
                     <StyledIcon>
                         <Icon icon={bxSearch} />
                     </StyledIcon>
+                </button>
+                <button onClick="">
+                    <StyledIcon>
+                        <Icon icon={fluent28alert} />
+                    </StyledIcon>
+                    <StyledRedBubble>
+                        1
+                    </StyledRedBubble>
                 </button>
             </StyledSearch>
             {/*
@@ -191,6 +200,7 @@ const StyledSearch = styled.div`
 `
 
 const StyledIcon = styled.div`
+    margin-right: 0.5rem;
     margin-left: auto;
     display: flex;
     justify-content: flex-end;
@@ -201,6 +211,17 @@ const StyledIcon = styled.div`
         height: 1.75rem;
         width: 1.75rem;
     }
+`
+const StyledRedBubble = styled.div`
+    position: absolute;
+    top: 31%;
+    left: 96%;
+    width: 0.85rem;
+    height: 0.85rem;
+    font-size: 0.75rem;
+    border-radius: 50%;
+    background-color: red;
+    color: #b1b1b1;
 `
 
 export default Nav;

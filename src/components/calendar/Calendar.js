@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import GlobalCalendarStyles from "../GlobalCalendarStyles.js";
-import { format, parse, addDays, addMonths, subMonths, startOfWeek, endOfWeek, startOfMonth, endOfMonth, isSameMonth, isSameDay } from "date-fns";
+import { format, parseISO, addDays, addMonths, subMonths, startOfWeek, endOfWeek, startOfMonth, endOfMonth, isSameMonth, isSameDay } from "date-fns";
 import { Icon } from '@iconify/react';
 import formPrevious from '@iconify-icons/grommet-icons/form-previous';
 import formNext from '@iconify-icons/grommet-icons/form-next';
@@ -134,7 +134,7 @@ class Calendar extends React.Component {
                   : isSameDay(day, selectedDate) ? "selected" : ""
               }`}
               key={day}
-              onClick={() => this.onDateClick(parse(cloneDay))}
+              onClick={() => {this.onDateClick(cloneDay)}}
             >
               <span className="number">{formattedDate}</span>
               <span className="bg">{formattedDate}</span>
@@ -156,6 +156,7 @@ class Calendar extends React.Component {
       this.setState({
         selectedDate: day
       });
+      // console.log(day);
     };
   
     nextMonth = () => {

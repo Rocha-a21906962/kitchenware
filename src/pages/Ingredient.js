@@ -63,11 +63,11 @@ const Ingredient = () => {
                     <h5>None</h5>
                 </StyledDetails>
                 {/* buttons */}
-                    <button name="" id="">Show recipes (opens pop-up)</button>
+                    <button name="" id="">Show recipes (opens pop-up / page?)</button>
                     <button name="" id="">Order ingredient (opens pop-up)</button>
-                    <button name="" id="">Current stock details (opens pop-up)</button>
-                    <button name="" id="">Stats (changes page)</button>
                     <button name="" id="">Order history (opens pop-up)</button>
+                    <button name="" id="">Stats (changes page)</button>
+                    <button name="" id="">Current stock details (opens pop-up) - optional (in case we have time to support different expiry dates within an ingredient stock)</button>
                 <StyledDetails>
                     {/* Delete everything: just for testing
 
