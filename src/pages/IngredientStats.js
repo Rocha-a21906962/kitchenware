@@ -85,10 +85,8 @@ const IngredientStats = ({
                     <p></p>
                     */}
                 </StyledDetails>
-                <StockDetails />
-                <StockManagement />
-                {/* buttons */}
-                <div></div>
+                {/* <StockDetails />
+                <StockManagement /> */}
             </StyledIngredient>
         </div>
     )

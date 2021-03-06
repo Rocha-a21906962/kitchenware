@@ -5,9 +5,9 @@ import GlobalStyles from "./components/GlobalStyles.js";
 import Nav from './components/Nav.js';
 import SideNav from './components/SideNav.js';
 import AlertBubble from './components/AlertBubble.js';
+import SearchPage from './components/search/SearchPage.js';
 import Dashboard from './pages/Dashboard.js';
 import RecipeFeed from './pages/RecipeFeed.js';
-import SearchPage from './pages/SearchPage.js';
 import DeviceManagement from './pages/DeviceManagement.js';
 import Pantry from './pages/Pantry.js';
 import ToolManagement from './pages/ToolManagement.js';
@@ -37,20 +37,43 @@ import ScrollToTop from './components/ScrollToTop.js';
 
 function App() {
 
+  /* Hooks for all kinds of data that can be mutated by the user */
   const [mealPlanning, setMealPlanning] = useState(meal_planning());
   const [orders, setOrders] = useState(order_planning());
   const [ingredientData, setIngredientData] = useState(ingredients());
   const [recipeData, setRecipeData] = useState(recipes());
+
   /* We don't want the categories to mutate! */
   const ingredientCategories = ingredient_categories();
   const recipeCategories = recipe_categories();
 
+  /* Hook for search page visibility */
+  const [isSearchPageVisible, setIsSearchPageVisible] = useState(false);
+
+  /* Hook for the search string */
+  const [searchString, setSearchString] = useState(null);
+
   return (
     <div className="App">
       <GlobalStyles />
-      <Nav />
+      <Nav
+          isSearchPageVisible={isSearchPageVisible}
+          setIsSearchPageVisible={setIsSearchPageVisible}
+          searchString={searchString}
+          setSearchString={setSearchString} />
       <SideNav />
       <AlertBubble />
+      <SearchPage
+          isSearchPageVisible={isSearchPageVisible}
+          setIsSearchPageVisible={setIsSearchPageVisible}
+          searchString={searchString}
+          setSearchString={setSearchString}
+          ingredientData={ingredientData}
+          setIngredientData={setIngredientData} 
+          ingredientCategories={ingredientCategories}
+          recipeData={recipeData}
+          setRecipeData={setRecipeData}
+          recipeCategories={recipeCategories} />
       <ScrollToTop>
         <Switch>
           <Route path="/" exact>
@@ -93,9 +116,9 @@ function App() {
           <Route path="/settings" exact>
             <Settings />
           </Route>
-          <Route path="/search" exact>
+          {/* <Route path="/search" exact>
             <SearchPage />
-          </Route>
+          </Route> */}
           <Route path="/favourites" exact>
             <Favourites 
                 recipeData={recipeData}

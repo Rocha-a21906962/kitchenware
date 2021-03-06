@@ -80,7 +80,8 @@ const GlobalStyles = createGlobalStyle`
         letter-spacing: 2px; /* Filipe */
     }
 
-    .content {
+    .content,
+    .search_page {
         position: absolute;
         top: 10vh;
         left: 10rem;
@@ -117,6 +118,48 @@ const GlobalStyles = createGlobalStyle`
     .hide_favourite_button {
         display: none;
     }
+
+    .search_page {
+        position: absolute;
+        height: 60%;
+        width: 100%;
+        opacity: 0.5;
+        transform: translateY(-200%);
+        transition: transform 1s ease, opacity 1.2s ease;
+        background-color: #000000fa;
+        z-index: 999;
+        /*
+        select {
+            text-align-last: center;
+            padding-right: 1rem;
+            width: 15%;
+            height: 100%;
+            background-color: #111111;
+            color: #b1b1b1;
+            border-style: none;
+        }
+        */
+        input {
+            padding-left: 1rem;
+            width: 100%;
+            height: 100%;
+            background-color: #1c1c1c;
+            // background-color: #050c2c;
+            color: #b1b1b1;
+            border-style: none;
+        }
+        &.open {
+            opacity: 1;
+            transform: none;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+    }
+
+    .search_filters {
+        background-color: #00000077;
+        width: 100%;
+    }
+
 `
 
 export default GlobalStyles;

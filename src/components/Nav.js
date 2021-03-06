@@ -8,23 +8,38 @@ import fluent28alert from '@iconify/icons-fluent/alert-28-filled';
 
 import kitchenware_logo from "../img/kitchenware.svg";
 
-const Nav = () => {
+const Nav = ({
+    isSearchPageVisible,
+    setIsSearchPageVisible,
+    searchString,
+    setSearchString
+}) => {
 
-    let history = useHistory();
-    const redirectToSearchPage = () => {
-        history.push('/search')
-    }
+    // let history = useHistory();
+    // const redirectToSearchPage = () => {
+    //     history.push('/search')
+    // }
 
-    const [isSearchBarVisible, setSearchBarVisible] = useState(false);
+    console.log(isSearchPageVisible);
+    console.log(setIsSearchPageVisible);
 
-    const showSearchBar = (event) => {
+    const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
+
+    const toggleSearchBarHandler = () => {
         /* open search page automatically
         if (!isSearchBarVisible) {
             redirectToSearchPage();
         }
         */
-        setSearchBarVisible(!isSearchBarVisible);
+        setIsSearchPageVisible(false);
+        setIsSearchBarVisible(!isSearchBarVisible);
       }
+
+    const onSearchTextChangeHandler = (event) => {
+        setSearchString(event.target.value);
+        setIsSearchPageVisible(true);
+        console.log("searchString:" + searchString);
+    }
 
     return (
         <StyledNav>
@@ -50,9 +65,9 @@ const Nav = () => {
                         <option value="ingredients">ingredients</option>
                     </select>
                     */}
-                    <input type="text" placeholder="Search for a recipe or ingredient..."></input>
+                    <input type="text" placeholder="Search for a recipe or ingredient..." onChange={onSearchTextChangeHandler} ></input>
                 </div>
-                <button onClick={showSearchBar}>
+                <button onClick={toggleSearchBarHandler}>
                     <StyledIcon>
                         <Icon icon={bxSearch} />
                     </StyledIcon>

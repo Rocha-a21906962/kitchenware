@@ -1,16 +1,56 @@
+import styled from "styled-components";
 import ListItem from "./ListItem";
 
-const ResultList = () => {
+const ResultList = ({
+    searchString,
+    setSearchString,
+    ingredientData,
+    setIngredientData,
+    ingredientCategories,
+    recipeData,
+    setRecipeData,
+    recipeCategories
+}) => {
+
+    let results = null;
+
+    if (searchString === null || searchString == "") {
+        results = null;
+    } else {
+        results = recipeData.filter(recipe => {
+            return recipe.name.toLowerCase().includes(searchString.toLowerCase());
+        });
+    }
+
+    console.log("search results:");
+    console.log(results);
+
     return (
         <div className="result_list">
-            {/* Show N results */}
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
+            { 
+                (results == null || results.length === 0)
+                ?
+                <StyledNoMatchingResults>
+                    <h5>No matching results.</h5>
+                </StyledNoMatchingResults>
+                :
+                results.map((item) => {
+                    return <ListItem 
+                                    item={item} />
+                    })
+            }
         </div>
     )
 }
+
+const StyledNoMatchingResults = styled.div`
+    display: flex;
+    height: 10rem;
+    width: 90vw;
+    background-color: #000000dd;
+    h5 {
+        color: #b2b2b2;
+    }
+`
 
 export default ResultList;

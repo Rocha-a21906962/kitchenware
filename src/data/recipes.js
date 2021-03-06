@@ -11,6 +11,9 @@ const recipes = () => {
                 {
                     name: 'fish'
                 },
+                {
+                    name: 'healthy'
+                },
             ],
             ingredients : [
                 {
