@@ -217,12 +217,13 @@ const GlobalCalendarStyles = createGlobalStyle`
     }
 
     .calendar .calendar_body .cell:hover {
-        background: var(--bg-color);
+        // background: var(--bg-color);
+        background-color: #a5822aaa;
         transition: 0.5s ease-out;
     }
 
     .calendar .calendar_body .selected {
-        border-left: 10px solid transparent;
+        // border-left: 10px solid transparent;
         border-image: linear-gradient(45deg, #1a8fff 0%,#53cbf1 40%);
         border-image-slice: 1;
     }
@@ -253,23 +254,28 @@ const GlobalCalendarStyles = createGlobalStyle`
     .calendar .calendar_body .disabled {
         color: var(--text-color-light);
         pointer-events: none;
+        /* */
+        background-color: #a5822a66;
+        &span {
+            color: #a5822a44;
+        }
     }
 
     .calendar .calendar_body .cell .bg {
         font-weight: 700;
         line-height: 1;
-        color: var(--main-color);
+        color: #a5822a;
         opacity: 0;
-        font-size: 8em;
+        font-size: 5rem;
         position: absolute;
-        top: -.2em;
-        right: -.05em;
+        bottom: -.2rem;
+        right: -.05rem;
         transition: .25s ease-out;
         letter-spacing: -.07em;
     }
 
     .calendar .calendar_body .cell:hover .bg, .calendar .calendar_body .selected .bg  {
-        opacity: 0.05;
+        opacity: 0.10;
         transition: .5s ease-in;
     }
 
@@ -286,6 +292,48 @@ const GlobalCalendarStyles = createGlobalStyle`
         span {
             text-decoration: none;
             color: white;
+        }
+    }
+
+    .calendar .calendar_body .cell svg {
+        position: absolute;
+        top: calc(50% - 1.25rem/2);
+        left: calc(50% - 1.25rem/2);
+        font-size: 1.25rem;
+        line-height: 1;
+        font-weight: 700;
+        /* */
+        color: #a5822abb;
+    }
+
+    .calendar .calendar_body .cell .nr_meals {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #a24d0c;
+        // font-family: GTAmericaRegular;
+        font-size: 0.75rem;
+        font-weight: 900;
+        opacity: 1;
+        svg {
+            position: absolute;
+            top: calc(50% - 2.65rem/2);
+            left: calc(50% - 2.5rem/2);
+            font-size: 2.5rem;
+            line-height: 1;
+            /* */
+            color: #a5822abb;
+            opacity: 0.5;
+        }
+    }
+
+    .calendar .calendar_body .disabled .number,
+    .calendar .calendar_body .disabled .fa-truck,
+    .calendar .calendar_body .disabled .nr_meals {
+        color: #a5822a44;
+        svg {
+            color: #a5822a44;
         }
     }
 

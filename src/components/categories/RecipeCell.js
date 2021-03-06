@@ -1,13 +1,27 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const RecipeCell = ({recipe}) => {
+const RecipeCell = ({
+    recipe, 
+    stats
+}) => {
     return (
         <StyledCell>
+            { stats ?
+
+            <Link to="/recipe_stats">
+                <img src={recipe.image} alt={`${recipe.name}  image`}/>
+                {recipe.name}
+            </Link>
+
+            :
+
             <Link to="/recipe">
                 <img src={recipe.image} alt={`${recipe.name}  image`}/>
                 {recipe.name}
             </Link>
+
+            }
         </StyledCell>
     )
 }

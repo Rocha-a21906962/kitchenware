@@ -39,7 +39,7 @@ const ingredient_category = {
         ]
     }
 
-const Ingredients = () => {
+const Ingredients = ({stats}) => {
     return (
         <div className="content">
             {/* Show N ingredients */}
@@ -63,7 +63,9 @@ const Ingredients = () => {
                 <StyledCategories>
                     {
                         ingredient_category.ingredients.map((ingredient) => {
-                            return <IngredientCell ingredient={ingredient}/>
+                            return <IngredientCell 
+                                        ingredient={ingredient}
+                                        stats={stats}/>
                         })
                     }
                 </StyledCategories>

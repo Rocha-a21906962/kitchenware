@@ -1,8 +1,18 @@
 import Calendar from "../calendar/Calendar";
 
-const MealPlanningCalendar = () => {
+const MealPlanningCalendar = ({
+    mealPlanning,
+    setMealPlanning,
+    selectedDay,
+    setSelectedDay
+}) => {
     return (
-        <Calendar />
+        <Calendar
+            selectedDay={selectedDay}
+            setSelectedDay={setSelectedDay}
+            calendarType="meal_planning"
+            dataState={mealPlanning}
+            setDataState={setMealPlanning} />
     )
 }
 

@@ -99,7 +99,7 @@ const recipe_categories = [
     },
   ];
 
-const RecipeCategories = () => {
+const RecipeCategories = ({stats}) => {
     return (
         <div className="recipe_categories">
             <StyledHeader>
@@ -109,7 +109,9 @@ const RecipeCategories = () => {
             <StyledCategories>
                 {
                     recipe_categories.map((category) => {
-                        return <RecipeCategoryCell category={category}/>
+                        return <RecipeCategoryCell 
+                                    category={category}
+                                    stats={stats}/>
                     })
                 }
             </StyledCategories>

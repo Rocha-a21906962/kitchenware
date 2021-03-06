@@ -93,7 +93,10 @@ const GlobalStyles = createGlobalStyle`
         background: linear-gradient(to bottom right,#17171766 5%,#13152f66 65%,#10141b66 100%); /* W3C */
     }
 
-    #order_popup {
+    #order_detail_popup,
+    #new_order_popup,
+    #meal_detail_popup,
+    #new_meal_popup {
         position: absolute;
         top: 0;
         right: 0;
@@ -101,12 +104,13 @@ const GlobalStyles = createGlobalStyle`
         flex-direction: column;
         height: 90vh;
         width: 24vw;
-        opacity: 1;
+        opacity: 0;
         transform: translateY(-90vh);
         // transform: translateX(30vw);
-        transition: transform 0.5s ease, opacity 0.5s ease;
+        transition: transform 0.3s ease, opacity 0.3s ease;
         &.open {
             transform: none;
+            opacity: 1;
         }
     }
 `

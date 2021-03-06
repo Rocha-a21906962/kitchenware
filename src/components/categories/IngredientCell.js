@@ -1,14 +1,28 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const IngredientCell = ({ingredient}) => {
+const IngredientCell = ({
+    ingredient,
+    stats
+}) => {
     const inStock = ingredient.in_stock;
     return (
         <StyledCell>
+            { stats ?
+
+            <Link to="/ingredient_stats">
+                <img src={ingredient.image} alt={`${ingredient.name}  image`} class={`${inStock ? "" : "unavailable"}`}/>
+                {stats}
+            </Link>
+
+            :
+
             <Link to="/ingredient">
                 <img src={ingredient.image} alt={`${ingredient.name}  image`} class={`${inStock ? "" : "unavailable"}`}/>
                 {ingredient.name}
             </Link>
+
+            }
         </StyledCell>
     )
 }

@@ -1,4 +1,5 @@
 import { Switch, Route } from 'react-router-dom';
+import { useState } from 'react';
 
 import GlobalStyles from "./components/GlobalStyles.js";
 import Nav from './components/Nav.js';
@@ -18,12 +19,21 @@ import Settings from './pages/Settings.js';
 /* temporary (just for testing) */
 import IngredientList from './pages/IngredientList.js';
 import Ingredient from './pages/Ingredient.js';
+import IngredientStats from './pages/IngredientStats.js';
 import RecipeList from './pages/RecipeList.js';
 import Recipe from './pages/Recipe.js';
-import IngredientCategories from "./components/categories/IngredientCategories";
-import RecipeCategories from "./components/categories/RecipeCategories";
+import RecipeStats from './pages/RecipeStats.js';
+import IngredientCategoriesPage from "./pages/IngredientCategories";
+import RecipeCategoriesPage from "./pages/RecipeCategories";
+
+import meal_planning from './data/meal_planning';
+import order_planning from './data/orders';
 
 function App() {
+
+  const [mealPlanning, setMealPlanning] = useState(meal_planning());
+  const [orders, setOrders] = useState(order_planning());
+
   return (
     <div className="App">
       <GlobalStyles />
@@ -47,10 +57,14 @@ function App() {
           <RecipeFeed />
         </Route>
         <Route path="/orders" exact>
-          <Orders />
+          <Orders
+              orders={orders}
+              setOrders={setOrders}/>
         </Route>
         <Route path="/meals_and_events" exact>
-          <MealsAndEvents />
+          <MealsAndEvents 
+              mealPlanning={mealPlanning}
+              setMealPlanning={setMealPlanning}/>
         </Route>
         <Route path="/stats" exact>
           <Stats />
@@ -70,28 +84,48 @@ function App() {
         </Route>
         */}
         <Route path="/ingredient_category" exact>
-          <IngredientList />
+          <IngredientList 
+              stats={false} />
+        </Route>
+        <Route path="/ingredient_category_stats" exact>
+          <IngredientList 
+              stats={true} />
         </Route>
         <Route path="/ingredient" exact>
           <Ingredient />
         </Route>
+        <Route path="/ingredient_stats" exact>
+          <IngredientStats />
+        </Route>
         <Route path="/recipe_category" exact>
-          <RecipeList />
+          <RecipeList 
+              stats={false} />
+        </Route>
+        <Route path="/recipe_category_stats" exact>
+          <RecipeList 
+              stats={true} />
         </Route>
         <Route path="/recipe" exact>
           <Recipe />
         </Route>
+        <Route path="/recipe_stats" exact>
+          <RecipeStats />
+        </Route>
         <Route path="/most_used_ingredients" exact>
-          <IngredientList />
+          <IngredientList 
+              stats={true} />
         </Route>
         <Route path="/individual_ingredient_stats" exact>
-          <IngredientCategories />
+          <IngredientCategoriesPage 
+              stats={true} />
         </Route>
         <Route path="/most_used_recipes" exact>
-          <RecipeList />
+          <RecipeList 
+              stats={true} />
         </Route>
         <Route path="/individual_recipe_stats" exact>
-          <RecipeCategories />
+          <RecipeCategoriesPage 
+              stats={true} />
         </Route>
       </Switch>
     </div>

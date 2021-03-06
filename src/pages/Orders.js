@@ -1,17 +1,43 @@
+import { useState } from "react";
+
 import OrderCalendar from "../components/orders/OrderCalendar";
 import SideContext from "../components/orders/SideContext";
 import BottomContext from "../components/orders/BottomContext";
 import OrderDetail from "../components/orders/OrderDetail";
+import NewOrder from "../components/orders/NewOrder";
 
-const Orders = () => {
+const Orders = ({
+    orders,
+    setOrders
+}) => {
+
+    const [selectedDay, setSelectedDay] = useState(new Date());
+    const [isOrderDetailOpen, setIsOrderDetailOpen] = useState(null);
+    const [isNewOrderOpen, setIsNewOrderOpen] = useState(null);
+
     return (
         <div className="content">
-            <OrderCalendar /> 
+            <OrderCalendar
+                orders={orders}
+                setOrders={setOrders}
+                selectedDay={selectedDay}
+                setSelectedDay={setSelectedDay} /> 
             {/*
             <BottomContext />
             */}
-            <SideContext /> 
-            <OrderDetail />
+            <SideContext
+                selectedDay={selectedDay}
+                setSelectedDay={setSelectedDay}
+                isOrderDetailOpen={isOrderDetailOpen}
+                setIsOrderDetailOpen={setIsOrderDetailOpen}
+                isNewOrderOpen={isNewOrderOpen}
+                setIsNewOrderOpen={setIsNewOrderOpen} /> 
+            <OrderDetail
+                isOrderDetailOpen={isOrderDetailOpen}
+                setIsOrderDetailOpen={setIsOrderDetailOpen} />
+            <NewOrder
+                isNewOrderOpen={isNewOrderOpen}
+                setIsNewOrderOpen={setIsNewOrderOpen} />
         </div>
     )
 }

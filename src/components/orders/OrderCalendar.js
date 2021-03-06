@@ -1,8 +1,18 @@
 import Calendar from "../calendar/Calendar";
 
-const OrderCalendar = () => {
+const OrderCalendar = ({
+    selectedDay,
+    setSelectedDay,
+    orders,
+    setOrders
+}) => {
     return (
-        <Calendar />
+        <Calendar
+            selectedDay={selectedDay}
+            setSelectedDay={setSelectedDay}
+            calendarType="orders"
+            dataState={orders}
+            setDataState={setOrders} />
     )
 }
 

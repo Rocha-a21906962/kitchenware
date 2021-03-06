@@ -2,22 +2,10 @@ import styled from "styled-components";
 import { Icon, InlineIcon } from '@iconify/react';
 import formPrevious from '@iconify-icons/grommet-icons/form-previous';
 
-const OrderDetail = ({
-    isOrderDetailOpen,
-    setIsOrderDetailOpen,
+const NewOrder = ({
     isNewOrderOpen,
     setIsNewOrderOpen
 }) => {
-
-    const showOrderDetail = (order_id) => {
-        setIsOrderDetailOpen(order_id);
-        console.log(isOrderDetailOpen);
-    };
-
-    const hideOrderDetail = () => {
-        setIsOrderDetailOpen(null);
-        console.log(isOrderDetailOpen);
-    }
 
     const hideNewOrder = () => {
         setIsNewOrderOpen(null);
@@ -25,32 +13,47 @@ const OrderDetail = ({
     }
 
     return (
-        <div id="order_detail_popup" className={`${isOrderDetailOpen ? 'open' : ''}`}>
+        <div id="new_order_popup" className={`${isNewOrderOpen ? 'open' : ''}`}>
             <StyledHeader>
-                <h3>Order #{isOrderDetailOpen}</h3>
+                <h3>New order</h3>
                 <StyledIcon>
-                    <Icon icon={formPrevious} onClick={hideOrderDetail} />
+                    <Icon icon={formPrevious} onClick={hideNewOrder} />
                 </StyledIcon>
             </StyledHeader>
             <StyledSideContext>
                 <StyledDetails>
                     <h3>Order details</h3>
-                    <h5>Type: auto (as per <span onClick={() => showOrderDetail('158')}>order #158</span>)</h5>
-                    <h5>Placed on: March 6, 17:30</h5>
-                    <h5>Delivery on: March 7, 8:00</h5>
+                    <h5>Delivery on: ...</h5>
                 </StyledDetails>
-                <h3>Ordered ingredients</h3>
+                <h3>Ingredients</h3>
                 <StyledIngredient>
                     <div className="individual_order">
                         <h5>Tuna</h5>
-                        <h5><span>auto</span></h5>
                     </div>
                     <div className="quantity">
                         <h5><span>2 kg</span></h5>
                     </div>
-                    <button name="" id="">Change</button>
+                    <button name="" id="">Remove</button>
                 </StyledIngredient>
-                <button name="" id="">Cancel order</button>
+                <StyledIngredient>
+                    <div className="individual_order">
+                        <h5>Olive oil</h5>
+                    </div>
+                    <div className="quantity">
+                        <h5><span>10 l</span></h5>
+                    </div>
+                    <button name="" id="">Remove</button>
+                </StyledIngredient>
+                <StyledIngredient>
+                    <div className="individual_order">
+                        <h5>Onions</h5>
+                    </div>
+                    <div className="quantity">
+                        <h5><span>1.5 kg</span></h5>
+                    </div>
+                    <button name="" id="">Remove</button>
+                </StyledIngredient>
+                <button name="" id="">Place order</button>
                 <button name="" id="">Change delivery date</button>
             </StyledSideContext>
         </div>
@@ -71,9 +74,12 @@ const StyledIngredient = styled.div`
     }
     .quantity {
         width: 15%;
+        span {
+        white-space: nowrap;
+        }
     }
     button {
-        width: 50%;
+        width: 40%;
         font-size: 0.75rem;
         line-height: 0rem;
         white-space: nowrap;
@@ -94,7 +100,7 @@ const StyledHeader = styled.div`
     justify-content: center;
     align-items: center;
     height: 14vh;
-    background-color: #02031d;
+    background-color: #021d0b;
     color: #b2b2b2;
 `
 const StyledIcon = styled.div`
@@ -125,4 +131,4 @@ const StyledSideContext = styled.div`
     }
 `
 
-export default OrderDetail;
+export default NewOrder;

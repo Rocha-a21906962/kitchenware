@@ -39,6 +39,10 @@
     ]
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@iconify-icons/bx": "^1.1.0",
     "@iconify-icons/grommet-icons": "^1.1.0",
     "@iconify/icons-bx": "^1.1.0",
     "@iconify/icons-carbon": "^1.1.1",
