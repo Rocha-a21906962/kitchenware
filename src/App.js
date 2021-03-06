@@ -16,6 +16,7 @@ import Orders from './pages/Orders.js';
 import MealsAndEvents from './pages/MealsAndEvents.js';
 import About from './pages/About.js';
 import Settings from './pages/Settings.js';
+import Favourites from './pages/Favourites.js';
 /* temporary (just for testing) */
 import IngredientList from './pages/IngredientList.js';
 import Ingredient from './pages/Ingredient.js';
@@ -94,6 +95,12 @@ function App() {
           </Route>
           <Route path="/search" exact>
             <SearchPage />
+          </Route>
+          <Route path="/favourites" exact>
+            <Favourites 
+                recipeData={recipeData}
+                setRecipeData={setRecipeData}
+                recipeCategories={recipeCategories}/>
           </Route>
           {/*
           <Route path="/profile" exact>

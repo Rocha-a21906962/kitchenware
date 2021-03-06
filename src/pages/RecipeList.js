@@ -7,7 +7,8 @@ const Recipes = ({
     recipeData,
     setRecipeData,
     recipeCategories,
-    stats
+    stats = false,
+    favourites = false
 }) => {
     
     let category = null;
@@ -19,22 +20,35 @@ const Recipes = ({
     console.log('recipe_category_name:' + category_name);
     // const category = recipeCategories.filter(category => category.name === category_name)[0];
     
-    // If no recipe category was passed in the route, show every ingredient
+    // If no recipe category was passed in the route, show every ingredient unless we only
+    // want to show the favourites
     if (typeof category_name === 'undefined') {
-        // Hack : fake category
-        category = {
-            name: 'recipe stats',
-            image: 'https://assets.epicurious.com/photos/57eebe2eb382c3c017d3fff0/16:9/w_2560%2Cc_limit/supermarket-shelves.jpg',
-        };
-        //
-        category_recipes = recipeData;
+        if (favourites == true) {
+            // Hack : fake category to show only the favourites
+            category = {
+                name: 'favourites',
+                image: 'https://assets.epicurious.com/photos/57eebe2eb382c3c017d3fff0/16:9/w_2560%2Cc_limit/supermarket-shelves.jpg',
+            };
+            //
+            category_recipes = recipeData.filter(recipe => {
+                return recipe.is_favourite === true;
+            });
+        } else {
+            // Hack : fake category to override categories and show every ingredient instead
+            category = {
+                name: 'recipe stats',
+                image: 'https://assets.epicurious.com/photos/57eebe2eb382c3c017d3fff0/16:9/w_2560%2Cc_limit/supermarket-shelves.jpg',
+            };
+            //
+            category_recipes = recipeData;
+        }
     } else {
         category = recipeCategories.filter(category => category.name === category_name)[0];
         category_recipes = recipeData.filter(recipe => {
             return recipe.categories.some(c => c.name === category_name);
         });
     };
-    
+
     console.log("dkjfsdkjfkdg");
     console.log("category:" + category);
     console.log("category_recipes:");
