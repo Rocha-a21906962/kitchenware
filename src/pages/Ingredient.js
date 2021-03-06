@@ -1,17 +1,19 @@
+import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Details from '../components/ingredient/Details.js';
 import Photo from '../components/ingredient/Photo';
 import StockDetails from '../components/ingredient/StockDetails';
 import StockManagement from '../components/ingredient/StockManagement';
 
-/* bogus ingredient data */
-const ingredient = {
-            name: 'tuna',
-            image: 'https://1.bp.blogspot.com/-_QXjE8zwvNo/WaWEY1LFgcI/AAAAAAAAA1k/aar9QC0qFesVlS2c0dgOh4SqZk3TDJSJgCLcBGAs/s1600/Yellowfin%2BTuna%2BSaku%2B-%2BHigh%2BQuality.jpg',
-            in_stock: 3,
-        }
 
-const Ingredient = () => {
+const Ingredient = ({
+    ingredientData,
+    setIngredientData
+}) => {
+
+    let { ingredient_name } = useParams();
+    const ingredient = ingredientData.filter(ingredient => ingredient.name === ingredient_name)[0];
+
     return (
         <div className="content">
             <StyledIngredient>
@@ -66,7 +68,9 @@ const Ingredient = () => {
                     <button name="" id="">Show recipes (opens pop-up / page?)</button>
                     <button name="" id="">Order ingredient (opens pop-up)</button>
                     <button name="" id="">Order history (opens pop-up)</button>
-                    <button name="" id="">Stats (changes page)</button>
+                    <Link to={`/ingredient_stats/${ingredient.name}`}>
+                        <button name="" id="">Stats (changes page)</button>
+                    </Link>
                     <button name="" id="">Current stock details (opens pop-up) - optional (in case we have time to support different expiry dates within an ingredient stock)</button>
                 <StyledDetails>
                     {/* Delete everything: just for testing

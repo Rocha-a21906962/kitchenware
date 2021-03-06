@@ -1,80 +1,65 @@
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import RecipeCell from "../components/categories/RecipeCell";
 
-/* bogus recipe data */
-const recipe_category = {
-    name: 'fish',
-    image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-    recipes: [
-        {
-            name: 'tuna recipe #1',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-        },
-        {
-            name: 'cod recipe #1',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-        },
-        {
-            name: 'cod recipe #2',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-        },
-        {
-            name: 'tuna recipe #2',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-        },
-        {
-            name: 'salmon recipe #1',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-        },
-        {
-            name: 'sardines on carvon!!',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-        },
-        {
-            name: 'tuna recipe #3',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-        },
-        {
-            name: 'tuna recipe #4',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-        },
-        {
-            name: 'tuna recipe #5',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-        },
-        {
-            name: 'tuna recipe #6',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-        },
-        {
-            name: 'tuna recipe #7',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-        },
-        {
-            name: 'tuna recipe #8',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-        },
-    ]
-}
 
-const Recipes = ({stats}) => {
+const Recipes = ({
+    recipeData,
+    setRecipeData,
+    recipeCategories,
+    stats
+}) => {
+    
+    let category = null;
+    let category_recipes = recipeData;
+
+    let { category_name } = useParams();
+
+    console.log("recipeData:" + recipeData);
+    console.log('recipe_category_name:' + category_name);
+    // const category = recipeCategories.filter(category => category.name === category_name)[0];
+    
+    // If no recipe category was passed in the route, show every ingredient
+    if (typeof category_name === 'undefined') {
+        // Hack : fake category
+        category = {
+            name: 'recipe stats',
+            image: 'https://assets.epicurious.com/photos/57eebe2eb382c3c017d3fff0/16:9/w_2560%2Cc_limit/supermarket-shelves.jpg',
+        };
+        //
+        category_recipes = recipeData;
+    } else {
+        category = recipeCategories.filter(category => category.name === category_name)[0];
+        category_recipes = recipeData.filter(recipe => {
+            return recipe.categories.some(c => c.name === category_name);
+        });
+    };
+    
+    console.log("dkjfsdkjfkdg");
+    console.log("category:" + category);
+    console.log("category_recipes:");
+    console.log(category_recipes);
+
     return (
         <div className="content">
             {/* Show N recipes */}
-            <div className="ingredients">
+            <div className="recipes">
                 <StyledContentHeader>
                     <div className="gradient_overlay"></div>
-                    <img src={recipe_category.image} alt={`${recipe_category.name} image`}/>
+                    <img src={category.image} alt={`${category.name} image`}/>
                     <div className="recipe_name">
-                        <h2><span>{recipe_category.name}</span> (recipe category)</h2>
+                        <h2><span>{category.name}</span></h2>
                     </div>
                 </StyledContentHeader>
                 {/* Show N recipes from this category */}
                 <StyledCategories>
                     {
-                        recipe_category.recipes.map((recipe) => {
+                        category_recipes.map((recipe) => {
                             return <RecipeCell 
                                         recipe={recipe}
+                                        recipeData={recipeData}
+                                        setRecipeData={setRecipeData}
+                                        recipeCategories={recipeCategories}
                                         stats={stats}/>
                         })
                     }

@@ -1,6 +1,10 @@
 import RecipeCategories from "../components/categories/RecipeCategories";
 
-const RecipeFeed = () => {
+const RecipeFeed = ({
+    recipeData,
+    setRecipeData,
+    recipeCategories
+}) => {
     return (
         <div className="content">
             {/* 
@@ -10,7 +14,11 @@ const RecipeFeed = () => {
             Recipe Categories could become the first "line" of the netflix-like recipe feed,
             followed by Ready to Cook, In a hurry?, Vegan, No allergies allowed, etc
             */}
-            <RecipeCategories stats={false} />
+            <RecipeCategories 
+                recipeData={recipeData}
+                setRecipeData={setRecipeData}
+                recipeCategories={recipeCategories}
+                stats={false} />
         </div>
     )
 }

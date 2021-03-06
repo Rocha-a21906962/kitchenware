@@ -1,17 +1,19 @@
+import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Details from '../components/ingredient/Details.js';
 import Photo from '../components/ingredient/Photo';
 import StockDetails from '../components/ingredient/StockDetails';
 import StockManagement from '../components/ingredient/StockManagement';
 
-/* bogus ingredient data */
-const ingredient = {
-    name: 'tuna',
-    image: 'https://1.bp.blogspot.com/-_QXjE8zwvNo/WaWEY1LFgcI/AAAAAAAAA1k/aar9QC0qFesVlS2c0dgOh4SqZk3TDJSJgCLcBGAs/s1600/Yellowfin%2BTuna%2BSaku%2B-%2BHigh%2BQuality.jpg',
-    in_stock: 3,
-}
 
-const IngredientStats = () => {
+const IngredientStats = ({
+    ingredientData,
+    setIngredientData
+}) => {
+
+    let { ingredient_name } = useParams();
+    const ingredient = ingredientData.filter(ingredient => ingredient.name === ingredient_name)[0];
+
     return (
         <div className="content">
             <StyledIngredient>
@@ -63,7 +65,9 @@ const IngredientStats = () => {
                     <h5>None</h5>
                 </StyledDetails>
                 {/* buttons */}
-                    <button name="" id="">Show ingredient main page (changes page)</button>
+                    <Link to={`/ingredient/${ingredient.name}`}>
+                        <button name="" id="">Show ingredient main page (changes page)</button>
+                    </Link>
                 <StyledDetails>
                     {/* Delete everything: just for testing
 

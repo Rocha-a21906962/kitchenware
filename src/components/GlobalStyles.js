@@ -113,6 +113,10 @@ const GlobalStyles = createGlobalStyle`
             opacity: 1;
         }
     }
+
+    .hide_favourite_button {
+        display: none;
+    }
 `
 
 export default GlobalStyles;

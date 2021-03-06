@@ -1,12 +1,37 @@
+import { useParams, Link } from 'react-router-dom';
 import styled from "styled-components";
 
-/* bogus recipe data */
-const recipe = {
-    name: 'salmon recipe #1',
-    image: 'https://images.thefishsite.com/fish/articles/processing/salmon-fillet.jpeg?profile=article-inline@maximum',
-}
 
-const Recipe = () => {
+const Recipe = ({
+    recipeData,
+    setRecipeData
+}) => {
+
+    let { recipe_name } = useParams();
+    let recipe = recipeData.filter(recipe => recipe.name === recipe_name)[0];
+
+    const toggleRecipeFavouriteStatus = () => {
+
+        console.log("before:" + recipe.is_favourite);
+
+        const modifiedRecipeData = recipeData.map((r) => {
+            if (r.name === recipe.name) {
+                return {
+                    ...r,
+                    is_favourite: !recipe.is_favourite
+                }
+            } else {
+                return {
+                    ...r
+                }
+            }
+        });
+        setRecipeData(modifiedRecipeData);
+        recipe = recipeData.filter(recipe => recipe.name === recipe_name)[0];
+        
+        console.log("after:" + recipe.is_favourite);
+    };
+
     return (
         <div className="content">
             <StyledRecipe>
@@ -15,7 +40,10 @@ const Recipe = () => {
                     <img src={recipe.image} alt={`${recipe.name} image`}/>
                     <div className="recipe_name">
                         <h2>Recipe: <span>{recipe.name}</span></h2>
-                        <button name="" id="">Set as favourite</button>
+                        <StyledFavouriteButton>
+                            <button name="" id="" className={`${recipe.is_favourite ? 'hide_favourite_button ' : ''}`} onClick={toggleRecipeFavouriteStatus}>Set as favourite</button>
+                            <button name="" id="" className={`search ${!recipe.is_favourite ? 'hide_favourite_button ' : ''}`} onClick={toggleRecipeFavouriteStatus}>Remove from favourites</button>
+                        </StyledFavouriteButton>
                     </div>
                     <button name="" id="">Set as favourite</button>
                     <div className="main_details">
@@ -85,7 +113,9 @@ const Recipe = () => {
                 {/* buttons */}
                     <button name="" id="">Order ingredients (opens pop-up)</button>
                     <button name="" id="">Schedule meal (opens pop-up)</button>
-                    <button name="" id="">Stats (changes page)</button>
+                    <Link to={`/recipe_stats/${recipe.name}`}>
+                        <button name="" id="">Stats (changes page)</button>
+                    </Link>
             </StyledRecipe>
         </div>
     )
@@ -149,7 +179,6 @@ const StyledPhoto = styled.div`
             font-style: normal;
         }
     }
-
     .main_details {
         position: absolute;
         left: 0;
@@ -173,6 +202,22 @@ const StyledPhoto = styled.div`
             font-weight: 100;
             font-style: normal;
         }
+    }
+`
+
+const StyledFavouriteButton = styled.div`
+    display: flex;
+    align-self: flex-start;
+    width: 5rem;
+    padding-left: 1rem;
+    font-family: GTAmericaRegular;
+    color: #b1b1b1;
+    button {
+        position: absolute;
+        width: 8rem;
+        height: 4rem;
+        font-size: 0.75rem;
+        padding: 1rem;
     }
 `
 

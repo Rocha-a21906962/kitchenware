@@ -3,20 +3,25 @@ import styled from 'styled-components';
 
 const RecipeCategoryCell = ({
     category,
+    recipeData,
+    setRecipeData,
+    recipeCategories,
     stats
 }) => {
     return (
         <StyledCell>
             { stats ? 
             
-            <Link to="/recipe_category_stats">
+            // <Link to="/recipe_category_stats">
+            <Link to={`/recipe_category_stats/${category.name}`}>
                 <img src={category.image} alt={`${category.name} image`} />
                 {category.name}
             </Link>
             
             :
             
-            <Link to="/recipe_category">
+            // <Link to="/recipe_category">
+            <Link to={`/recipe_category/${category.name}`}>
                 <img src={category.image} alt={`${category.name} image`} />
                 {category.name}
             </Link>

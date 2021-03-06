@@ -3,23 +3,44 @@ import styled from 'styled-components';
 
 const IngredientCategoryCell = ({
     category, 
+    ingredientData,
+    setIngredientData,
+    ingredientCategories,
     stats
 }) => {
+
+    console.log(category);
+
     return (
         <StyledCell>
             { stats ? 
             
-            <Link to="/ingredient_category_stats">
+            // <Link to="/ingredient_category_stats/">
+            <Link to={`/ingredient_category_stats/${category.name}`}>
                 <img src={category.image} alt={`${category.name} image`} />
                 {category.name}
             </Link>
             
+            // <IngredientList
+            //     category={category.name}
+            //     ingredientData={ingredientData}
+            //     setIngredientData={setIngredientData} 
+            //     stats={true} />
+
             :
             
-            <Link to="/ingredient_category">
+            // <Link to="/ingredient_category">
+            <Link to={`/ingredient_category/${category.name}`}>
                 <img src={category.image} alt={`${category.name} image`} />
                 {category.name}
             </Link>
+
+            // <IngredientList
+            //     category={category.name}
+            //     ingredientData={ingredientData}
+            //     setIngredientData={setIngredientData} 
+            //     stats={false} />
+
             }
         </StyledCell>
     )

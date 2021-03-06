@@ -81,7 +81,6 @@ const Calendar = ({
         const monthFormat = "MMMM";
         const yearFormat = "yyyy";
         
-        console.log("lalala");
         console.log(dataState);
         console.log(selectedDay);
         console.log(currentMonth);

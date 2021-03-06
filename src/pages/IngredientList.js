@@ -1,54 +1,55 @@
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import IngredientCell from "../components/categories/IngredientCell";
 
-/* bogus ingredient data */
-const ingredient_category = {
-        name: 'fish',
-        image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-        ingredients: [
-            {
-                name: 'tuna',
-                image: 'https://1.bp.blogspot.com/-_QXjE8zwvNo/WaWEY1LFgcI/AAAAAAAAA1k/aar9QC0qFesVlS2c0dgOh4SqZk3TDJSJgCLcBGAs/s1600/Yellowfin%2BTuna%2BSaku%2B-%2BHigh%2BQuality.jpg',
-                in_stock: 3,
-            },
-            {
-                name: 'cod',
-                image: 'https://www.portugalresident.com/wp-content/uploads/2013/12/201213_su_cod_shutterstock.jpg',
-                in_stock: 12,
-            },
-            {
-                name: 'salmon',
-                image: 'https://images.thefishsite.com/fish/articles/processing/salmon-fillet.jpeg?profile=article-inline@maximum',
-                in_stock: 9,
-            },
-            {
-                name: 'mackerel',
-                image: 'https://images.trustinnews.pt/uploads/sites/5/2019/10/e-se-trocarmos-a-sardinha-pelo-carapau-2-1024x683.jpeg',
-                in_stock: 14,
-            },
-            {
-                name: 'sea bass',
-                image: 'https://orders.booths.co.uk/media/catalog/product/cache/59b906c9f4a6503cc9c6cc39e925f9a1/5/4/544_1.jpg',
-                in_stock: 0,
-            },
-            {
-                name: 'sardines',
-                image: 'https://ncultura.pt/wp-content/uploads/2018/10/capa-3-640x320.jpg',
-                in_stock: 33,
-            },
-        ]
-    }
 
-const Ingredients = ({stats}) => {
+const Ingredients = ({
+    ingredientData,
+    setIngredientData,
+    ingredientCategories,
+    stats
+}) => {
+    
+    let category = null;
+    let category_ingredients = ingredientData;
+
+    let { category_name } = useParams();
+
+    console.log("ingredientData:" + ingredientData);
+    console.log('ingredient_category_name:' + category_name);
+    // const category = ingredientCategories.filter(category => category.name === category_name)[0];
+    
+    // If no ingredient category was passed in the route, show every ingredient
+    if (typeof category_name === 'undefined') {
+        // Hack : fake category
+        category = {
+            name: 'ingredient stats',
+            image: 'https://assets.epicurious.com/photos/57eebe2eb382c3c017d3fff0/16:9/w_2560%2Cc_limit/supermarket-shelves.jpg',
+        };
+        //
+        category_ingredients = ingredientData;
+    } else {
+        category = ingredientCategories.filter(category => category.name === category_name)[0];
+        category_ingredients = ingredientData.filter(ingredient => {
+            return ingredient.categories.some(c => c.name === category_name);
+        });
+    };
+
+
+    console.log("dkjfsdkjfkdg");
+    console.log("category:" + category);
+    console.log("category_ingredients:");
+    console.log(category_ingredients);
+
     return (
         <div className="content">
             {/* Show N ingredients */}
             <div className="ingredients">
                 <StyledContentHeader>
                     <div className="gradient_overlay"></div>
-                    <img src={ingredient_category.image} alt={`${ingredient_category.name} image`}/>
+                    <img src={category.image} alt={`${category.name} image`}/>
                     <div className="ingredient_name">
-                        <h2><span>{ingredient_category.name}</span> (ingredient category)</h2>
+                        <h2><span>{category.name}</span></h2>
                     </div>
                 </StyledContentHeader>
                 <StyledFilterSection>
@@ -62,9 +63,14 @@ const Ingredients = ({stats}) => {
                 {/* Show N ingredients from this category */}
                 <StyledCategories>
                     {
-                        ingredient_category.ingredients.map((ingredient) => {
+                        // ingredient_category.ingredients.map((ingredient) => {
+                            // ingredientData.filter((ingredient => ingredient.categories.includes(ingredient_category_name)) => {
+                        category_ingredients.map((ingredient) => {
                             return <IngredientCell 
                                         ingredient={ingredient}
+                                        ingredientData={ingredientData}
+                                        setIngredientData={setIngredientData}
+                                        ingredientCategories={ingredientCategories}
                                         stats={stats}/>
                         })
                     }
