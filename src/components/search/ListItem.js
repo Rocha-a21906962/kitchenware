@@ -44,7 +44,7 @@ const ListItem = ({
                     <StyledDescription>
                         <h3>{item.name}</h3>
                         <p>categories: {categories.flat().join(', ')} </p>
-                        <p>current stock: {item.in_stock}{item.unit} </p>
+                        <p>current stock: {item.in_stock.value}{item.unit} </p>
                         <h5>sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg</h5>
                     </StyledDescription>
                 </StyledItem>

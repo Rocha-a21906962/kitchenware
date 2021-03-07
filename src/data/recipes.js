@@ -32,6 +32,17 @@ const recipes = () => {
                     unit: 'ts',
                 },
             ],
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
             is_favourite: false,
         },
         {
@@ -60,6 +71,17 @@ const recipes = () => {
                     unit: 'ts',
                 },
             ],
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
             is_favourite: false,
         },
         {
@@ -88,6 +110,17 @@ const recipes = () => {
                     unit: 'ts',
                 },
             ],
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
             is_favourite: false,
         },
         {
@@ -116,6 +149,17 @@ const recipes = () => {
                     unit: 'g',
                 },
             ],
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
             is_favourite: false,
         },
         {
@@ -144,6 +188,17 @@ const recipes = () => {
                     unit: 'ml',
                 },
             ],
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
             is_favourite: false,
         },
         {
@@ -172,6 +227,17 @@ const recipes = () => {
                     unit: 'ts',
                 },
             ],
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
             is_favourite: false,
         },
         {
@@ -195,6 +261,17 @@ const recipes = () => {
                     unit: 'kg',
                 },
             ],
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
             is_favourite: false,
         },
         {
@@ -223,6 +300,17 @@ const recipes = () => {
                     unit: 'ts',
                 },
             ],
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
             is_favourite: false,
         },
         {
@@ -251,6 +339,17 @@ const recipes = () => {
                     unit: 'ts',
                 },
             ],
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
             is_favourite: false,
         },
         {
@@ -279,6 +378,17 @@ const recipes = () => {
                     unit: 'ts',
                 },
             ],
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
             is_favourite: false,
         },
         {
@@ -307,6 +417,17 @@ const recipes = () => {
                     unit: 'ts',
                 },
             ],
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
             is_favourite: false,
         },
         {
@@ -335,6 +456,17 @@ const recipes = () => {
                     unit: 'ts',
                 },
             ],
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
             is_favourite: false,
         },
         {
@@ -363,6 +495,17 @@ const recipes = () => {
                     unit: 'ts',
                 },
             ],
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
             is_favourite: false,
         },
     ];

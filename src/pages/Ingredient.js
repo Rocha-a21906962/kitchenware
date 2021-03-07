@@ -10,9 +10,164 @@ const Ingredient = ({
     ingredientData,
     setIngredientData
 }) => {
-
+    
     let { ingredient_name } = useParams();
     const ingredient = ingredientData.filter(ingredient => ingredient.name === ingredient_name)[0];
+
+    const onMinimumStockChangeHandler = (event) => {
+        const modifiedIngredientData = ingredientData.map((i) => {
+            if (i.name === ingredient_name) {
+                const new_minimum_stock = {
+                    ...i.minimum_stock
+                };
+                new_minimum_stock.new_value = event.target.value;
+
+                console.log(new_minimum_stock);
+                return {
+                    ...i,
+                    minimum_stock: new_minimum_stock
+                }
+            } else {
+                return {
+                    ...i,
+                }
+            }
+        });
+        setIngredientData(modifiedIngredientData);
+        console.log(ingredientData);
+        console.log(ingredient);
+        console.log(ingredient.minimum_stock);
+        console.log("ingredient.minimum_stock.value:");
+        console.log(ingredient.minimum_stock.value);
+    };
+
+    const onDefaultOrderQuantityChangeHandler = (event) => {
+        const modifiedIngredientData = ingredientData.map((i) => {
+            if (i.name === ingredient_name) {
+                const new_default_order_quantity = {
+                    ...i.default_order_quantity
+                };
+                new_default_order_quantity.new_value = event.target.value;
+
+                console.log(new_default_order_quantity);
+                return {
+                    ...i,
+                    default_order_quantity: new_default_order_quantity
+                }
+            } else {
+                return {
+                    ...i,
+                }
+            }
+        });
+        setIngredientData(modifiedIngredientData);
+        console.log(ingredientData);
+        console.log(ingredient);
+        console.log(ingredient.default_order_quantity);
+        console.log("ingredient.default_order_quantity.value:");
+        console.log(ingredient.default_order_quantity.value);
+    };
+
+    const onAutoOrderChangeHandler = (event) => {
+        console.log("event.target.value");
+        console.log(event.target.value);
+        const new_auto_order_value = event.target.value === 'auto_order' ? true : false;
+        console.log("const auto_order =");
+        console.log(new_auto_order_value);
+        const modifiedIngredientData = ingredientData.map((i) => {
+            if (i.name === ingredient_name) {
+                const new_auto_order = {
+                    ...i.auto_order
+                };
+                new_auto_order.new_value = new_auto_order_value;
+                return {
+                    ...i,
+                    auto_order: new_auto_order
+                }
+            } else {
+                return {
+                    ...i,
+                }
+            }
+        });
+        setIngredientData(modifiedIngredientData);
+        console.log(ingredientData);
+        console.log(ingredient);
+        console.log("ingredient.auto_order:");
+        console.log(ingredient.auto_order);
+    };
+
+    const onConfirmStockChangesHandler = (event) => {
+        console.log("confirm stock changes!");
+        const modifiedIngredientData = ingredientData.map((i) => {
+            if (i.name === ingredient_name) {
+                const new_minimum_stock = {
+                    ...i.minimum_stock
+                };
+                const new_default_order_quantity = {
+                    ...i.default_order_quantity
+                };
+                const new_auto_order = {
+                    ...i.auto_order
+                };
+                console.log("new_minimum_stock.value");
+                console.log(new_minimum_stock.value);
+                console.log("new_minimum_stock.new_value");
+                console.log(new_minimum_stock.new_value);
+                new_minimum_stock.value = new_minimum_stock.new_value;
+                new_default_order_quantity.value = new_default_order_quantity.new_value;
+                new_auto_order.value = new_auto_order.new_value;
+                return {
+                    ...i,
+                    minimum_stock: new_minimum_stock,
+                    default_order_quantity: new_default_order_quantity,
+                    auto_order: new_auto_order
+                }
+            } else {
+                return {
+                    ...i,
+                }
+            }
+        });
+        setIngredientData(modifiedIngredientData);
+        console.log(ingredientData);
+    };
+
+    const onResetStockChangesHandler = (event) => {
+        console.log("reset stock changes!");
+        const modifiedIngredientData = ingredientData.map((i) => {
+            if (i.name === ingredient_name) {
+                const new_minimum_stock = {
+                    ...i.minimum_stock
+                };
+                const new_default_order_quantity = {
+                    ...i.default_order_quantity
+                };
+                const new_auto_order = {
+                    ...i.auto_order
+                };
+                console.log("new_minimum_stock.value");
+                console.log(new_minimum_stock.value);
+                console.log("new_minimum_stock.new_value");
+                console.log(new_minimum_stock.new_value);
+                new_minimum_stock.new_value = new_minimum_stock.value;
+                new_default_order_quantity.new_value = new_default_order_quantity.value;
+                new_auto_order.new_value = new_auto_order.value;
+                return {
+                    ...i,
+                    minimum_stock: new_minimum_stock,
+                    default_order_quantity: new_default_order_quantity,
+                    auto_order: new_auto_order
+                }
+            } else {
+                return {
+                    ...i,
+                }
+            }
+        });
+        setIngredientData(modifiedIngredientData);
+        console.log(ingredientData);
+    };
 
     return (
         <div className="content">
@@ -47,22 +202,28 @@ const Ingredient = ({
                     <h3>Typical expiration date:</h3>
                     <h5>1 year</h5>
                     <h5>(has implications on how stock management should be performed.. and should be abstracted for now)</h5>
+                    <h3>Incoming orders:</h3>
+                    <h5>None</h5>
                 </StyledDetails>
                 <StyledDetails>
                     <h3>Current stock:</h3>
-                    <h5>4.8kg</h5>
+                    <h5>{ingredient.in_stock.value}{ingredient.unit}</h5>
                     <h3>Automatic stock management:</h3>
                     <h3>Minimum stock:</h3>
-                    <h5>3kg</h5>
-                    <h5>(should be an input)</h5> 
+                    <h5>{ingredient.minimum_stock.value}{ingredient.unit} {ingredient.minimum_stock.value != ingredient.minimum_stock.new_value ? `(new value: ${ingredient.minimum_stock.new_value}${ingredient.unit})` : ''}</h5>
+                    <input type="range" min={ingredient.minimum_stock.min_input} max={ingredient.minimum_stock.max_input} step={ingredient.minimum_stock.step} value={ingredient.minimum_stock.new_value} className="stock_input" onChange={onMinimumStockChangeHandler} />
                     <h3>Action:</h3>
-                    <h5>Auto-order / Issue alert</h5>
-                    <h5>(should be a select input)</h5> 
-                    <h3>Auto-order quantity:</h3>
-                    <h5>2kg</h5>
-                    <h5>(should be an input)</h5> 
-                    <h3>Incoming orders:</h3>
-                    <h5>None</h5>
+                    <select name="search_options" onChange={onAutoOrderChangeHandler}>
+                        <option value="auto_order" selected={`${ingredient.auto_order.new_value ? true : ''}`}>auto-order</option>
+                        <option value="alert" selected={`${!ingredient.auto_order.new_value ? true : ''}`}>alert</option>
+                    </select>
+                    <h3>Default order quantity:</h3>
+                    <h5>{ingredient.default_order_quantity.value}{ingredient.unit} {ingredient.default_order_quantity.value != ingredient.default_order_quantity.new_value ? `(new value: ${ingredient.default_order_quantity.new_value}${ingredient.unit})` : ''}</h5>
+                    <input type="range" min={ingredient.default_order_quantity.min_input} max={ingredient.default_order_quantity.max_input} step={ingredient.default_order_quantity.step} value={ingredient.default_order_quantity.new_value} className={`stock_input ${ingredient.default_order_quantity.new_value != ingredient.default_order_quantity.value ? 'modified' : ''}`} onChange={onDefaultOrderQuantityChangeHandler} />
+                    <StyledStockButtons>
+                        <button name="" id="" className={`${(ingredient.minimum_stock.value != ingredient.minimum_stock.new_value) || (ingredient.default_order_quantity.value != ingredient.default_order_quantity.new_value) || (ingredient.auto_order.value != ingredient.auto_order.new_value) ? '' : 'hide'}`} onClick={onConfirmStockChangesHandler}>Confirm changes</button>
+                        <button name="" id="" className={`${(ingredient.minimum_stock.value != ingredient.minimum_stock.new_value) || (ingredient.default_order_quantity.value != ingredient.default_order_quantity.new_value) || (ingredient.auto_order.value != ingredient.auto_order.new_value) ? '' : 'hide'}`} onClick={onResetStockChangesHandler}>Reset changes</button>
+                    </StyledStockButtons>
                 </StyledDetails>
                 {/* buttons */}
                     <button name="" id="">Show recipes (opens pop-up / page?)</button>
@@ -183,6 +344,21 @@ const StyledPhoto = styled.div`
     }
 `
 
+const StyledStockButtons = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    button {
+        width: 8rem;
+        font-size: 0.75rem;
+        margin-right: 1rem;
+        padding: 0.5rem;
+        &.hide {
+            display: none;
+        }
+    }
+`
+
 const StyledDescription = styled.div`
     width: 80vw;
     padding-left: 1rem;
@@ -196,6 +372,15 @@ const StyledDetails = styled.div`
     padding-left: 1rem;
     font-family: GTAmericaRegular;
     color: #b1b1b1;
+    .stock_input {
+        /* not working for now */
+        transform: none;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    .modified {
+        /* not working for now */
+        color: green;
+    }
 `
 
 

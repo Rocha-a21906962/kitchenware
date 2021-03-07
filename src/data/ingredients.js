@@ -11,8 +11,32 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
-            in_stock: 14,
             unit: 'kg',
+            in_stock : {
+                value: 14,
+                new_value: 14,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 5,
+                new_value: 5,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: true,
+                new_value: true,
+            },
         },
         {
             name: 'cod',
@@ -22,8 +46,32 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
-            in_stock: 12,
             unit: 'kg',
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 5,
+                new_value: 5,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
         },
         {
             name: 'salmon',
@@ -33,8 +81,32 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
-            in_stock: 9,
             unit: 'kg',
+            in_stock : {
+                value: 9,
+                new_value: 9,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 2,
+                new_value: 2,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 5,
+                new_value: 5,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
         },
         {
             name: 'mackerel',
@@ -44,8 +116,32 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
-            in_stock: 13,
             unit: 'kg',
+            in_stock : {
+                value: 13,
+                new_value: 13,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 1,
+                new_value: 1,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 5,
+                new_value: 5,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
         },
         {
             name: 'sea bass',
@@ -55,8 +151,32 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
-            in_stock: 15,
             unit: 'kg',
+            in_stock : {
+                value: 15,
+                new_value: 15,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 1.5,
+                new_value: 1.5,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 5,
+                new_value: 5,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
         },
         {
             name: 'sardines',
@@ -66,8 +186,32 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
-            in_stock: 33,
             unit: 'kg',
+            in_stock : {
+                value: 33,
+                new_value: 33,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 2.4,
+                new_value: 2.4,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 5,
+                new_value: 5,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
         },
         {
             name: 'pescada',
@@ -77,8 +221,32 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
-            in_stock: 2,
             unit: 'kg',
+            in_stock : {
+                value: 2,
+                new_value: 2,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 1,
+                new_value: 1,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 5,
+                new_value: 5,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
         },
         {
             name: 'peixinho da horta',
@@ -88,8 +256,32 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
-            in_stock: 0,
             unit: 'kg',
+            in_stock : {
+                value: 0,
+                new_value: 0,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 0,
+                new_value: 0,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 5,
+                new_value: 5,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
         },
         {
             name: 'mais atum',
@@ -99,8 +291,32 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
-            in_stock: 0,
             unit: 'kg',
+            in_stock : {
+                value: 0,
+                new_value: 0,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 0,
+                new_value: 0,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 5,
+                new_value: 5,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
         },
     ];
 };

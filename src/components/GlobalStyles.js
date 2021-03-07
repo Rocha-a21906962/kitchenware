@@ -163,6 +163,29 @@ const GlobalStyles = createGlobalStyle`
         }
     }
 
+    .step_by_step_overlay {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        margin: 2vw;
+        width: 95vw;
+        max-width: calc(95vw - 10rem);
+        min-height: calc(80vh - 10vh);
+        max-height: calc(80vh - 10vh);
+        opacity: 0;
+        // transform: translateY(-200%);
+        transition: opacity 0.5s ease;
+        background-color: #000000fa;
+        z-index: -1;
+        overflow-y: hidden;
+        &.open {
+            opacity: 1;
+            transform: none;
+            transition: opacity 0.5s ease;
+            z-index: 10;
+        }
+    }
+
     .search_filters {
         background-color: #00000077;
         width: 100%;

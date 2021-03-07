@@ -1,11 +1,16 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styled from "styled-components";
+import StepByStepOverlay from "../components/recipe/StepByStepOverlay";
 
 
 const Recipe = ({
     recipeData,
     setRecipeData
 }) => {
+
+    /* Hook for search page visibility */
+    const [isStepByStepOverlayVisible, setIsStepByStepOverlayVisible] = useState(false);
 
     let { recipe_name } = useParams();
     let recipe = recipeData.filter(recipe => recipe.name === recipe_name)[0];
@@ -32,8 +37,130 @@ const Recipe = ({
         console.log("after:" + recipe.is_favourite);
     };
 
+    const onMinimumAvailabilityChangeHandler = (event) => {
+        console.log("confirm stock changes!");
+        const modifiedRecipeData = recipeData.map((r) => {
+            if (r.name === recipe_name) {
+                const new_minimum_availability = {
+                    ...r.minimum_availability
+                };
+                new_minimum_availability.new_value = event.target.value;
+                console.log(new_minimum_availability);
+                return {
+                    ...r,
+                    minimum_availability: new_minimum_availability,
+                }
+            } else {
+                return {
+                    ...r,
+                }
+            }
+        });
+        setRecipeData(modifiedRecipeData);
+        console.log(recipeData);
+    };
+
+    const onAutoOrderChangeHandler = (event) => {
+        console.log("event.target.value");
+        console.log(event.target.value);
+        const new_auto_order_ingredients_value = event.target.value === 'auto_order' ? true : false;
+        console.log("const auto_order_ingredients =");
+        console.log(new_auto_order_ingredients_value);
+        const modifiedRecipeData = recipeData.map((r) => {
+            if (r.name === recipe_name) {
+                const new_auto_order_ingredients = {
+                    ...r.auto_order_ingredients
+                };
+                new_auto_order_ingredients.new_value = new_auto_order_ingredients_value;
+                return {
+                    ...r,
+                    auto_order_ingredients: new_auto_order_ingredients
+                }
+            } else {
+                return {
+                    ...r,
+                }
+            }
+        });
+        setRecipeData(modifiedRecipeData);
+        console.log(recipeData);
+        console.log(recipe);
+        console.log("recipe.auto_order_ingredients:");
+        console.log(recipe.auto_order_ingredients);
+    };
+
+    const onConfirmStockManagementChangesHandler = (event) => {
+        console.log("confirm stock changes!");
+        const modifiedRecipeData = recipeData.map((r) => {
+            if (r.name === recipe_name) {
+                const new_minimum_availability = {
+                    ...r.minimum_availability
+                };
+                const new_auto_order_ingredients = {
+                    ...r.auto_order_ingredients
+                };
+                console.log("new_minimum_availability.value");
+                console.log(new_minimum_availability.value);
+                console.log("new_minimum_availability.new_value");
+                console.log(new_minimum_availability.new_value);
+                new_minimum_availability.value = new_minimum_availability.new_value;
+                new_auto_order_ingredients.value = new_auto_order_ingredients.new_value;
+                return {
+                    ...r,
+                    minimum_availability: new_minimum_availability,
+                    auto_order_ingredients: new_auto_order_ingredients
+                }
+            } else {
+                return {
+                    ...r,
+                }
+            }
+        });
+        setRecipeData(modifiedRecipeData);
+        console.log(recipeData);
+    };
+
+    const onResetStockManagementChangesHandler = (event) => {
+        console.log("confirm stock changes!");
+        const modifiedRecipeData = recipeData.map((r) => {
+            if (r.name === recipe_name) {
+                const new_minimum_availability = {
+                    ...r.minimum_availability
+                };
+                const new_auto_order_ingredients = {
+                    ...r.auto_order_ingredients
+                };
+                console.log("new_minimum_availability.value");
+                console.log(new_minimum_availability.value);
+                console.log("new_minimum_availability.new_value");
+                console.log(new_minimum_availability.new_value);
+                new_minimum_availability.new_value = new_minimum_availability.value;
+                new_auto_order_ingredients.new_value = new_auto_order_ingredients.value;
+                return {
+                    ...r,
+                    minimum_availability: new_minimum_availability,
+                    auto_order_ingredients: new_auto_order_ingredients
+                }
+            } else {
+                return {
+                    ...r,
+                }
+            }
+        });
+        setRecipeData(modifiedRecipeData);
+        console.log(recipeData);
+    };
+
+    const onShowStepByStepOverlay = () => {
+        setIsStepByStepOverlayVisible(true);
+    }
+
     return (
         <div className="content">
+            <StepByStepOverlay 
+                recipeData={recipeData}
+                isStepByStepOverlayVisible={isStepByStepOverlayVisible}
+                setIsStepByStepOverlayVisible={setIsStepByStepOverlayVisible} />
             <StyledRecipe>
                 <StyledPhoto>
                     <div className="gradient_overlay"></div>
@@ -62,6 +189,8 @@ const Recipe = ({
                     <h3>Number of servings:</h3>
                     <h5>3</h5> 
                     <h5>(should be an input: ingred. requirements will change accordingly)</h5> 
+                    <h3>Nutrition info:</h3>
+                    <h5>240 cal/serving</h5>
                     <h3>Ingredient list:</h3>
                     <h5><span>X</span> 750g Salmon</h5>
                     <h5><span>V</span> 10ml Pesto</h5>
@@ -69,11 +198,19 @@ const Recipe = ({
                     <h3>Immediate availability:</h3>
                     <h5>Current ingredient stock allows for this dish to be cooked 4 times.</h5>
                     <h3>Automatic stock management:</h3>
-                    <h5>20 meals</h5>
-                    <h5>(immediate availability => nr servings * nr immediate avail. = 20).</h5>
-                    <h5>(should be an input)</h5> 
-                    <h3>Nutrition per serving:</h3>
-                    <h5>240 cal</h5>
+                    <h3>Minimum availability:</h3>
+                    <h5>{recipe.minimum_availability.value} servings {recipe.minimum_availability.value != recipe.minimum_availability.new_value ? `(new value: ${recipe.minimum_availability.new_value})` : ''}</h5>
+                    <input type="range" min={recipe.minimum_availability.min_input} max={recipe.minimum_availability.max_input} step={recipe.minimum_availability.step} value={recipe.minimum_availability.new_value} className="stock_input" onChange={onMinimumAvailabilityChangeHandler} />
+                    <h5>(immediate availability => nr servings * nr immediate avail. = 20)</h5>
+                    <h3>Action:</h3>
+                    <select name="search_options" onChange={onAutoOrderChangeHandler}>
+                        <option value="auto_order" selected={`${recipe.auto_order_ingredients.new_value ? true : ''}`}>auto-order</option>
+                        <option value="alert" selected={`${!recipe.auto_order_ingredients.new_value ? true : ''}`}>alert</option>
+                    </select>
+                    <StyledStockButtons>
+                        <button name="" id="" className={`${(recipe.minimum_availability.value != recipe.minimum_availability.new_value) || (recipe.auto_order_ingredients.value != recipe.auto_order_ingredients.new_value) ? '' : 'hide'}`} onClick={onConfirmStockManagementChangesHandler}>Confirm changes</button>
+                        <button name="" id="" className={`${(recipe.minimum_availability.value != recipe.minimum_availability.new_value) || (recipe.auto_order_ingredients.value != recipe.auto_order_ingredients.new_value) ? '' : 'hide'}`} onClick={onResetStockManagementChangesHandler}>Reset changes</button>
+                    </StyledStockButtons>
                     {/* Delete everything: just for testing
                     <h5>Current stock: <span>{ingredient.in_stock} kg</span></h5>
                     <h5>Forecasted consumption</h5>
@@ -95,7 +232,7 @@ const Recipe = ({
                     <h5>5 minutes</h5> 
                     <h3>Cooking time:</h3>
                     <h5>15 minutes</h5> 
-                    <button name="" id="">Step-by-step mode button (opens pop-up)</button>
+                    <button name="" id="" onClick={onShowStepByStepOverlay}>Step-by-step mode button (opens pop-up)</button>
                     <h3>Instructions:</h3>
                     <h5>Step 1 - Blablabla</h5>
                     <h5>Step 2 - Blablabla</h5>
@@ -116,6 +253,7 @@ const Recipe = ({
                     <Link to={`/recipe_stats/${recipe.name}`}>
                         <button name="" id="">Stats (changes page)</button>
                     </Link>
+                    <button name="" id="">Play video (opens pop-up! alt: button as image overlay with play icon?)</button>
             </StyledRecipe>
         </div>
     )
@@ -218,6 +356,21 @@ const StyledFavouriteButton = styled.div`
         height: 4rem;
         font-size: 0.75rem;
         padding: 1rem;
+    }
+`
+
+const StyledStockButtons = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    button {
+        width: 8rem;
+        font-size: 0.75rem;
+        margin-right: 1rem;
+        padding: 0.5rem;
+        &.hide {
+            display: none;
+        }
     }
 `
 

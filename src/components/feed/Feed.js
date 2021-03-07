@@ -24,6 +24,8 @@ const Feed = ({
             <Line data={recipeData} />
             <StyledHeader>Recently viewed</StyledHeader>
             <Line data={recipeData} />
+            <StyledHeader>For kids</StyledHeader>
+            <Line data={recipeData} />
             <StyledHeader>Italian</StyledHeader>
             <Line data={recipeData} />
             <StyledHeader>Japanese</StyledHeader>
@@ -47,10 +49,10 @@ const Feed = ({
 const StyledHeader = styled.div`
     background: #000;
     color: white;
+    font-family: GTAmericaRegular;
     font-size: 1.1rem;
     font-weight: bold;
     line-height: 2.5rem;
-
 `
 
 export default Feed;
