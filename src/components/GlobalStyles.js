@@ -32,8 +32,10 @@ const GlobalStyles = createGlobalStyle`
         // background: linear-gradient(155deg, rgb(255 255 255), #848484);
         // background-color: #050d33;
         background-image: url("ting-tian.jpg");
-        background-size: cover;
+        
         background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         // background-color: #ffffff;
         // background-color: #1b1b1b;
         height: 100%;

@@ -1,3 +1,4 @@
+//Imports
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Icon, InlineIcon } from '@iconify/react';
@@ -13,7 +14,90 @@ import closedBook from '@iconify/icons-emojione-monotone/closed-book';
 import favoriteSolid from '@iconify/icons-clarity/favorite-solid';
 
 
-
+//Styled-Components
+const StyledLogo = styled.div`
+    display: flex;
+    width: 10rem;
+    height: 100%;
+    padding-left: 2rem;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+        width: 6rem;
+    }
+    /*
+    display: flex;
+    width: 12rem;
+    height: 100%;
+    justify-content: center;
+    a {
+        font-family: MuseoModerno, cursive;
+        font-size: 1.75rem;
+        color: #A10B0B;
+    }
+    */
+`
+const StyledSideNavButton = styled.div`
+    font-family: 'GTAmericaRegular', Arial, Helvetica, sans-serif;
+    padding: 0.75rem;
+    height: 3rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    a {
+        display: flex;
+        // flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        color: #b1b1b1;
+        text-decoration: none;
+        font-family: GTAmericaRegular, Arial, Helvetica, sans-serif;
+        font-size: 1rem;
+        text-transform: capitalize;
+    }
+    svg {
+        height: 1.25rem;
+        width: 2.5rem;
+    }
+`
+const StyledSideNav = styled.nav`
+    position: fixed;
+    width: 10rem;
+    height: 90vh;
+    float: left;
+    top: 10vh;
+    left: 0;
+    background-color: #000;
+    // background: linear-gradient(to bottom,#000000 15%, #222 100%); /* W3C */
+    // background: linear-gradient(to bottom,#0e184d 0%, #323560 65%, #445c80 100%); /* W3C */
+    // background: linear-gradient(to bottom,#050d33 15%,#13152f 65%,#10141b 100%); /* W3C */
+    // background: linear-gradient(to bottom,#3c3c3c 15%,#666 65%,#727374 100%); /* W3C */
+    // box-shadow: 2px 2px 50px rgb(212, 211, 211);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // transform: translateX(-100%);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    // border-top-right-radius: 3rem;
+    h2 {
+        padding: 2rem;
+    }
+    &.open {
+        transform: none;
+        opacity: 1;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    li {
+        display: flex;
+        justify-content: flex-start;
+    }
+    li:first-child {
+        margin-top: 0.5rem;
+    }
+`
 
 
 const SideNav = () => {
@@ -115,91 +199,5 @@ const SideNav = () => {
        </StyledSideNav>  
     )
 }
-
-const StyledLogo = styled.div`
-    display: flex;
-    width: 10rem;
-    height: 100%;
-    padding-left: 2rem;
-    justify-content: flex-start;
-    align-items: center;
-    img {
-        width: 6rem;
-    }
-    /*
-    display: flex;
-    width: 12rem;
-    height: 100%;
-    justify-content: center;
-    a {
-        font-family: MuseoModerno, cursive;
-        font-size: 1.75rem;
-        color: #A10B0B;
-    }
-    */
-`
-
-const StyledSideNavButton = styled.div`
-    font-family: 'GTAmericaRegular', Arial, Helvetica, sans-serif;
-    padding: 0.75rem;
-    height: 3rem;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    a {
-        display: flex;
-        // flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        width: 100%;
-        color: #b1b1b1;
-        text-decoration: none;
-        font-family: GTAmericaRegular, Arial, Helvetica, sans-serif;
-        font-size: 1rem;
-        text-transform: capitalize;
-    }
-    svg {
-        height: 1.25rem;
-        width: 2.5rem;
-    }
-`
-
-const StyledSideNav = styled.nav`
-    position: fixed;
-    width: 10rem;
-    height: 90vh;
-    float: left;
-    top: 10vh;
-    left: 0;
-    background-color: #000;
-    // background: linear-gradient(to bottom,#000000 15%, #222 100%); /* W3C */
-    // background: linear-gradient(to bottom,#0e184d 0%, #323560 65%, #445c80 100%); /* W3C */
-    // background: linear-gradient(to bottom,#050d33 15%,#13152f 65%,#10141b 100%); /* W3C */
-    // background: linear-gradient(to bottom,#3c3c3c 15%,#666 65%,#727374 100%); /* W3C */
-    // box-shadow: 2px 2px 50px rgb(212, 211, 211);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    // transform: translateX(-100%);
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    // border-top-right-radius: 3rem;
-    h2 {
-        padding: 2rem;
-    }
-    &.open {
-        transform: none;
-        opacity: 1;
-        transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-    li {
-        display: flex;
-        justify-content: flex-start;
-    }
-    li:first-child {
-        margin-top: 0.5rem;
-    }
-`
 
 export default SideNav;

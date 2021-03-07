@@ -7,76 +7,8 @@ import settings28Filled from '@iconify/icons-fluent/settings-28-filled';
 import fluent28alert from '@iconify/icons-fluent/alert-28-filled';
 
 import kitchenware_logo from "../img/kitchenware.svg";
+import Burguer from "./buttons/Burguer";
 
-const Nav = () => {
-
-    let history = useHistory();
-    const redirectToSearchPage = () => {
-        history.push('/search')
-    }
-
-    const [isSearchBarVisible, setSearchBarVisible] = useState(false);
-
-    const showSearchBar = (event) => {
-        /* open search page automatically
-        if (!isSearchBarVisible) {
-            redirectToSearchPage();
-        }
-        */
-        setSearchBarVisible(!isSearchBarVisible);
-      }
-
-    return (
-        <StyledNav>
-            {/*
-            <StyledLogo>
-                <Link to="/">
-                kitchenware
-                </Link> 
-            </StyledLogo>
-            */}
-            <StyledLogo>
-                <Link to="/">
-                <img src={kitchenware_logo} alt="kitchenware logo"/>
-                </Link> 
-            </StyledLogo>
-            <div></div>
-            <div></div>
-            <StyledSearch>
-                <div className={`search ${isSearchBarVisible ? 'open' : ''}`}>
-                    {/*
-                    <select name="search_options">
-                        <option value="recipes" selected>recipes</option>
-                        <option value="ingredients">ingredients</option>
-                    </select>
-                    */}
-                    <input type="text" placeholder="Search for a recipe or ingredient..."></input>
-                </div>
-                <button onClick={showSearchBar}>
-                    <StyledIcon>
-                        <Icon icon={bxSearch} />
-                    </StyledIcon>
-                </button>
-                <button onClick="">
-                    <StyledIcon>
-                        <Icon icon={fluent28alert} />
-                    </StyledIcon>
-                    <StyledRedBubble>
-                        1
-                    </StyledRedBubble>
-                </button>
-            </StyledSearch>
-            {/*
-            <StyledIcon>
-                <Icon icon={settings28Filled} />
-            </StyledIcon>
-            <Logo />
-            <BackButton />
-            <SearchSection />
-            */}
-        </StyledNav>
-    )
-}
 
 const StyledNav = styled.nav`
     position: fixed;
@@ -88,7 +20,7 @@ const StyledNav = styled.nav`
     // justify-content: center;
     align-items: center;
     // padding: 1rem 10rem;
-    background-color: #000000;
+    background: linear-gradient(#1e453e, #182c25);
     // background: linear-gradient(to right,#000000 15%, #222 100%); /* W3C */
     // background: linear-gradient(to right,#0e184d 15%, #323560 65%, #445c80 100%); /* W3C */
     // background: linear-gradient(to right,#050d33 15%,#13152f 65%,#10141b 100%); /* W3C */
@@ -112,8 +44,7 @@ const StyledNav = styled.nav`
         padding-left: 10rem;
         position: relative;
     }
-`
-
+`;
 const StyledLogo = styled.div`
     display: flex;
     width: 10rem;
@@ -135,8 +66,7 @@ const StyledLogo = styled.div`
         color: #A10B0B;
     }
     */
-`
-
+`;
 const StyledSearch = styled.div`
     position: relative;
     margin-left: auto;
@@ -197,8 +127,7 @@ const StyledSearch = styled.div`
         outline-color: transparent;
         outline-style: none;
     }
-`
-
+`;
 const StyledIcon = styled.div`
     margin-right: 0.5rem;
     margin-left: auto;
@@ -211,7 +140,7 @@ const StyledIcon = styled.div`
         height: 1.75rem;
         width: 1.75rem;
     }
-`
+`;
 const StyledRedBubble = styled.div`
     position: absolute;
     top: 31%;
@@ -222,6 +151,103 @@ const StyledRedBubble = styled.div`
     border-radius: 50%;
     background-color: red;
     color: #b1b1b1;
-`
+`;
+
+const Nav = () => {
+
+    let history = useHistory();
+
+    const redirectToSearchPage = () => {
+        history.push('/search')
+    }
+
+    const [isSearchBarVisible, setSearchBarVisible] = useState(false);
+
+    const showSearchBar = (event) => {
+        /* open search page automatically
+        if (!isSearchBarVisible) {
+            redirectToSearchPage();
+        }
+        */
+        setSearchBarVisible(!isSearchBarVisible);
+      }
+
+    return (
+        <StyledNav>
+            {/*
+            <StyledLogo>
+                <Link to="/">
+                kitchenware
+                </Link>
+            </StyledLogo>
+            */}
+            <StyledLogo>
+                <Link to="/">
+                <img src={kitchenware_logo} alt="kitchenware logo"/>
+                </Link>
+            </StyledLogo>
+            <div></div>
+            <div></div>
+            <StyledSearch>
+                <div className={`search ${isSearchBarVisible ? 'open' : ''}`}>
+                    {/*
+                    <select name="search_options">
+                        <option value="recipes" selected>recipes</option>
+                        <option value="ingredients">ingredients</option>
+                    </select>
+                    */}
+                    <input type="text" placeholder="Search for a recipe or ingredient..."></input>
+                </div>
+                <button onClick={showSearchBar}>
+                    <StyledIcon>
+                        <Icon icon={bxSearch} />
+                    </StyledIcon>
+                </button>
+                <button onClick="">
+                    <StyledIcon>
+                        <Icon icon={fluent28alert} />
+                    </StyledIcon>
+                    <StyledRedBubble>
+                        1
+                    </StyledRedBubble>
+                </button>
+            </StyledSearch>
+            {/*
+            <StyledIcon>
+                <Icon icon={settings28Filled} />
+            </StyledIcon>
+            <Logo />
+            <BackButton />
+            <SearchSection />
+            */}
+        </StyledNav>
+    )
+}
+
 
 export default Nav;
+
+// export default function Nav() {
+//     return (
+//         <nav class="navbar">
+//             <div class="navbar-left-side" id="sidebar-buttons">
+//                 {/*Default Button*/}
+//                 <div class="navbar-bar_fixed" id="content-button_fixed">
+//                     <Burguer></Burguer>
+//                 </div>
+//                 {/*Tablet Mode Button*/}
+//                 <button id="button-sidebar_smaller"><i className="fa fa-list-ul"></i></button>
+//                 <p>Text</p>
+//             </div>
+//
+//             {/*Simula as opcões á direita do header*/}
+//             <div class="navbar-right">
+//                 <i class="fas fa-search"></i> {/*ou fa*/}
+//                 <i class="far fa-bell"></i>
+//                 <div class="photo">
+//                     <img src="images/foto.jpeg" />
+//                 </div>
+//             </div>
+//         </nav>
+//     );
+// }
