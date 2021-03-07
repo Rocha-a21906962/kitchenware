@@ -2,13 +2,13 @@ import styled from "styled-components";
 import Line from "../feed/Line";
 
 const BottomContext = ({
-    orderData
+    mealPlanningData
 }) => {
     return (
         <StyledBottomContext>
         <div className="one_line_feed">
-            <StyledHeader>Upcoming orders</StyledHeader>
-            <Line data={orderData} />
+            <StyledHeader>Upcoming meals</StyledHeader>
+            <Line data={mealPlanningData} />
         </div>
         {/* <StyledBlock>
             <h3>Last 30 days</h3>

@@ -105,12 +105,14 @@ function App() {
           <Route path="/orders" exact>
             <Orders
                 orders={orders}
-                setOrders={setOrders}/>
+                setOrders={setOrders}
+                orderData={ingredientData} />
           </Route>
           <Route path="/meals_and_events" exact>
             <MealsAndEvents 
                 mealPlanning={mealPlanning}
-                setMealPlanning={setMealPlanning}/>
+                setMealPlanning={setMealPlanning}
+                mealPlanningData={recipeData} />
           </Route>
           <Route path="/stats" exact>
             <Stats />

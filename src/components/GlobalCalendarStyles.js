@@ -49,8 +49,8 @@ const GlobalCalendarStyles = createGlobalStyle`
         line-height: 1.5;
         color: var(--text-color);
         background: var(--bg-color);
-        border-bottom-left-radius: 1rem;
-        border-bottom-right-radius: 1rem;
+        /* border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem; */
     }
 
     .calendar_header {
@@ -206,7 +206,7 @@ const GlobalCalendarStyles = createGlobalStyle`
 
     .calendar .calendar_body .cell {
         position: relative;
-        height: 6rem;
+        height: 5rem;
         // border-right: 1px solid var(--border-color);
         overflow: hidden;
         cursor: pointer;

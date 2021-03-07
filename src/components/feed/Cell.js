@@ -14,7 +14,8 @@ const Cell = ({
 
 const StyledCell = styled.div`
     display: flex;
-    margin: 0.15rem;
+    /* margin: 0.15rem; */
+    margin-right: 1.7rem;
     align-items: center;
     height: 24vh;
     img {

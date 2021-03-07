@@ -8,7 +8,8 @@ import NewOrder from "../components/orders/NewOrder";
 
 const Orders = ({
     orders,
-    setOrders
+    setOrders,
+    orderData
 }) => {
 
     const [selectedDay, setSelectedDay] = useState(new Date());
@@ -22,9 +23,8 @@ const Orders = ({
                 setOrders={setOrders}
                 selectedDay={selectedDay}
                 setSelectedDay={setSelectedDay} /> 
-            {/*
-            <BottomContext />
-            */}
+            <BottomContext 
+                orderData={orderData} />
             <SideContext
                 selectedDay={selectedDay}
                 setSelectedDay={setSelectedDay}

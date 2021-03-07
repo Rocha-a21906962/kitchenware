@@ -52,7 +52,7 @@ const StyledHeader = styled.div`
     font-family: GTAmericaRegular;
     font-size: 1.1rem;
     font-weight: bold;
-    line-height: 2.5rem;
+    line-height: 4rem;
 `
 
 export default Feed;

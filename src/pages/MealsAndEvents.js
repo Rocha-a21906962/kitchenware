@@ -2,13 +2,15 @@ import { useState } from "react";
 
 import MealPlanningCalendar from "../components/meal_planning/MealPlanningCalendar";
 import SideContext from "../components/meal_planning/SideContext";
+import BottomContext from "../components/meal_planning/BottomContext";
 import MealDetail from "../components/meal_planning/MealDetail";
 import NewMeal from "../components/meal_planning/NewMeal";
 
 
 const MealsAndEvents = ({
     mealPlanning,
-    setMealPlanning
+    setMealPlanning,
+    mealPlanningData
 }) => {
 
     const [selectedDay, setSelectedDay] = useState(new Date());
@@ -22,6 +24,8 @@ const MealsAndEvents = ({
                 setMealPlanning={setMealPlanning}
                 selectedDay={selectedDay}
                 setSelectedDay={setSelectedDay} />
+            <BottomContext 
+                mealPlanningData={mealPlanningData} />
             <SideContext
                 selectedDay={selectedDay}
                 setSelectedDay={setSelectedDay}
