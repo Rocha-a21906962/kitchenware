@@ -17,6 +17,7 @@ import MealsAndEvents from './pages/MealsAndEvents.js';
 import About from './pages/About.js';
 import Settings from './pages/Settings.js';
 import Favourites from './pages/Favourites.js';
+
 /* temporary (just for testing) */
 import IngredientList from './pages/IngredientList.js';
 import Ingredient from './pages/Ingredient.js';
@@ -34,6 +35,10 @@ import ingredients from './data/ingredients';
 import recipe_categories from './data/recipe_categories';
 import recipes from './data/recipes';
 import ScrollToTop from './components/ScrollToTop.js';
+
+/* import for feed test */
+import Feed from './components/feed/Feed.js';
+
 
 function App() {
 
@@ -209,6 +214,15 @@ function App() {
                 setRecipeData={setRecipeData}
                 recipeCategories={recipeCategories}
                 stats={true} />
+          </Route>
+          {/* test route */}
+          <Route path="/feed" exact>
+            <div className="content">
+              <Feed 
+                ingredientData={ingredientData}
+                recipeData={recipeData}
+                recipeCategories={recipeCategories} />
+            </div>
           </Route>
         </Switch>
       </ScrollToTop>

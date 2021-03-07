@@ -4,6 +4,8 @@ import ListItem from "./ListItem";
 const ResultList = ({
     searchString,
     setSearchString,
+    searchTarget,
+    setSearchTarget,
     ingredientData,
     setIngredientData,
     ingredientCategories,
@@ -17,9 +19,15 @@ const ResultList = ({
     if (searchString === null || searchString == "") {
         results = null;
     } else {
-        results = recipeData.filter(recipe => {
-            return recipe.name.toLowerCase().includes(searchString.toLowerCase());
-        });
+        if (searchTarget === 'recipes') {
+            results = recipeData.filter(recipe => {
+                return recipe.name.toLowerCase().includes(searchString.toLowerCase());
+            });
+        } else {
+            results = ingredientData.filter(ingredient => {
+                return ingredient.name.toLowerCase().includes(searchString.toLowerCase());
+            });
+        }
     }
 
     console.log("search results:");
@@ -36,7 +44,8 @@ const ResultList = ({
                 :
                 results.map((item) => {
                     return <ListItem 
-                                    item={item} />
+                                    item={item}
+                                    searchTarget={searchTarget} />
                     })
             }
         </div>

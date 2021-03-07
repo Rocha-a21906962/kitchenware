@@ -32,6 +32,7 @@ const Nav = ({
         }
         */
         setIsSearchPageVisible(false);
+        setSearchString(null);
         setIsSearchBarVisible(!isSearchBarVisible);
       }
 
@@ -65,7 +66,7 @@ const Nav = ({
                         <option value="ingredients">ingredients</option>
                     </select>
                     */}
-                    <input type="text" placeholder="Search for a recipe or ingredient..." onChange={onSearchTextChangeHandler} ></input>
+                    <input type="text" placeholder="Search for a recipe or ingredient..." id="main_search" onChange={onSearchTextChangeHandler} ></input>
                 </div>
                 <button onClick={toggleSearchBarHandler}>
                     <StyledIcon>

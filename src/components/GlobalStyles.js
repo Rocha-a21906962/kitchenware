@@ -115,19 +115,27 @@ const GlobalStyles = createGlobalStyle`
         }
     }
 
-    .hide_favourite_button {
+    .hide_favourite_button,
+    .hide_search_target_filter {
         display: none;
     }
 
     .search_page {
         position: absolute;
-        height: 60%;
         width: 100%;
+        max-width: calc(100vw - 10rem);
+        min-height: calc(100vh - 10vh);
         opacity: 0.5;
         transform: translateY(-200%);
         transition: transform 1s ease, opacity 1.2s ease;
         background-color: #000000fa;
         z-index: 999;
+        .result_list {
+            width: 65vw;
+        }
+        .search_filters {
+            width: calc(100vw - 65vw - 10rem);
+        }
         /*
         select {
             text-align-last: center;
@@ -158,6 +166,13 @@ const GlobalStyles = createGlobalStyle`
     .search_filters {
         background-color: #00000077;
         width: 100%;
+    }
+
+    .feed {
+        position: relative;
+        height: 90vh;
+        background: #000000dd;
+        overflow-x: scroll;
     }
 
 `

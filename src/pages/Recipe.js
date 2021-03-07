@@ -42,7 +42,7 @@ const Recipe = ({
                         <h2>Recipe: <span>{recipe.name}</span></h2>
                         <StyledFavouriteButton>
                             <button name="" id="" className={`${recipe.is_favourite ? 'hide_favourite_button ' : ''}`} onClick={toggleRecipeFavouriteStatus}>Set as favourite</button>
-                            <button name="" id="" className={`search ${!recipe.is_favourite ? 'hide_favourite_button ' : ''}`} onClick={toggleRecipeFavouriteStatus}>Remove from favourites</button>
+                            <button name="" id="" className={`${!recipe.is_favourite ? 'hide_favourite_button ' : ''}`} onClick={toggleRecipeFavouriteStatus}>Remove from favourites</button>
                         </StyledFavouriteButton>
                     </div>
                     <button name="" id="">Set as favourite</button>

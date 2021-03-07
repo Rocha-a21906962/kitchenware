@@ -11,8 +11,7 @@ import forkAndKnifeWithPlate from '@iconify/icons-emojione-monotone/fork-and-kni
 import birthdayCake from '@iconify/icons-fa-solid/birthday-cake';
 import closedBook from '@iconify/icons-emojione-monotone/closed-book';
 import favoriteSolid from '@iconify/icons-clarity/favorite-solid';
-
-
+import bxQuestionMark from '@iconify-icons/bx/bx-question-mark';
 
 
 
@@ -72,7 +71,7 @@ const SideNav = () => {
                 <StyledSideNavButton>
                     <Link to="/meals_and_events">
                         <Icon icon={birthdayCake} />
-                        <h5>Meals & Events</h5>
+                        <h5>Meal planning</h5>
                     </Link>
                 </StyledSideNavButton>
             </li>
@@ -92,6 +91,14 @@ const SideNav = () => {
                     </Link>
                 </StyledSideNavButton>
             </li>
+            <li>
+                <StyledSideNavButton>
+                    <Link to="/feed">
+                        <Icon icon={bxQuestionMark} />
+                        <h5>Feed test</h5>
+                    </Link>
+                </StyledSideNavButton>
+            </li>
             
         {/*
         <ToolManagement />
@@ -103,14 +110,14 @@ const SideNav = () => {
         <Settings />
         <Profile />
           */}
-            <li>
+            {/* <li>
                 <StyledSideNavButton>
                     <Link to="/search">
                         <Icon icon={bxSearch} />
                         <h5>Search</h5>
                     </Link>
                 </StyledSideNavButton>
-            </li>
+            </li> */}
         </ul>
        </StyledSideNav>  
     )
