@@ -207,6 +207,13 @@ const GlobalStyles = createGlobalStyle`
         overflow-y: hidden;
     }
 
+    .chart {
+        display: flex;
+        &.hide {
+            display: none;
+        }
+    }
+
 `
 
 export default GlobalStyles;

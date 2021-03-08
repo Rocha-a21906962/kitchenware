@@ -1,9 +1,263 @@
 import { useParams, Link } from 'react-router-dom';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Details from '../components/ingredient/Details.js';
 import Photo from '../components/ingredient/Photo';
 import StockDetails from '../components/ingredient/StockDetails';
 import StockManagement from '../components/ingredient/StockManagement';
+import LineChart from '../components/charts/LineChart';
+
+
+const data1 = [
+	{
+		month: "Jan",
+		city: "Tokyo",
+		temperature: 7
+	},
+	{
+		month: "Feb",
+		city: "Tokyo",
+		temperature: 13
+	},
+	{
+		month: "Mar",
+		city: "Tokyo",
+		temperature: 16.5
+	},
+	{
+		month: "Apr",
+		city: "Tokyo",
+		temperature: 14.5
+	},
+	{
+		month: "May",
+		city: "Tokyo",
+		temperature: 10
+	},
+	{
+		month: "Jun",
+		city: "Tokyo",
+		temperature: 7.5
+	},
+	{
+		month: "Jul",
+		city: "Tokyo",
+		temperature: 9.2
+	},
+	{
+		month: "Aug",
+		city: "Tokyo",
+		temperature: 14.5
+	},
+	{
+		month: "Sep",
+		city: "Tokyo",
+		temperature: 9.3
+	},
+	{
+		month: "Oct",
+		city: "Tokyo",
+		temperature: 8.3
+	},
+	{
+		month: "Nov",
+		city: "Tokyo",
+		temperature: 8.9
+	},
+	{
+		month: "Dec",
+		city: "Tokyo",
+		temperature: 5.6
+	},
+];
+
+
+const data2 = [
+	{
+		month: "Jan",
+		city: "Tokyo",
+		temperature: 3.9
+	},
+	{
+		month: "Feb",
+		city: "Tokyo",
+		temperature: 4.2
+	},
+	{
+		month: "Mar",
+		city: "Tokyo",
+		temperature: 5.7
+	},
+	{
+		month: "Apr",
+		city: "Tokyo",
+		temperature: 8.5
+	},
+	{
+		month: "May",
+		city: "Tokyo",
+		temperature: 11.9
+	},
+	{
+		month: "Jun",
+		city: "Tokyo",
+		temperature: 15.2
+	},
+	{
+		month: "Jul",
+		city: "Tokyo",
+		temperature: 17
+	},
+	{
+		month: "Aug",
+		city: "Tokyo",
+		temperature: 16.6
+	},
+	{
+		month: "Sep",
+		city: "Tokyo",
+		temperature: 14.2
+	},
+	{
+		month: "Oct",
+		city: "Tokyo",
+		temperature: 10.3
+	},
+	{
+		month: "Nov",
+		city: "Tokyo",
+		temperature: 5.6
+	},
+	{
+		month: "Dec",
+		city: "Tokyo",
+		temperature: 9.8
+	}
+];
+
+
+const data3 = [
+	{
+		month: "Jan",
+		city: "Tokyo",
+		temperature: 7
+	},
+	{
+		month: "Jan",
+		city: "London",
+		temperature: 3.9
+	},
+	{
+		month: "Feb",
+		city: "Tokyo",
+		temperature: 13
+	},
+	{
+		month: "Feb",
+		city: "London",
+		temperature: 4.2
+	},
+	{
+		month: "Mar",
+		city: "Tokyo",
+		temperature: 16.5
+	},
+	{
+		month: "Mar",
+		city: "London",
+		temperature: 5.7
+	},
+	{
+		month: "Apr",
+		city: "Tokyo",
+		temperature: 14.5
+	},
+	{
+		month: "Apr",
+		city: "London",
+		temperature: 8.5
+	},
+	{
+		month: "May",
+		city: "Tokyo",
+		temperature: 10
+	},
+	{
+		month: "May",
+		city: "London",
+		temperature: 11.9
+	},
+	{
+		month: "Jun",
+		city: "Tokyo",
+		temperature: 7.5
+	},
+	{
+		month: "Jun",
+		city: "London",
+		temperature: 15.2
+	},
+	{
+		month: "Jul",
+		city: "Tokyo",
+		temperature: 9.2
+	},
+	{
+		month: "Jul",
+		city: "London",
+		temperature: 17
+	},
+	{
+		month: "Aug",
+		city: "Tokyo",
+		temperature: 14.5
+	},
+	{
+		month: "Aug",
+		city: "London",
+		temperature: 16.6
+	},
+	{
+		month: "Sep",
+		city: "Tokyo",
+		temperature: 9.3
+	},
+	{
+		month: "Sep",
+		city: "London",
+		temperature: 14.2
+	},
+	{
+		month: "Oct",
+		city: "Tokyo",
+		temperature: 8.3
+	},
+	{
+		month: "Oct",
+		city: "London",
+		temperature: 10.3
+	},
+	{
+		month: "Nov",
+		city: "Tokyo",
+		temperature: 8.9
+	},
+	{
+		month: "Nov",
+		city: "London",
+		temperature: 5.6
+	},
+	{
+		month: "Dec",
+		city: "Tokyo",
+		temperature: 5.6
+	},
+	{
+		month: "Dec",
+		city: "London",
+		temperature: 9.8
+	}
+];
 
 
 const IngredientStats = ({
@@ -11,8 +265,34 @@ const IngredientStats = ({
     setIngredientData
 }) => {
 
+    /* Hook for chart visibility */
+    const [visibleChart, setVisibleChart] = useState("1");
+    const [chartData, setChartData] = useState(data1);
+
     let { ingredient_name } = useParams();
     const ingredient = ingredientData.filter(ingredient => ingredient.name === ingredient_name)[0];
+
+    const onToggleVisibleChart = (event) => {
+        // setVisibleChart(event.target.value)
+        let new_data;
+        switch (event.target.value) {
+            case "1":
+                new_data = data1;
+                break;
+            case "2":
+                new_data = data2;
+                break;
+            case "3":
+                new_data = data3;
+                break;
+            default:
+                console.log("erro");
+        };
+        console.log(event.target.value);
+        console.log(chartData);
+        console.log(new_data);
+        setChartData(new_data);
+    }
 
     return (
         <div className="content">
@@ -25,11 +305,34 @@ const IngredientStats = ({
                     </div>
                 </StyledPhoto>
                 <StyledChart>
-                    <div className="chart"></div>
+                    <div id="chart_1" className={`chart ${visibleChart != "1" ? 'hide' : ''}`}>
+                        <LineChart 
+                            data={chartData}
+                            height={250}
+                            position="month*temperature" //{"day*quantity"}
+                            color="city" //{"stock quantity"} 
+                            />
+                    </div>
+                    {/* <div id="chart_2" className={`chart ${visibleChart != "2" ? 'hide' : ''}`}>
+                        <LineChart 
+                            data={data2}
+                            height={250}
+                            position="month*temperature" //{"day*quantity"}
+                            color="city" //{"daily usage"} 
+                            />
+                    </div>
+                    <div id="chart_3" className={`chart ${visibleChart != "3" ? 'hide' : ''}`}>
+                        <LineChart
+                            data={data3}
+                            height={250}
+                            position="month*temperature" //{"day*quantity"}
+                            color="city" //{"meals per day"} 
+                            />
+                    </div> */}
                     <div className="chart_buttons">
-                        <button name="" id="">Stock qty</button>
-                        <button name="" id="">Daily usage</button>
-                        <button name="" id="">Meals per day</button>
+                        <button name="" value="1" onClick={onToggleVisibleChart}>Stock qty</button>
+                        <button name="" value="2" onClick={onToggleVisibleChart}>Daily usage</button>
+                        <button name="" value="3" onClick={onToggleVisibleChart}>Meals per day</button>
                     </div>
                 </StyledChart>
                 <StyledDescription>
