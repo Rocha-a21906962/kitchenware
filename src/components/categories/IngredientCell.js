@@ -21,7 +21,7 @@ const IngredientCell = ({
 
             // <Link to="/ingredient_stats">
             <Link to={`/ingredient_stats/${ingredient.name}`}>
-                <img src={ingredient.image} alt={`${ingredient.name}  image`} class={`${inStock ? "" : "unavailable"}`}/>
+                <img src={ingredient.image} alt={`${ingredient.name}  image`} className={`${inStock ? "" : "unavailable"}`}/>
                 {ingredient.name}
             </Link>
 
@@ -29,7 +29,7 @@ const IngredientCell = ({
 
             // <Link to="/ingredient">
             <Link to={`/ingredient/${ingredient.name}`}>
-                <img src={ingredient.image} alt={`${ingredient.name}  image`} class={`${inStock ? "" : "unavailable"}`}/>
+                <img src={ingredient.image} alt={`${ingredient.name}  image`} className={`${inStock ? "" : "unavailable"}`}/>
                 {ingredient.name}
             </Link>
 

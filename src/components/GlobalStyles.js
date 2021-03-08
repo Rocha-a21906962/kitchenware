@@ -49,7 +49,19 @@ const GlobalStyles = createGlobalStyle`
         color: white;
         transition: all 0.5 ease;
         &:hover {
-            background-color: #23d997;
+            // background-color: #23d997;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+
+    select {
+        &:hover {
+            // background-color: #23d997;
+        }
+        &:focus {
+            outline: none;
         }
     }
 
