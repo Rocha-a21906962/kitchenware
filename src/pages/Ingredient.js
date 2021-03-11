@@ -1,15 +1,25 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Details from '../components/ingredient/Details.js';
 import Photo from '../components/ingredient/Photo';
 import StockDetails from '../components/ingredient/StockDetails';
 import StockManagement from '../components/ingredient/StockManagement';
+import NewOrder from "../components/orders/NewOrder";
 
 
 const Ingredient = ({
     ingredientData,
     setIngredientData
 }) => {
+
+    /* Hook for the new order pop-up menu visibility */
+    const [isNewOrderOpen, setIsNewOrderOpen] = useState(null);
+
+    const showNewOrder = () => {
+        setIsNewOrderOpen(true);
+        console.log(isNewOrderOpen);
+    };
     
     let { ingredient_name } = useParams();
     const ingredient = ingredientData.filter(ingredient => ingredient.name === ingredient_name)[0];
@@ -169,6 +179,25 @@ const Ingredient = ({
         console.log(ingredientData);
     };
 
+    
+    const newOrder = (ingredient) => {
+        return (
+            [
+                {
+                    name: ingredient.name,
+                    quantity: ingredient.default_order_quantity.value,
+                    unit: ingredient.unit,
+                }   
+            ] 
+        )
+    };
+    
+    /* Hook for the new order ingredients */
+    const [orderIngredients, setOrderIngredients] = useState(newOrder(ingredient));
+
+    console.log(orderIngredients);
+
+
     return (
         <div className="content">
             <StyledIngredient>
@@ -188,22 +217,25 @@ const Ingredient = ({
                 </StyledPhoto>
                 <StyledDescription>
                     <h3>Ingredient short description</h3>
-                    <h5>sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
+                    <h5 className="to_do">sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
                 </StyledDescription>
                 <StyledDetails>
                     <h3>Categories:</h3>
-                    <h5>Fish</h5>
-                    <h5>Healthy</h5>
+                    {
+                        ingredient.categories.map((category) => {
+                            return (<h5>{category.name}</h5>)
+                        })
+                    }
                     <h3>Nutritional value:</h3>
-                    <h5>240 cal/?</h5>
+                    <h5 className="to_do">240 cal/?</h5>
                     <h3>Restrictions and alerts:</h3>
-                    <h5>Diet: Non-vegetarian</h5>
-                    <h5>Allergies and intolerances: Fish</h5>
+                    <h5 className="to_do">Diet: Non-vegetarian</h5>
+                    <h5 className="to_do">Allergies and intolerances: Fish</h5>
                     <h3>Typical expiration date:</h3>
-                    <h5>1 year</h5>
+                    <h5 className="to_do">1 year</h5>
                     <h5>(has implications on how stock management should be performed.. and should be abstracted for now)</h5>
                     <h3>Incoming orders:</h3>
-                    <h5>None</h5>
+                    <h5 className="to_do">None</h5>
                 </StyledDetails>
                 <StyledDetails>
                     <h3>Current stock:</h3>
@@ -227,7 +259,7 @@ const Ingredient = ({
                 </StyledDetails>
                 {/* buttons */}
                     <button name="" id="">Show recipes (opens pop-up / page?)</button>
-                    <button name="" id="">Order ingredient (opens pop-up)</button>
+                    <button name="" id="" onClick={e => showNewOrder(e.target.value)}>Order ingredient (opens pop-up)</button>
                     <button name="" id="">Order history (opens pop-up)</button>
                     <Link to={`/ingredient_stats/${ingredient.name}`}>
                         <button name="" id="">Stats (changes page)</button>
@@ -255,6 +287,11 @@ const Ingredient = ({
                 {/* buttons */}
                 <div></div>
             </StyledIngredient>
+            <NewOrder
+                isNewOrderOpen={isNewOrderOpen}
+                setIsNewOrderOpen={setIsNewOrderOpen}
+                orderIngredients={orderIngredients}
+                setOrderIngredients={setOrderIngredients} />
         </div>
     )
 }

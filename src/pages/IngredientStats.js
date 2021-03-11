@@ -337,35 +337,35 @@ const IngredientStats = ({
                 </StyledChart>
                 <StyledDescription>
                     <h3>Ingredient short description</h3>
-                    <h5>sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
+                    <h5 className="to_do">sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
                 </StyledDescription>
                 <StyledDetails>
                     <h3>Forecasted consumption</h3>
-                    <h5>7 days: 1.2 kg</h5>
-                    <h5>30 days: 5.1 kg</h5>
+                    <h5 className="to_do">7 days: 1.2 kg</h5>
+                    <h5 className="to_do">30 days: 5.1 kg</h5>
                     <h3>Recent consumption</h3>
-                    <h5>7 days: 1.1 kg</h5>
-                    <h5>30 days: 6.3 kg</h5>
-                    <h3>Recent consumption</h3>
-                    <h5>None</h5>
+                    <h5 className="to_do">7 days: 1.1 kg</h5>
+                    <h5 className="to_do">30 days: 6.3 kg</h5>
+                    <h3>Incoming orders</h3>
+                    <h5 className="to_do">None</h5>
                     <h3>Next order estimated in:</h3>
-                    <h5>11 days</h5>
+                    <h5 className="to_do">11 days</h5>
                 </StyledDetails>
                 <StyledDetails>
                     <h3>Current stock:</h3>
-                    <h5>4.8kg</h5>
+                    <h5 className="to_do">4.8kg</h5>
                     <h3>Automatic stock management:</h3>
                     <h3>Minimum stock:</h3>
-                    <h5>3kg</h5>
+                    <h5 className="to_do">3kg</h5>
                     <h5>(should be an input)</h5> 
                     <h3>Action:</h3>
-                    <h5>Auto-order / Issue alert</h5>
+                    <h5 className="to_do">Auto-order / Issue alert</h5>
                     <h5>(should be a select input)</h5> 
                     <h3>Auto-order quantity:</h3>
-                    <h5>2kg</h5>
+                    <h5 className="to_do">2kg</h5>
                     <h5>(should be an input)</h5> 
                     <h3>Incoming orders:</h3>
-                    <h5>None</h5>
+                    <h5 className="to_do">None</h5>
                 </StyledDetails>
                 {/* buttons */}
                     <Link to={`/ingredient/${ingredient.name}`}>

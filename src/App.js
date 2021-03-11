@@ -187,7 +187,9 @@ function App() {
             <RecipeStats
                 recipeData={recipeData}
                 setRecipeData={setRecipeData}
-                recipeCategories={recipeCategories} />
+                recipeCategories={recipeCategories}
+                ingredientData={ingredientData}
+                setIngredientData={setIngredientData} />
           </Route>
           <Route path="/most_used_ingredients" exact>
             <IngredientList

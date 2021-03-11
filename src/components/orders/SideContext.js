@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 
 const SideContext = ({
+    orders,
+    setOrders,
     selectedDay,
     setSelectedDay,
     isOrderDetailOpen,
@@ -20,44 +22,108 @@ const SideContext = ({
         console.log(isNewOrderOpen);
     };
 
+    const deliveriesOnDay = (selectedDay) => {
+        const ordersThisDay = orders.filter(order => format(new Date(order.delivery_on), 'd') === format(selectedDay, 'd') 
+                                            && format(new Date(order.delivery_on), 'M') === format(selectedDay, 'M')
+                                            && format(new Date(order.delivery_on), 'Y') === format(selectedDay, 'Y'));
+
+        /* returns an empty array if no matching order was found
+        (this prevents the variable to be set to undefined - is this good practice though?)
+        */ 
+        return (ordersThisDay || []);
+    };
+
+    const deliveredOrders = () => {
+        return deliveries_this_day.filter(order => new Date(order.delivery_on) <= new Date());
+    };
+
+    const scheduledDeliveries = () => {
+        return deliveries_this_day.filter(order => new Date(order.delivery_on) > new Date());
+    };
+
+    let delivered_orders = [];
+    let scheduled_deliveries = [];
+
+    const deliveries_this_day = deliveriesOnDay(selectedDay);
+    if (deliveries_this_day.length > 0) {
+        console.log("deliveries_this_day");
+        console.log(deliveries_this_day);
+        delivered_orders = deliveredOrders();
+        scheduled_deliveries = scheduledDeliveries();
+    }
+
     return (
-        <div>
+        <div id="side_context">
             <StyledDay>
                 <h3>{format(selectedDay, 'd MMMM')}</h3>
                 <h5>{format(selectedDay, 'iiii')}</h5>
             </StyledDay>
             <StyledSideContext>
-                <h3>Scheduled deliveries</h3>
-                {/* <h5>(this should change depending on whether the order 
-                    has been delivered already or not)</h5> */}
-                <StyledOrder>
-                    <div className="individual_order">
-                        <h5>Order #374</h5>
-                        <h5><span>auto</span></h5>
+                {
+                    scheduled_deliveries.length > 0 ?
+                    <div>
+                        <h3>Scheduled deliveries</h3>
+                        {
+                            scheduled_deliveries.map((order) => {
+                                return (<StyledOrder>
+                                            <div className="individual_order">
+                                                <h5>Order #{ order.id }</h5>
+                                                <h5>@{format(new Date(order.delivery_on), 'hh:mm')} <span>{ order.type }</span></h5>
+                                            </div>
+                                            <button name={`order_${ order.id }`} id={ order.id } onClick={e => showOrderDetail(e.target.id)}>View order</button>
+                                        </StyledOrder>)
+                            })
+                        }
                     </div>
-                    <button name="order_374" id="374" onClick={e => showOrderDetail(e.target.id)}>View order</button>
-                </StyledOrder>
-                <StyledOrder>
-                    <div className="individual_order">
-                        <h5>Order #375</h5>
-                        <h5><span>manual</span></h5>
+                    :
+                    delivered_orders.length > 0 ?
+                    <div>
+                        <h3>Delivered orders</h3>
+                        {
+                            delivered_orders.map((order) => {
+                                return (<StyledOrder>
+                                            <div className="individual_order">
+                                                <h5>Order #{ order.id }</h5>
+                                                <h5>@{format(new Date(order.delivery_on), 'hh:mm')} <span>{ order.type }</span></h5>
+                                            </div>
+                                            <button name={`order_${ order.id }`} id={ order.id } onClick={e => showOrderDetail(e.target.id)}>View order</button>
+                                        </StyledOrder>)
+                            })
+                        }
                     </div>
-                    <button name="order_375" id="375" onClick={e => showOrderDetail(e.target.id)}>View order</button>
-                </StyledOrder>
-                <h3>Delivered orders</h3>
-                <StyledOrder>
-                    <div className="individual_order">
-                        <h5>Order #373</h5>
-                        <h5><span>manual</span></h5>
+                    : 
+                    new Date(selectedDay) >= new Date() ?
+                    <div>
+                        <h5>No deliveries planned for this day.</h5>
                     </div>
-                    <button name="order_373" id="373" onClick={e => showOrderDetail(e.target.id)}>View order</button>
-                </StyledOrder>
-                <button name="" id="" value="regular" onClick={e => showNewOrder(e.target.value)}>Place new order for delivery on March 7</button>
-                <button name="" id="" value="periodic" onClick={e => showNewOrder(e.target.value)}>Schedule new order for delivery every Wednesday</button>
+                    :
+                    <div>
+                        <h5>There were no orders delivered on this day.</h5>
+                    </div>
+                }
+                <StyledNewOrderButtons>
+                    {
+                        new Date(addDays(selectedDay,1)) > new Date() ?
+                        <div>
+                            <button name="" id="" value="regular" onClick={e => showNewOrder(e.target.value)}>Place new order for delivery on {format(selectedDay, 'd MMMM')}</button>
+                            <button name="" id="" value="periodic" onClick={e => showNewOrder(e.target.value)}>Schedule new order for delivery every {format(selectedDay, 'iiii')}</button>
+                        </div>
+                        :
+                        <div></div>
+                    }
+                </StyledNewOrderButtons>
             </StyledSideContext>
         </div>
     )
 }
+
+const StyledNewOrderButtons = styled.div`
+    padding-bottom: 1rem;
+    margin-top: auto;
+    button {
+        width: 100%;
+    }
+`
 
 const StyledOrder = styled.div`
     display: flex;
@@ -86,14 +152,14 @@ const StyledDay = styled.div`
     align-items: center;
     height: 14vh;
     position: relative;
-    width: 100%;
+    width: calc(100vw - 60vw - 10rem);
     background-color: #000000;
     color: #b2b2b2;
 `
 
 const StyledSideContext = styled.div`
     position: relative;
-    width: 100%;
+    width: calc(100vw - 60vw - 10rem);
     height: 76vh;
     display: flex;
     flex-direction: column;

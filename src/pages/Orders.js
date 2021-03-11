@@ -12,9 +12,14 @@ const Orders = ({
     orderData
 }) => {
 
+    /* Hook for the selected calendar day */
     const [selectedDay, setSelectedDay] = useState(new Date());
+    /* Hook for the order detail pop-up visibility */
     const [isOrderDetailOpen, setIsOrderDetailOpen] = useState(null);
+    /* Hook for the new order pop-up visibility */
     const [isNewOrderOpen, setIsNewOrderOpen] = useState(null);
+    /* Hook for the new order ingredients */
+    const [orderIngredients, setOrderIngredients] = useState([]);
 
     return (
         <div className="content">
@@ -26,6 +31,8 @@ const Orders = ({
             <BottomContext 
                 orderData={orderData} />
             <SideContext
+                orders={orders}
+                setOrders={setOrders}
                 selectedDay={selectedDay}
                 setSelectedDay={setSelectedDay}
                 isOrderDetailOpen={isOrderDetailOpen}
@@ -34,10 +41,14 @@ const Orders = ({
                 setIsNewOrderOpen={setIsNewOrderOpen} /> 
             <OrderDetail
                 isOrderDetailOpen={isOrderDetailOpen}
-                setIsOrderDetailOpen={setIsOrderDetailOpen} />
+                setIsOrderDetailOpen={setIsOrderDetailOpen}
+                orders={orders}
+                setOrders={setOrders} />
             <NewOrder
                 isNewOrderOpen={isNewOrderOpen}
-                setIsNewOrderOpen={setIsNewOrderOpen} />
+                setIsNewOrderOpen={setIsNewOrderOpen}
+                orderIngredients={orderIngredients}
+                setOrderIngredients={setOrderIngredients} />
         </div>
     )
 }

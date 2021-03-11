@@ -106,12 +106,22 @@ const GlobalStyles = createGlobalStyle`
         background: linear-gradient(to bottom right,#17171766 5%,#13152f66 65%,#10141b66 100%); /* W3C */
     }
 
+    #side_context {
+        position: fixed;
+        top: 10vh;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        height: 90vh;
+        width: calc(100vw - 60vw - 10rem);
+    }
+
     #order_detail_popup,
     #new_order_popup,
     #meal_detail_popup,
     #new_meal_popup {
-        position: absolute;
-        top: 0;
+        position: fixed;
+        top: 10vh;
         right: 0;
         display: flex;
         flex-direction: column;
@@ -124,6 +134,7 @@ const GlobalStyles = createGlobalStyle`
         &.open {
             transform: none;
             opacity: 1;
+            z-index: 10000;
         }
     }
 
@@ -224,6 +235,10 @@ const GlobalStyles = createGlobalStyle`
         &.hide {
             display: none;
         }
+    }
+
+    .to_do {
+        color: #8f1212;
     }
 
 `

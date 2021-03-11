@@ -8,8 +8,11 @@ const ingredients = () => {
             image: 'https://1.bp.blogspot.com/-_QXjE8zwvNo/WaWEY1LFgcI/AAAAAAAAA1k/aar9QC0qFesVlS2c0dgOh4SqZk3TDJSJgCLcBGAs/s1600/Yellowfin%2BTuna%2BSaku%2B-%2BHigh%2BQuality.jpg',
             categories : [
                 {
-                    name: 'fish'
+                    name: 'fish',
                 },
+                {
+                    name: 'healthy',
+                }
             ],
             unit: 'kg',
             in_stock : {
@@ -62,8 +65,8 @@ const ingredients = () => {
                 step: 0.1,
             },
             default_order_quantity : {
-                value: 5,
-                new_value: 5,
+                value: 8,
+                new_value: 8,
                 min_input: 0,
                 max_input: 10,
                 step: 0.1,

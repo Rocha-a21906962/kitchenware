@@ -1,20 +1,45 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 
 const StepByStepOverlay = ({
     isStepByStepOverlayVisible,
     setIsStepByStepOverlayVisible,
-    recipeData
+    recipe
 }) => {
 
+    const first_step = recipe.steps.filter((step) => step.number == 1)[0];
+
+    /* Hook for the new order pop-up menu visibility */
+    const [currentStep, setCurrentStep] = useState(first_step);
+
     const onHideStepByStepOverlay = () => {
+        // reset the current step state
+        setCurrentStep(first_step);
         setIsStepByStepOverlayVisible(false);
+    }
+
+    const onPrevStepHandler = () => {
+        const prev_step_nr = currentStep.number - 1 || 1;
+        const prev_step = recipe.steps.filter((step) => step.number == prev_step_nr)[0];
+        setCurrentStep(prev_step);
+    }
+    
+    const onNextStepHandler = () => {
+        const next_step_nr = currentStep.number + 1 <= recipe.steps.length ? currentStep.number + 1 : currentStep.number;
+        const next_step = recipe.steps.filter((step) => step.number == next_step_nr)[0];
+        setCurrentStep(next_step);
+    }
+
+    const TotalRecipeTime = () => {
+        const total_recipe_time = recipe.steps.reduce((a, b) => a + b.time, 0);
+        return total_recipe_time < 60 ? total_recipe_time + "mins" : Math.floor(total_recipe_time / 60) + "h" + total_recipe_time % 60;
     }
 
     return (
         <div className={`step_by_step_overlay ${isStepByStepOverlayVisible ? 'open' : ''}`}>
             <StyledHeader>
-                Step 1
+                Step {currentStep.number}
             </StyledHeader>
             <StyledContent>
                 <StyledVideo>
@@ -33,11 +58,12 @@ const StepByStepOverlay = ({
                         Instructions
                     </StyledInstructionsHeader>
                     <StyledText>
+                        {currentStep.description}
+                        {/* Turn the tuna over and cook for 1-2 mins on the other side. Look at the side of the tuna to see how far through it is cooked, but remember it will keep cooking for a short while when taken off the heat. Rest for a couple of mins before serving.
                         Turn the tuna over and cook for 1-2 mins on the other side. Look at the side of the tuna to see how far through it is cooked, but remember it will keep cooking for a short while when taken off the heat. Rest for a couple of mins before serving.
                         Turn the tuna over and cook for 1-2 mins on the other side. Look at the side of the tuna to see how far through it is cooked, but remember it will keep cooking for a short while when taken off the heat. Rest for a couple of mins before serving.
                         Turn the tuna over and cook for 1-2 mins on the other side. Look at the side of the tuna to see how far through it is cooked, but remember it will keep cooking for a short while when taken off the heat. Rest for a couple of mins before serving.
-                        Turn the tuna over and cook for 1-2 mins on the other side. Look at the side of the tuna to see how far through it is cooked, but remember it will keep cooking for a short while when taken off the heat. Rest for a couple of mins before serving.
-                        Turn the tuna over and cook for 1-2 mins on the other side. Look at the side of the tuna to see how far through it is cooked, but remember it will keep cooking for a short while when taken off the heat. Rest for a couple of mins before serving.
+                        Turn the tuna over and cook for 1-2 mins on the other side. Look at the side of the tuna to see how far through it is cooked, but remember it will keep cooking for a short while when taken off the heat. Rest for a couple of mins before serving. */}
                     </StyledText>
                 </StyledInstructions>
             </StyledContent>
@@ -46,14 +72,14 @@ const StepByStepOverlay = ({
             </StyledCloseButton>
             <StyledTimer>
                 {/* <button name="" id="">Activate timer</button> */}
-                <h3>(clock icon) 2 mins left</h3>
-                <p>(step progress bar) 7:18 / 10mins</p>
-                <p>(total progress bar) 22:18 / 1h30</p>
+                <h3>(clock icon) {currentStep.time} mins left</h3>
+                <p>(step progress bar)  / {currentStep.time}mins</p>
+                <p>(total progress bar) 22:18 / {TotalRecipeTime()}</p>
             </StyledTimer>
             <StyledFlowButtons>
-                <button name="" id="">Previous step</button>
+                <button name="" id="" onClick={onPrevStepHandler}>Previous step</button>
                 <button name="" id="">Start</button>
-                <button name="" id="">Next step</button>
+                <button name="" id="" onClick={onNextStepHandler}>Next step</button>
             </StyledFlowButtons>
         </div>
     )

@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { Icon, InlineIcon } from '@iconify/react';
+import { format } from "date-fns";
 import formPrevious from '@iconify-icons/grommet-icons/form-previous';
 
 const OrderDetail = ({
     isOrderDetailOpen,
     setIsOrderDetailOpen,
-    isNewOrderOpen,
-    setIsNewOrderOpen
+    orders,
+    setOrders
 }) => {
 
     const showOrderDetail = (order_id) => {
@@ -19,40 +20,100 @@ const OrderDetail = ({
         console.log(isOrderDetailOpen);
     }
 
-    const hideNewOrder = () => {
-        setIsNewOrderOpen(null);
-        console.log(isNewOrderOpen);
-    }
+    const onAddIngredientHandler = (event) => {
+        console.log("addIngredientHandler");
+    };
+
+    const onIngredientQuantityChangeHandler = (event) => {
+        console.log("ingredientQuantityChangeHandler" + event.target.value);
+    };
+
+    console.log(orders);
+
+    const order = orders.filter((order) => order.id == isOrderDetailOpen)[0];
+
+    console.log(order);
 
     return (
         <div id="order_detail_popup" className={`${isOrderDetailOpen ? 'open' : ''}`}>
-            <StyledHeader>
-                <h3>Order #{isOrderDetailOpen}</h3>
-                <StyledIcon>
-                    <Icon icon={formPrevious} onClick={hideOrderDetail} />
-                </StyledIcon>
-            </StyledHeader>
-            <StyledSideContext>
-                <StyledDetails>
-                    <h3>Order details</h3>
-                    <h5>Type: auto (as per <span onClick={() => showOrderDetail('158')}>order #158</span>)</h5>
-                    <h5>Placed on: March 6, 17:30</h5>
-                    <h5>Delivery on: March 7, 8:00</h5>
-                </StyledDetails>
-                <h3>Ordered ingredients</h3>
-                <StyledIngredient>
-                    <div className="individual_order">
-                        <h5>Tuna</h5>
-                        <h5><span>auto</span></h5>
-                    </div>
-                    <div className="quantity">
-                        <h5><span>2 kg</span></h5>
-                    </div>
-                    <button name="" id="">Change</button>
-                </StyledIngredient>
-                <button name="" id="">Cancel order</button>
-                <button name="" id="">Change delivery date</button>
-            </StyledSideContext>
+            {
+                isOrderDetailOpen ? 
+                <div>
+                    <StyledHeader>
+                        <h3>Order #{order.id}</h3>
+                        <StyledIcon>
+                            <Icon icon={formPrevious} onClick={hideOrderDetail} />
+                        </StyledIcon>
+                    </StyledHeader>
+                    <StyledSideContext>
+                        <StyledDetails>
+                            <h3>Order details</h3>
+                            <h5>Type: {order.type}</h5>
+                            <h5>Placed on: {format(new Date(order.placed_on), 'MMMM d, hh:mm')}</h5>
+                            <h5>Delivery on: {format(new Date(order.delivery_on), 'MMMM d, hh:mm')}</h5>
+                        </StyledDetails>
+                        <h3>Ordered ingredients</h3>
+                        {
+                            order.ingredients.map((ingredient) => {
+                                console.log("ingredient.name");
+                                console.log(ingredient.name);
+                                return (<StyledIngredient>
+                                            <div className="individual_order">
+                                                <h5>{ ingredient.name }</h5>
+                                            </div>
+                                            <div className="quantity">
+                                            {
+                                                new Date(order.delivery_on) >= new Date() ?
+                                                <input type="range" min="0.1" max="10" step="0.1" className="stock_input" onChange={onIngredientQuantityChangeHandler} />
+                                                :
+                                                ''
+                                            }
+                                            <h5><span>2 kg</span></h5>
+                                            </div>
+                                            {/* <button name="" id="">Remove</button> */}
+                                        </StyledIngredient>)
+                            })
+                        }
+                        <StyledIngredient>
+                            <div className="individual_order">
+                                <select name="ingredient_options" defaultValue="name_asc" id="sort_by" onChange={onAddIngredientHandler}>
+                                    <option value="" disabled selected>Add an ingredient</option>
+                                    <option value="tuna">tuna</option>
+                                    <option value="salmon">salmon</option>
+                                    <option value="olive oil">olive oil</option>
+                                </select>
+                            </div>
+                            <div className="quantity">
+                                <h5>1kg</h5>
+                                <input type="range" min="0.1" max="10" step="0.1" className="stock_input" onChange={onIngredientQuantityChangeHandler} />
+                                {/* <button name="" id="">Remove</button> */}
+                            </div>
+                            {/* <button name="" id="">Remove</button> */}
+                        </StyledIngredient>
+                        <StyledIngredient>
+                            <div className="individual_order">
+                                <h5>Tuna</h5>
+                                <h5><span>auto</span></h5>
+                            </div>
+                            <div className="quantity">
+                                <h5><span>2 kg</span></h5>
+                            </div>
+                            <button name="" id="">Change</button>
+                        </StyledIngredient>
+                        {
+                            new Date(order.delivery_on) >= new Date() ?
+                            [
+                                <button name="" id="">Change delivery date</button>,
+                                <button name="" id="">Cancel order</button>
+                            ]
+                            :
+                            <div></div>
+                        }
+                    </StyledSideContext>
+                </div>
+                :
+                <div></div>
+            }
         </div>
     )
 }
@@ -66,11 +127,20 @@ const StyledIngredient = styled.div`
     position: relative;
     width: 100%;
     color: #b2b2b2;
-    .individual_ingredient {
-        width: 30%;
+    .individual_order {
+        width: 25%;
     }
     .quantity {
-        width: 15%;
+        width: 75%;
+        display: flex;
+        justify-content: flex-end;
+        input {
+            width: 60%;
+        }
+        h5 {
+            display: inline-flex;
+            padding-left: 1rem;
+        }
     }
     button {
         width: 50%;

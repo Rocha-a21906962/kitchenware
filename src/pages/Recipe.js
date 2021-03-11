@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styled from "styled-components";
 import StepByStepOverlay from "../components/recipe/StepByStepOverlay";
+import NewOrder from "../components/orders/NewOrder";
 
 
 const Recipe = ({
@@ -9,11 +10,23 @@ const Recipe = ({
     setRecipeData
 }) => {
 
-    /* Hook for search page visibility */
+    /* Hook for the new order pop-up menu visibility */
+    const [isNewOrderOpen, setIsNewOrderOpen] = useState(null);
+    /* Hook for step-by-step instructions overlay visibility */
     const [isStepByStepOverlayVisible, setIsStepByStepOverlayVisible] = useState(false);
 
     let { recipe_name } = useParams();
     let recipe = recipeData.filter(recipe => recipe.name === recipe_name)[0];
+    
+    /* Hook for this recipe's number of servings */
+    const [numberServings, setNumberServings] = useState(recipe.servings);
+
+    console.log("servings" + numberServings);
+
+    const showNewOrder = () => {
+        setIsNewOrderOpen(true);
+        console.log(isNewOrderOpen);
+    };
 
     const toggleRecipeFavouriteStatus = () => {
 
@@ -155,10 +168,51 @@ const Recipe = ({
         setIsStepByStepOverlayVisible(true);
     }
 
+    const onNumberServingsChangeHandler = (event) => {
+        setNumberServings(event.target.value);
+    }
+
+    
+    const newOrder = (recipe_ingredients) => {
+        return (
+            recipe_ingredients.map((ingredient) => {
+                return {
+                    name: ingredient.name,
+                    quantity: 'func missing',
+                    unit: 'func missing',
+                }    
+            })
+            // {
+                // id: 374,
+                // type: 'auto',
+                // ref: 1,
+                // placed_on: '2021-01-23 22:00', // new Date('2021-03-03 22:00'),
+                // delivery_on: '2021-01-24 7:00', // new Date('2021-03-10 7:00'),
+                // ingredients: [
+                    // {
+                    //     name: 'tuna',
+                    //     quantity: 2,
+                    // }
+            //     ]
+            // }
+        )
+    }
+    
+    const TotalRecipeTime = () => {
+        const total_recipe_time = recipe.steps.reduce((a, b) => a + b.time, 0);
+        return total_recipe_time < 60 ? total_recipe_time + "mins" : Math.floor(total_recipe_time / 60) + "h" + total_recipe_time % 60;
+    }
+    
+    /* Hook for the new order ingredients */
+    const [orderIngredients, setOrderIngredients] = useState(newOrder(recipe.ingredients));
+
+    console.log(orderIngredients);
+
+
     return (
         <div className="content">
             <StepByStepOverlay 
-                recipeData={recipeData}
+                recipe={recipe}
                 isStepByStepOverlayVisible={isStepByStepOverlayVisible}
                 setIsStepByStepOverlayVisible={setIsStepByStepOverlayVisible} />
             <StyledRecipe>
@@ -183,20 +237,27 @@ const Recipe = ({
                 </StyledPhoto>
                 <StyledDescription>
                     <h3>Recipe short description</h3>
-                    <h5>sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
+                    <h5 className="to_do">sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
                 </StyledDescription>
                 <StyledDetails>
                     <h3>Number of servings:</h3>
-                    <h5>3</h5> 
-                    <h5>(should be an input: ingred. requirements will change accordingly)</h5> 
+                    <h5>{numberServings} {numberServings != recipe.servings ? `(default: ${recipe.servings})` : ""}</h5> 
+                    <input type="range" min="2" max="12" step="1" value={numberServings} className="servings_input" onChange={onNumberServingsChangeHandler} />
                     <h3>Nutrition info:</h3>
                     <h5>240 cal/serving</h5>
                     <h3>Ingredient list:</h3>
                     <h5><span>X</span> 750g Salmon</h5>
                     <h5><span>V</span> 10ml Pesto</h5>
                     <h5><span>V</span> 1/2ts Salt</h5>
+                    {
+                        recipe.ingredients.map((ingredient) => {
+                            console.log("ingredient.name");
+                            console.log(ingredient.name);
+                            return (<h5><span>X</span> { (ingredient.quantity * numberServings / recipe.servings).toFixed(2) }{ ingredient.unit }  { ingredient.name }</h5>)
+                        })
+                    }
                     <h3>Immediate availability:</h3>
-                    <h5>Current ingredient stock allows for this dish to be cooked 4 times.</h5>
+                    <h5 className="to_do">Current ingredient stock allows for this dish to be cooked 4 times.</h5>
                     <h3>Automatic stock management:</h3>
                     <h3>Minimum availability:</h3>
                     <h5>{recipe.minimum_availability.value} servings {recipe.minimum_availability.value != recipe.minimum_availability.new_value ? `(new value: ${recipe.minimum_availability.new_value})` : ''}</h5>
@@ -229,32 +290,32 @@ const Recipe = ({
                 <StyledDetails>
                     <h3>Preparation (a la Tasty):</h3>
                     <h3>Preparation time:</h3>
-                    <h5>5 minutes</h5> 
+                    <h5 className="to_do">5 minutes</h5> 
                     <h3>Cooking time:</h3>
-                    <h5>15 minutes</h5> 
+                    <h5 className="to_do">15 minutes</h5> 
+                    <h3>Total time:</h3>
+                    <h5>{TotalRecipeTime()}</h5> 
                     <button name="" id="" onClick={onShowStepByStepOverlay}>Step-by-step mode button (opens pop-up)</button>
                     <h3>Instructions:</h3>
-                    <h5>Step 1 - Blablabla</h5>
-                    <h5>Step 2 - Blablabla</h5>
-                    <h5>Step 3 - Blablabla</h5>
-                    <h5>Step 4 - Blablabla</h5>
-                    <h5>Step 5 - Blablabla</h5>
-                    <h5>Step 6 - Blablabla</h5>
-                    <h5>Step 7 - Blablabla</h5>
-                    <h5>Step 8 - Blablabla</h5>
-                    <h5>Step 9 - Blablabla</h5>
-                    <h5>Step 10 - Blablabla</h5>
-                    <h5>Step 11 - Blablabla</h5>
-                    <h5>Step 12 - Blablabla</h5>
+                    {
+                        recipe.steps.map((step) => {
+                        return (<h5>Step {step.number} - {step.description}</h5>)
+                        })
+                    }
                 </StyledDetails>
                 {/* buttons */}
-                    <button name="" id="">Order ingredients (opens pop-up)</button>
+                    <button name="" id="" onClick={e => showNewOrder(e.target.value)}>Order ingredients (opens pop-up)</button>
                     <button name="" id="">Schedule meal (opens pop-up)</button>
                     <Link to={`/recipe_stats/${recipe.name}`}>
                         <button name="" id="">Stats (changes page)</button>
                     </Link>
                     <button name="" id="">Play video (opens pop-up! alt: button as image overlay with play icon?)</button>
             </StyledRecipe>
+            <NewOrder
+                isNewOrderOpen={isNewOrderOpen}
+                setIsNewOrderOpen={setIsNewOrderOpen}
+                orderIngredients={orderIngredients}
+                setOrderIngredients={setOrderIngredients} />
         </div>
     )
 }

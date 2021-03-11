@@ -9,11 +9,18 @@ const recipe = {
 
 const RecipeStats = ({
     recipeData,
-    setRecipeData
+    setRecipeData,
+    recipeCategories,
+    ingredientData,
+    setIngredientData
 }) => {
 
     let { recipe_name } = useParams();
     let recipe = recipeData.filter(recipe => recipe.name === recipe_name)[0];
+    const recipe_ingredients = recipe.ingredients.map(recipe => recipe.name);
+    const filtered_ingredient_data = ingredientData.filter((ingredient) => recipe_ingredients.includes(ingredient.name));
+
+    
 
     const toggleRecipeFavouriteStatus = () => {
 
@@ -61,29 +68,41 @@ const RecipeStats = ({
                 </StyledChart>
                 <StyledDescription>
                     <h3>Recipe short description</h3>
-                    <h5>sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
+                    <h5 className="to_do">sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
                 </StyledDescription>
                 <StyledDetails>
                     <h3>Forecasted consumption</h3>
-                    <h5>7 days: 11 meals</h5>
-                    <h5>30 days: 47 meals</h5>
+                    <h5 className="to_do">7 days: 11 meals</h5>
+                    <h5 className="to_do">30 days: 47 meals</h5>
                     <h3>Recent consumption</h3>
-                    <h5>7 days: 12 meals</h5>
-                    <h5>30 days: 51 meals</h5>
+                    <h5 className="to_do">7 days: 12 meals</h5>
+                    <h5 className="to_do">30 days: 51 meals</h5>
                     <h3>Recent consumption</h3>
-                    <h5>None</h5>
+                    <h5 className="to_do">None</h5>
                     <h3>Next order estimated in:</h3>
-                    <h5>11 days</h5>
+                    <h5 className="to_do">11 days</h5>
                 </StyledDetails>
                 <StyledDetails>
                     <h3>Ingredient list:</h3>
-                    <h5><span>X</span> 750g <a href="">Salmon</a> <span>currently not in stock</span></h5>
-                    <h5><span>V</span> 10ml <a href="">Pesto</a> <span>stock for 47 meals</span></h5>
-                    <h5><span>V</span> 1/2ts <a href="">Salt</a> <span>stock for 78 meals</span></h5>
+                    <h5 className="to_do"><span>X</span> 750g <a href="">Salmon</a> <span>currently not in stock</span></h5>
+                    <h5 className="to_do"><span>V</span> 10ml <a href="">Pesto</a> <span>stock for 47 meals</span></h5>
+                    <h5 className="to_do"><span>V</span> 1/2ts <a href="">Salt</a> <span>stock for 78 meals</span></h5>
+                    {
+                        // refactor this rubbish!!
+                        recipe.ingredients.map((ingredient) => {
+                            return (<h5><span>X</span> { ingredient.quantity }{ ingredient.unit } { ingredient.name } <span>stock for this recipe to be cooked {
+                                filtered_ingredient_data.map((i) => {
+                                    if (i.name === ingredient.name) {
+                                        return (i.in_stock.value / ingredient.quantity + " times (" + i.in_stock.value + ingredient.unit + ' in stock)')
+                                    }
+                                })
+                            } { }</span></h5>)
+                        })
+                    }
                     <h3>Immediate availability:</h3>
-                    <h5>Current ingredient stock allows for this dish to be cooked 4 times.</h5>
+                    <h5 className="to_do">Current ingredient stock allows for this dish to be cooked 4 times.</h5>
                     <h3>Automatic stock management:</h3>
-                    <h5>20 meals</h5>
+                    <h5 className="to_do">20 meals</h5>
                     <h5>(immediate availability => nr servings * nr immediate avail. = 20).</h5>
                     <h5>(should be an input)</h5> 
                 </StyledDetails>

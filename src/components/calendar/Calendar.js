@@ -198,9 +198,9 @@ const Calendar = ({
     };
 
     const orderThisDay = day => {
-      const ordersThisDay = dataState.filter(order => order.day === format(day, 'd') 
-                                          && order.month === format(day, 'M')
-                                          && order.year === format(day, 'Y'));
+      const ordersThisDay = dataState.filter(order => format(new Date(order.delivery_on), 'd') === format(day, 'd') 
+                                          && format(new Date(order.delivery_on), 'M') === format(day, 'M')
+                                          && format(new Date(order.delivery_on), 'Y') === format(day, 'Y'));
       console.log(day);
       console.log(format(day, 'M'));
       console.log(ordersThisDay);
@@ -209,6 +209,7 @@ const Calendar = ({
     };
 
     const plannedMealsThisDay = day => {
+      // rebuild json data and the code below (to match orderThisDay)
       const mealsThisDay = dataState.filter(date => date.day === format(day, 'd') 
                                                 && date.month === format(day, 'M')
                                                 && date.year === format(day, 'Y'));

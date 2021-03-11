@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 
 const SideContext = ({
     selectedDay,
@@ -21,7 +21,7 @@ const SideContext = ({
     };
 
     return (
-        <div>
+        <div id="side_context">
             <StyledDay>
                 <h3>{format(selectedDay, 'd MMMM')}</h3>
                 <h5>{format(selectedDay, 'iiii')}</h5>
@@ -63,12 +63,29 @@ const SideContext = ({
                     <h5><span>1 serving</span> @ 20:00</h5>
                     <h5><span>2 servings</span> @ 23:00</h5>
                 </StyledMeal>
-                <button name="" id="6" onClick={showMealDetail}>Edit meal planning</button>
-                <button name="" id="" value="regular" onClick={e => showNewMeal(e.target.value)}>Schedule additional meals</button>
+                <StyledButtons>
+                    {
+                        new Date(addDays(selectedDay,1)) > new Date() ?
+                        <div>
+                        <button name="" id="6" onClick={showMealDetail}>Edit meal planning</button>
+                        <button name="" id="" value="regular" onClick={e => showNewMeal(e.target.value)}>Schedule additional meals</button>
+                        </div>
+                        :
+                        <div></div>
+                    }
+                </StyledButtons>
             </StyledSideContext>
         </div>
     )
 }
+
+const StyledButtons = styled.div`
+    padding-bottom: 1rem;
+    margin-top: auto;
+    button {
+        width: 100%;
+    }
+`
 
 const StyledMeal = styled.div`
     display: flex;
