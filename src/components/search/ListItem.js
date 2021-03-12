@@ -13,8 +13,8 @@ const ListItem = ({
     }
 
     const categories = item.categories.map((category) => {return category.name});
-    console.log("categories");
-    console.log(categories);
+    // console.log("categories");
+    // console.log(categories);
 
     return (
         <div className="list_item">

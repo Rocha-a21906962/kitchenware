@@ -1,11 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import styled from "styled-components";
+import { getIngredientsFor } from "../auxFunctions.js";
 
-/* bogus recipe data */
-const recipe = {
-    name: 'salmon recipe #1',
-    image: 'https://images.thefishsite.com/fish/articles/processing/salmon-fillet.jpeg?profile=article-inline@maximum',
-}
 
 const RecipeStats = ({
     recipeData,
@@ -20,8 +16,9 @@ const RecipeStats = ({
     const recipe_ingredients = recipe.ingredients.map(recipe => recipe.name);
     const filtered_ingredient_data = ingredientData.filter((ingredient) => recipe_ingredients.includes(ingredient.name));
 
+    console.log("getIngredientsFor");
+    console.log(getIngredientsFor(ingredientData, recipe));
     
-
     const toggleRecipeFavouriteStatus = () => {
 
         console.log("before:" + recipe.is_favourite);
@@ -43,6 +40,7 @@ const RecipeStats = ({
         
         console.log("after:" + recipe.is_favourite);
     };
+
 
     return (
         <div className="content">

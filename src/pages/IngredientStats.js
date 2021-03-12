@@ -6,6 +6,7 @@ import Photo from '../components/ingredient/Photo';
 import StockDetails from '../components/ingredient/StockDetails';
 import StockManagement from '../components/ingredient/StockManagement';
 import LineChart from '../components/charts/LineChart';
+import { getRecipesWith, getOrdersWith, filterIngredients, filterRecipes } from '../auxFunctions';
 
 
 const data1 = [
@@ -262,7 +263,10 @@ const data3 = [
 
 const IngredientStats = ({
     ingredientData,
-    setIngredientData
+    setIngredientData,
+    ingredientCategories,
+    recipeData,
+    orders
 }) => {
 
     /* Hook for chart visibility */
@@ -271,6 +275,32 @@ const IngredientStats = ({
 
     let { ingredient_name } = useParams();
     const ingredient = ingredientData.filter(ingredient => ingredient.name === ingredient_name)[0];
+
+    console.log("getRecipesWith");
+    console.log(getRecipesWith(recipeData, ingredient.name));
+    console.log("getOrdersWith");
+    console.log(getOrdersWith(orders, ingredient.name));
+
+    let search_string = 'a';
+
+    let ingredient_filters = {
+        stock_status: 'in_stock',
+        categories: [],
+        with_incoming_orders_only: false,
+    }
+    console.log("filterIngredients");
+    console.log(filterIngredients(ingredientData, orders, ingredient_filters, search_string));
+    
+    let recipe_filters = {
+        stock_status: 'in_stock',
+        preparation_time: '<30',
+        cooking_time: '<30',
+        total_time: '<60',
+        categories: [],
+    }
+    console.log("filterRecipes");
+    console.log(filterRecipes(recipeData, ingredientData, recipe_filters, search_string));
+
 
     const onToggleVisibleChart = (event) => {
         // setVisibleChart(event.target.value)

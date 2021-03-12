@@ -6,6 +6,7 @@ import Photo from '../components/ingredient/Photo';
 import StockDetails from '../components/ingredient/StockDetails';
 import StockManagement from '../components/ingredient/StockManagement';
 import NewOrder from "../components/orders/NewOrder";
+import { getIncomingOrdersWith } from "../auxFunctions";
 
 
 const Ingredient = ({

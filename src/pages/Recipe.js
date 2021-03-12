@@ -253,7 +253,7 @@ const Recipe = ({
                         recipe.ingredients.map((ingredient) => {
                             console.log("ingredient.name");
                             console.log(ingredient.name);
-                            return (<h5><span>X</span> { (ingredient.quantity * numberServings / recipe.servings).toFixed(2) }{ ingredient.unit }  { ingredient.name }</h5>)
+                            return (<h5><span>X</span> { (ingredient.quantity * numberServings / recipe.servings).toFixed(2) }{ ingredient.unit }<Link to={`/ingredient/${ingredient.name}`}>{ ingredient.name }</Link></h5>)
                         })
                     }
                     <h3>Immediate availability:</h3>

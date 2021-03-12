@@ -44,6 +44,8 @@ const recipes = () => {
                 new_value: false,
             },
             is_favourite: false,
+            preparation_time: 30,
+            cooking_time: 60,
             steps: [
                 {
                     number: 1,
@@ -115,6 +117,8 @@ const recipes = () => {
                 new_value: false,
             },
             is_favourite: false,
+            preparation_time: 10,
+            cooking_time: 20,
             steps: [
                 {
                     number: 1,
@@ -171,6 +175,8 @@ const recipes = () => {
                 new_value: false,
             },
             is_favourite: false,
+            preparation_time: 5,
+            cooking_time: 30,
             steps: [
                 {
                     number: 1,
@@ -227,6 +233,8 @@ const recipes = () => {
                 new_value: false,
             },
             is_favourite: false,
+            preparation_time: 15,
+            cooking_time: 45,
             steps: [
                 {
                     number: 1,
@@ -283,6 +291,8 @@ const recipes = () => {
                 new_value: false,
             },
             is_favourite: false,
+            preparation_time: 30,
+            cooking_time: 160,
             steps: [
                 {
                     number: 1,
@@ -339,6 +349,8 @@ const recipes = () => {
                 new_value: false,
             },
             is_favourite: false,
+            preparation_time: 5,
+            cooking_time: 45,
             steps: [
                 {
                     number: 1,
@@ -390,6 +402,8 @@ const recipes = () => {
                 new_value: false,
             },
             is_favourite: false,
+            preparation_time: 15,
+            cooking_time: 20,
             steps: [
                 {
                     number: 1,
@@ -446,6 +460,8 @@ const recipes = () => {
                 new_value: false,
             },
             is_favourite: false,
+            preparation_time: 10,
+            cooking_time: 10,
             steps: [
                 {
                     number: 1,
@@ -502,6 +518,8 @@ const recipes = () => {
                 new_value: false,
             },
             is_favourite: false,
+            preparation_time: 5,
+            cooking_time: 5,
             steps: [
                 {
                     number: 1,
@@ -558,6 +576,8 @@ const recipes = () => {
                 new_value: false,
             },
             is_favourite: false,
+            preparation_time: 20,
+            cooking_time: 20,
             steps: [
                 {
                     number: 1,
@@ -614,6 +634,8 @@ const recipes = () => {
                 new_value: false,
             },
             is_favourite: false,
+            preparation_time: 15,
+            cooking_time: 25,
             steps: [
                 {
                     number: 1,
@@ -670,6 +692,8 @@ const recipes = () => {
                 new_value: false,
             },
             is_favourite: false,
+            preparation_time: 2,
+            cooking_time: 8,
             steps: [
                 {
                     number: 1,
@@ -726,6 +750,8 @@ const recipes = () => {
                 new_value: false,
             },
             is_favourite: false,
+            preparation_time: 20,
+            cooking_time: 20,
             steps: [
                 {
                     number: 1,

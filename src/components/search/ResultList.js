@@ -1,17 +1,21 @@
 import styled from "styled-components";
 import ListItem from "./ListItem";
+import { filterRecipes, filterIngredients } from '../../auxFunctions';
 
 const ResultList = ({
     searchString,
     setSearchString,
     searchTarget,
     setSearchTarget,
+    recipeSearchFilters,
+    ingredientSearchFilters,
     ingredientData,
     setIngredientData,
     ingredientCategories,
     recipeData,
     setRecipeData,
-    recipeCategories
+    recipeCategories,
+    orders
 }) => {
 
     let results = null;
@@ -20,13 +24,9 @@ const ResultList = ({
         results = null;
     } else {
         if (searchTarget === 'recipes') {
-            results = recipeData.filter(recipe => {
-                return recipe.name.toLowerCase().includes(searchString.toLowerCase());
-            });
+            results = filterRecipes(recipeData, ingredientData, recipeSearchFilters, searchString);
         } else {
-            results = ingredientData.filter(ingredient => {
-                return ingredient.name.toLowerCase().includes(searchString.toLowerCase());
-            });
+            results = filterIngredients(ingredientData, orders, ingredientSearchFilters, searchString);
         }
     }
 
@@ -44,8 +44,8 @@ const ResultList = ({
                 :
                 results.map((item) => {
                     return <ListItem 
-                                    item={item}
-                                    searchTarget={searchTarget} />
+                                item={item}
+                                searchTarget={searchTarget} />
                     })
             }
         </div>

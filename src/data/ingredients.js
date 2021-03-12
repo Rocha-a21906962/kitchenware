@@ -191,8 +191,8 @@ const ingredients = () => {
             ],
             unit: 'kg',
             in_stock : {
-                value: 33,
-                new_value: 33,
+                value: 0,
+                new_value: 0,
                 min_input: 0,
                 max_input: 100,
                 step: 0.1,

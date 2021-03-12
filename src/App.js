@@ -78,7 +78,8 @@ function App() {
           ingredientCategories={ingredientCategories}
           recipeData={recipeData}
           setRecipeData={setRecipeData}
-          recipeCategories={recipeCategories} />
+          recipeCategories={recipeCategories}
+          orders={orders} />
       <ScrollToTop>
         <Switch>
           <Route path="/" exact>
@@ -106,6 +107,7 @@ function App() {
             <Orders
                 orders={orders}
                 setOrders={setOrders}
+                /* the following line must be changed */
                 orderData={ingredientData} />
           </Route>
           <Route path="/meals_and_events" exact>
@@ -161,7 +163,9 @@ function App() {
             <IngredientStats
                 ingredientData={ingredientData}
                 setIngredientData={setIngredientData}
-                ingredientCategories={ingredientCategories} />
+                ingredientCategories={ingredientCategories}
+                recipeData={recipeData}
+                orders={orders} />
           </Route>
           <Route path="/recipe_category/:category_name" exact>
             <RecipeList 
