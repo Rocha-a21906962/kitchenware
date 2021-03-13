@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { addDays } from "date-fns";
 import Details from '../components/ingredient/Details.js';
 import Photo from '../components/ingredient/Photo';
 import StockDetails from '../components/ingredient/StockDetails';
@@ -11,7 +12,10 @@ import { getIncomingOrdersWith } from "../auxFunctions";
 
 const Ingredient = ({
     ingredientData,
-    setIngredientData
+    setIngredientData,
+    ingredientCategories,
+    orders,
+    setOrders
 }) => {
 
     /* Hook for the new order pop-up menu visibility */
@@ -24,6 +28,10 @@ const Ingredient = ({
     
     let { ingredient_name } = useParams();
     const ingredient = ingredientData.filter(ingredient => ingredient.name === ingredient_name)[0];
+
+    const incoming_ingredient_orders = getIncomingOrdersWith(orders, ingredient_name);
+    console.log("incoming_ingredient_orders");
+    console.log(incoming_ingredient_orders);
 
     const onMinimumStockChangeHandler = (event) => {
         const modifiedIngredientData = ingredientData.map((i) => {
@@ -182,21 +190,27 @@ const Ingredient = ({
 
     
     const newOrder = (ingredient) => {
-        return (
-            [
+        return {
+            id: null,
+            type: 'auto',
+            ref: 1,
+            placed_on: new Date(),
+            delivery_on: addDays(new Date(), 1),
+            ingredients: [
                 {
                     name: ingredient.name,
                     quantity: ingredient.default_order_quantity.value,
-                    unit: ingredient.unit,
-                }   
-            ] 
-        )
+                    new_quantity: ingredient.default_order_quantity.value,
+                    editing: true,
+                }
+            ],
+        }
     };
     
     /* Hook for the new order ingredients */
-    const [orderIngredients, setOrderIngredients] = useState(newOrder(ingredient));
+    const [newOrderDetails, setNewOrderDetails] = useState(newOrder(ingredient));
 
-    console.log(orderIngredients);
+    console.log(newOrderDetails);
 
 
     return (
@@ -236,7 +250,14 @@ const Ingredient = ({
                     <h5 className="to_do">1 year</h5>
                     <h5>(has implications on how stock management should be performed.. and should be abstracted for now)</h5>
                     <h3>Incoming orders:</h3>
-                    <h5 className="to_do">None</h5>
+                    {
+                        incoming_ingredient_orders.length > 0 ?
+                        incoming_ingredient_orders.map((order) => {
+                            return (<h5>{order.id}</h5>)
+                        })
+                        :
+                        <h5>None</h5>
+                    }
                 </StyledDetails>
                 <StyledDetails>
                     <h3>Current stock:</h3>
@@ -291,8 +312,11 @@ const Ingredient = ({
             <NewOrder
                 isNewOrderOpen={isNewOrderOpen}
                 setIsNewOrderOpen={setIsNewOrderOpen}
-                orderIngredients={orderIngredients}
-                setOrderIngredients={setOrderIngredients} />
+                newOrderDetails={newOrderDetails}
+                setNewOrderDetails={setNewOrderDetails}
+                orders={orders}
+                setOrders={setOrders}
+                ingredientData={ingredientData} />
         </div>
     )
 }

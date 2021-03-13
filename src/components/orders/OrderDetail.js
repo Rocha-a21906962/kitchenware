@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from "styled-components";
 import { Icon, InlineIcon } from '@iconify/react';
 import { format } from "date-fns";
@@ -6,33 +7,172 @@ import formPrevious from '@iconify-icons/grommet-icons/form-previous';
 const OrderDetail = ({
     isOrderDetailOpen,
     setIsOrderDetailOpen,
+    selectedOrderDetails,
+    setSelectedOrderDetails,
     orders,
-    setOrders
+    setOrders,
+    ingredientData
 }) => {
 
-    const showOrderDetail = (order_id) => {
-        setIsOrderDetailOpen(order_id);
-        console.log(isOrderDetailOpen);
-    };
+    const [addIngredient, setAddIngredient] = useState(false);
 
     const hideOrderDetail = () => {
         setIsOrderDetailOpen(null);
         console.log(isOrderDetailOpen);
     }
 
-    const onAddIngredientHandler = (event) => {
-        console.log("addIngredientHandler");
+    const onIngredientQuantityChangeHandler = (event) => {
+        const modifiedSelectedOrderDetails = {
+            ...selectedOrderDetails,
+            ingredients: selectedOrderDetails.ingredients.map((i) => {
+                if (i.name === event.target.name) {
+                    return {
+                        ...i,
+                        new_quantity: event.target.value,
+                    }
+                } else {
+                    return {
+                        ...i
+                    }
+                }
+
+            })
+        }
+        console.log(event.target.name + ' ' + event.target.value)
+        setSelectedOrderDetails(modifiedSelectedOrderDetails);
     };
 
-    const onIngredientQuantityChangeHandler = (event) => {
-        console.log("ingredientQuantityChangeHandler" + event.target.value);
+    const onEditIngredientQuantityHandler = (event) => {
+        const modifiedSelectedOrderDetails = {
+            ...selectedOrderDetails,
+            ingredients: selectedOrderDetails.ingredients.map((i) => {
+                if (i.name === event.target.value) {
+                    return {
+                        ...i,
+                        editing: true,
+                    }
+                } else {
+                    return {
+                        ...i
+                    }
+                }
+
+            })
+        }
+        setSelectedOrderDetails(modifiedSelectedOrderDetails);
     };
+
+    const onConfirmIngredientQuantityHandler = (event) => {
+        const modifiedSelectedOrderDetails = {
+            ...selectedOrderDetails,
+            ingredients: selectedOrderDetails.ingredients.map((i) => {
+                if (i.name === event.target.value) {
+                    return {
+                        ...i,
+                        editing: false,
+                    }
+                } else {
+                    return {
+                        ...i
+                    }
+                }
+
+            })
+        }
+        setSelectedOrderDetails(modifiedSelectedOrderDetails);
+    };
+    
+    const onRemoveIngredientHandler = (event) => {
+        const modifiedSelectedOrderDetails = {
+            ...selectedOrderDetails,
+            ingredients: selectedOrderDetails.ingredients.filter((i) => {
+                if (i.name != event.target.value) {
+                    return {
+                        i
+                    }
+                }
+            })
+        }
+        setSelectedOrderDetails(modifiedSelectedOrderDetails);
+    };
+    
+    const onAddIngredientHandler = (event) => {
+        setAddIngredient(true);
+    };
+    
+    const onCancelAddIngredientHandler = (event) => {
+        setAddIngredient(false);
+    };
+
+    const onSelectIngredientHandler = (event) => {
+        setAddIngredient(false);
+        const selected_ingredient_name = event.target.value;
+        const default_quantity = ingredientData.filter(i => i.name === selected_ingredient_name)[0].default_order_quantity.value;
+        const new_order_ingredient = {
+            name: selected_ingredient_name,
+            quantity: default_quantity,
+            new_quantity: default_quantity,
+            editing: true
+        }
+        const modifiedSelectedOrderDetails = {
+            ...selectedOrderDetails,
+            ingredients: [
+                ...selectedOrderDetails.ingredients,
+                new_order_ingredient
+            ]
+        }
+        console.log("modifiedSelectedOrderDetails");
+        console.log(modifiedSelectedOrderDetails);
+        setSelectedOrderDetails(modifiedSelectedOrderDetails);
+    };
+    
+    const onConfirmOrderChangesHandler = (event) => {
+        const modifiedOrders = orders.map((o) => {
+            if (o.id === selectedOrderDetails.id) {
+                return {
+                    ...selectedOrderDetails,
+                    ingredients: selectedOrderDetails.ingredients.map((i) => {
+                        return {
+                            name: i.name,
+                            quantity: i.new_quantity
+                        }
+                    })
+                }
+            } else {
+                return {
+                    ...o
+                }
+            }
+        })
+        setIsOrderDetailOpen(null);
+        setOrders(modifiedOrders);
+    };
+    
+    const onCancelOrderHandler = (event) => {
+        const modifiedOrders = orders.filter((o) => {
+            if (o.id != selectedOrderDetails.id) {
+                return {
+                    ...o
+                }
+            }
+        })
+        console.log("modifiedOrders");
+        console.log(modifiedOrders);
+        setIsOrderDetailOpen(null);
+        setOrders(modifiedOrders);
+    };
+
+
 
     console.log(orders);
 
-    const order = orders.filter((order) => order.id == isOrderDetailOpen)[0];
-
-    console.log(order);
+    const sorted_ingredients = ingredientData.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    // we simplistically assume that an order can be modified right up to the exact delivery date and time
+    // (in reality, that wouldn't be so simple...)
+    let is_order_delivered_already;
+    if (selectedOrderDetails) {
+        is_order_delivered_already = new Date(selectedOrderDetails.delivery_on) >= new Date() ? false : true;
+}
 
     return (
         <div id="order_detail_popup" className={`${isOrderDetailOpen ? 'open' : ''}`}>
@@ -40,7 +180,7 @@ const OrderDetail = ({
                 isOrderDetailOpen ? 
                 <div>
                     <StyledHeader>
-                        <h3>Order #{order.id}</h3>
+                        <h3>Order #{selectedOrderDetails.id}</h3>
                         <StyledIcon>
                             <Icon icon={formPrevious} onClick={hideOrderDetail} />
                         </StyledIcon>
@@ -48,67 +188,67 @@ const OrderDetail = ({
                     <StyledSideContext>
                         <StyledDetails>
                             <h3>Order details</h3>
-                            <h5>Type: {order.type}</h5>
-                            <h5>Placed on: {format(new Date(order.placed_on), 'MMMM d, hh:mm')}</h5>
-                            <h5>Delivery on: {format(new Date(order.delivery_on), 'MMMM d, hh:mm')}</h5>
+                            <h5>Type: {selectedOrderDetails.type}</h5>
+                            <h5>Placed on: {format(new Date(selectedOrderDetails.placed_on), 'MMMM d, hh:mm')}</h5>
+                            <h5>Delivery on: {format(new Date(selectedOrderDetails.delivery_on), 'MMMM d, hh:mm')}</h5>
                         </StyledDetails>
                         <h3>Ordered ingredients</h3>
                         {
-                            order.ingredients.map((ingredient) => {
+                            console.log(selectedOrderDetails)
+                        }
+                        {
+                            selectedOrderDetails.ingredients.map((ingredient) => {
                                 console.log("ingredient.name");
                                 console.log(ingredient.name);
                                 return (<StyledIngredient>
                                             <div className="individual_order">
-                                                <h5>{ ingredient.name }</h5>
+                                                <h5 className="ingredient_name">{ingredient.name}</h5>
+                                                <div className="ingredient_quantity"><span>{ingredient.new_quantity} kg</span></div>
+                                                <button name="" id="" value={ingredient.name} className={`${(ingredient.editing == true || is_order_delivered_already) ? 'hide' : ''}`} onClick={onEditIngredientQuantityHandler}>Edit</button>
+                                                <button name="" id="" value={ingredient.name} className={`${ingredient.editing == false ? 'hide' : ''}`} onClick={onConfirmIngredientQuantityHandler}>Confirm</button>
                                             </div>
-                                            <div className="quantity">
-                                            {
-                                                new Date(order.delivery_on) >= new Date() ?
-                                                <input type="range" min="0.1" max="10" step="0.1" className="stock_input" onChange={onIngredientQuantityChangeHandler} />
-                                                :
-                                                ''
-                                            }
-                                            <h5><span>2 kg</span></h5>
+                                            <div className={`quantity_input ${ingredient.editing == false ? 'hide' : ''}`} >
+                                                {
+                                                    new Date(selectedOrderDetails.delivery_on) >= new Date() ?
+                                                    [
+                                                        <input type="range" min="0.1" max="10" step="0.1" name={ingredient.name} value={ingredient.new_quantity} onChange={onIngredientQuantityChangeHandler} />,
+                                                        <button name="" value={ingredient.name} id="" onClick={onRemoveIngredientHandler}>Remove</button>
+                                                    ]
+                                                    :
+                                                    ''
+                                                }
                                             </div>
-                                            {/* <button name="" id="">Remove</button> */}
                                         </StyledIngredient>)
                             })
                         }
-                        <StyledIngredient>
-                            <div className="individual_order">
-                                <select name="ingredient_options" defaultValue="name_asc" id="sort_by" onChange={onAddIngredientHandler}>
-                                    <option value="" disabled selected>Add an ingredient</option>
-                                    <option value="tuna">tuna</option>
-                                    <option value="salmon">salmon</option>
-                                    <option value="olive oil">olive oil</option>
+                        <StyledAddButton>
+                            <button name="" id="" className={`${(addIngredient == true || is_order_delivered_already) ? 'hide' : ''}`} onClick={onAddIngredientHandler}>Add ingredient</button>
+                            <div className={`add_ingredient ${addIngredient == false ? 'hide' : ''}`} >
+                                <select name="ingredient_options" defaultValue="add" id="" onChange={onSelectIngredientHandler}>
+                                    <option value="add" disabled selected={addIngredient == true}>Add an ingredient</option>
+                                    {
+                                        sorted_ingredients.map((ingredient) => {
+                                            if (!selectedOrderDetails.ingredients.map(i => i.name).includes(ingredient.name)) {
+                                                return (<option value={ingredient.name}>{ingredient.name}</option>)
+                                            }
+                                        })
+                                    }
                                 </select>
+                                <button name="" id="" onClick={onCancelAddIngredientHandler}>Cancel</button>
                             </div>
-                            <div className="quantity">
-                                <h5>1kg</h5>
-                                <input type="range" min="0.1" max="10" step="0.1" className="stock_input" onChange={onIngredientQuantityChangeHandler} />
-                                {/* <button name="" id="">Remove</button> */}
-                            </div>
-                            {/* <button name="" id="">Remove</button> */}
-                        </StyledIngredient>
-                        <StyledIngredient>
-                            <div className="individual_order">
-                                <h5>Tuna</h5>
-                                <h5><span>auto</span></h5>
-                            </div>
-                            <div className="quantity">
-                                <h5><span>2 kg</span></h5>
-                            </div>
-                            <button name="" id="">Change</button>
-                        </StyledIngredient>
-                        {
-                            new Date(order.delivery_on) >= new Date() ?
-                            [
-                                <button name="" id="">Change delivery date</button>,
-                                <button name="" id="">Cancel order</button>
-                            ]
-                            :
-                            <div></div>
-                        }
+                        </StyledAddButton>
+                        <StyledButtons>
+                            {
+                                !is_order_delivered_already ?
+                                [
+                                    <button name="" id="" onClick={onConfirmOrderChangesHandler}>Confirm changes (open confirmation overlay)</button>,
+                                    <button name="" id="">Change delivery date</button>,
+                                    <button name="" id="" onClick={onCancelOrderHandler}>Cancel order (open confirmation overlay)</button>
+                                ]
+                                :
+                                <div></div>
+                            }
+                        </StyledButtons>
                     </StyledSideContext>
                 </div>
                 :
@@ -118,28 +258,106 @@ const OrderDetail = ({
     )
 }
 
+
+const StyledAddButton = styled.div`
+    button {
+        width: 50%;
+        font-size: 0.75rem;
+        line-height: 0rem;
+        white-space: nowrap;
+        padding: 1rem;
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        margin-left: auto;
+    }
+    select {
+        height: 1.5rem;
+    }
+    .hide {
+        display: none;
+    }
+    .add_ingredient {
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-start;
+        button {
+            width: 35%;
+        }
+        &.hide {
+            display: none;
+        }
+    }
+`
+
+const StyledButtons = styled.div`
+    padding-bottom: 1rem;
+    margin-top: auto;
+    button {
+        width: 100%;
+        font-size: 0.75rem;
+        padding: 1rem;
+    }
+`
+
 const StyledIngredient = styled.div`
+    /* display: relative;
+    display: flex;
+    justify-content: space-between; */
     display: relative;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     height: 10vh;
     position: relative;
     width: 100%;
     color: #b2b2b2;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
     .individual_order {
-        width: 25%;
-    }
-    .quantity {
-        width: 75%;
         display: flex;
-        justify-content: flex-end;
-        input {
-            width: 60%;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        .ingredient_name {
+            width: 45%;
         }
-        h5 {
-            display: inline-flex;
-            padding-left: 1rem;
+        .ingredient_quantity {
+            align-self: center;
+            font-size: 0.75rem;
+        }
+        button {
+            margin-left: auto;
+            width: 35%;
+            font-size: 0.75rem;
+            line-height: 0rem;
+            white-space: nowrap;
+            padding: 0.75rem;
+            padding-left: 0;
+            padding-right: 0;
+            &.hide {
+                display: none;
+            }
+        }
+    }
+    .quantity_input {
+        width: 100%;
+        display: flex;
+        margin-bottom: 2rem;
+        &.hide {
+            display: none;
+        }
+        button {
+            margin-left: auto;
+            width: 35%;
+            font-size: 0.65rem;
+            line-height: 0rem;
+            white-space: nowrap;
+            padding: 0.75rem;
+            padding-left: 0;
+            padding-right: 0;
         }
     }
     button {
@@ -184,15 +402,13 @@ const StyledSideContext = styled.div`
     height: 76vh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     padding-top: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
     background-color: #000000;
     color: #b2b2b2;
-    button {
-        font-size: 0.75rem;
-        padding: 1rem;
-    }
+    overflow-y: scroll;
 `
 
 export default OrderDetail;

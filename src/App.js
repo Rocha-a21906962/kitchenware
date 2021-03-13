@@ -108,7 +108,8 @@ function App() {
                 orders={orders}
                 setOrders={setOrders}
                 /* the following line must be changed */
-                orderData={ingredientData} />
+                orderData={ingredientData}
+                ingredientData={ingredientData} />
           </Route>
           <Route path="/meals_and_events" exact>
             <MealsAndEvents 
@@ -157,7 +158,9 @@ function App() {
             <Ingredient
                 ingredientData={ingredientData}
                 setIngredientData={setIngredientData}
-                ingredientCategories={ingredientCategories} />
+                ingredientCategories={ingredientCategories}
+                orders={orders}
+                setOrders={setOrders} />
           </Route>
           <Route path="/ingredient_stats/:ingredient_name" exact>
             <IngredientStats
@@ -185,7 +188,10 @@ function App() {
             <Recipe
                 recipeData={recipeData}
                 setRecipeData={setRecipeData}
-                recipeCategories={recipeCategories} />
+                recipeCategories={recipeCategories}
+                ingredientData={ingredientData}
+                orders={orders}
+                setOrders={setOrders} />
           </Route>
           <Route path="/recipe_stats/:recipe_name" exact>
             <RecipeStats

@@ -72,7 +72,12 @@ const Calendar = ({
     setSelectedDay,
     calendarType,
     dataState,
-    setDataState
+    setDataState,
+    isItemDetailOpen,
+    setIsItemDetailOpen,
+    isNewItemOpen,
+    setIsNewItemOpen,
+
 }) => {
     
     const [currentMonth, setCurrentMonth] = useState(selectedDay);
@@ -176,6 +181,8 @@ const Calendar = ({
     }
 
     const onDateClick = day => {
+        setIsItemDetailOpen(null);
+        setIsNewItemOpen(null);
         setSelectedDay(day);
         // this.setState({
         //   selectedDate: day
@@ -198,13 +205,14 @@ const Calendar = ({
     };
 
     const orderThisDay = day => {
+      // safari valid format: throw new RangeError(new Date("10/26/2020 00:00"));
       const ordersThisDay = dataState.filter(order => format(new Date(order.delivery_on), 'd') === format(day, 'd') 
                                           && format(new Date(order.delivery_on), 'M') === format(day, 'M')
                                           && format(new Date(order.delivery_on), 'Y') === format(day, 'Y'));
-      console.log(day);
-      console.log(format(day, 'M'));
-      console.log(ordersThisDay);
-      console.log(ordersThisDay.length > 0);
+      // console.log(day);
+      // console.log(format(day, 'M'));
+      // console.log(ordersThisDay);
+      // console.log(ordersThisDay.length > 0);
       return (ordersThisDay.length > 0);
     };
 

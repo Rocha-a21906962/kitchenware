@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styled from "styled-components";
+import { addDays } from "date-fns";
 import StepByStepOverlay from "../components/recipe/StepByStepOverlay";
 import NewOrder from "../components/orders/NewOrder";
 
 
 const Recipe = ({
     recipeData,
-    setRecipeData
+    setRecipeData,
+    recipeCategories,
+    ingredientData,
+    orders,
+    setOrders
 }) => {
 
     /* Hook for the new order pop-up menu visibility */
@@ -174,6 +179,27 @@ const Recipe = ({
 
     
     const newOrder = (recipe_ingredients) => {
+        return {
+            id: null,
+            type: 'auto',
+            ref: 1,
+            placed_on: new Date(),
+            delivery_on: addDays(new Date(), 1),
+            ingredients: recipe_ingredients.map((ingredient) => {
+                // hack (to be used while there are recipe ingredients not included in the ingredient json data)
+                let ingredient_data = ingredientData.filter((i) => i.name === ingredient.name)
+                console.log("lalala " + ingredient.name);
+                console.log(ingredient_data);
+                let ingredient_default_quantity = ingredient_data.length > 0 ? ingredient_data[0].default_order_quantity.value : 1;
+                //
+                return {
+                    name: ingredient.name,
+                    quantity: ingredient_default_quantity,
+                    new_quantity: ingredient_default_quantity,
+                    editing: false,
+                }    
+            })
+        }
         return (
             recipe_ingredients.map((ingredient) => {
                 return {
@@ -182,19 +208,6 @@ const Recipe = ({
                     unit: 'func missing',
                 }    
             })
-            // {
-                // id: 374,
-                // type: 'auto',
-                // ref: 1,
-                // placed_on: '2021-01-23 22:00', // new Date('2021-03-03 22:00'),
-                // delivery_on: '2021-01-24 7:00', // new Date('2021-03-10 7:00'),
-                // ingredients: [
-                    // {
-                    //     name: 'tuna',
-                    //     quantity: 2,
-                    // }
-            //     ]
-            // }
         )
     }
     
@@ -204,9 +217,9 @@ const Recipe = ({
     }
     
     /* Hook for the new order ingredients */
-    const [orderIngredients, setOrderIngredients] = useState(newOrder(recipe.ingredients));
+    const [newOrderDetails, setNewOrderDetails] = useState(newOrder(recipe.ingredients));
 
-    console.log(orderIngredients);
+    console.log(newOrderDetails);
 
 
     return (
@@ -290,9 +303,9 @@ const Recipe = ({
                 <StyledDetails>
                     <h3>Preparation (a la Tasty):</h3>
                     <h3>Preparation time:</h3>
-                    <h5 className="to_do">5 minutes</h5> 
+                    <h5>{recipe.preparation_time} minutes</h5> 
                     <h3>Cooking time:</h3>
-                    <h5 className="to_do">15 minutes</h5> 
+                    <h5>{recipe.cooking_time} minutes</h5> 
                     <h3>Total time:</h3>
                     <h5>{TotalRecipeTime()}</h5> 
                     <button name="" id="" onClick={onShowStepByStepOverlay}>Step-by-step mode button (opens pop-up)</button>
@@ -314,8 +327,11 @@ const Recipe = ({
             <NewOrder
                 isNewOrderOpen={isNewOrderOpen}
                 setIsNewOrderOpen={setIsNewOrderOpen}
-                orderIngredients={orderIngredients}
-                setOrderIngredients={setOrderIngredients} />
+                newOrderDetails={newOrderDetails}
+                setNewOrderDetails={setNewOrderDetails}
+                orders={orders}
+                setOrders={setOrders}
+                ingredientData={ingredientData} />
         </div>
     )
 }

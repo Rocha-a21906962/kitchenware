@@ -4,7 +4,11 @@ const MealPlanningCalendar = ({
     mealPlanning,
     setMealPlanning,
     selectedDay,
-    setSelectedDay
+    setSelectedDay,
+    isMealDetailOpen,
+    setIsMealDetailOpen,
+    isNewMealOpen,
+    setIsNewMealOpen
 }) => {
     return (
         <Calendar
@@ -12,7 +16,11 @@ const MealPlanningCalendar = ({
             setSelectedDay={setSelectedDay}
             calendarType="meal_planning"
             dataState={mealPlanning}
-            setDataState={setMealPlanning} />
+            setDataState={setMealPlanning}
+            isItemDetailOpen={isMealDetailOpen}
+            setIsItemDetailOpen={setIsMealDetailOpen}
+            isNewItemOpen={isNewMealOpen}
+            setIsNewItemOpen={setIsNewMealOpen} />
     )
 }
 

@@ -23,7 +23,11 @@ const MealsAndEvents = ({
                 mealPlanning={mealPlanning}
                 setMealPlanning={setMealPlanning}
                 selectedDay={selectedDay}
-                setSelectedDay={setSelectedDay} />
+                setSelectedDay={setSelectedDay}
+                isMealDetailOpen={isMealDetailOpen}
+                setIsMealDetailOpen={setIsMealDetailOpen}
+                isNewMealOpen={isNewMealOpen}
+                setIsNewMealOpen={setIsNewMealOpen} />
             <BottomContext 
                 mealPlanningData={mealPlanningData} />
             <SideContext

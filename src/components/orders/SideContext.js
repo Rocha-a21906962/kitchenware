@@ -9,17 +9,48 @@ const SideContext = ({
     isOrderDetailOpen,
     setIsOrderDetailOpen,
     isNewOrderOpen,
-    setIsNewOrderOpen
+    setIsNewOrderOpen,
+    selectedOrderDetails,
+    setSelectedOrderDetails,
+    newOrderDetails,
+    setNewOrderDetails
 }) => {
 
     const showOrderDetail = (order_id) => {
         setIsOrderDetailOpen(order_id);
         console.log(isOrderDetailOpen);
+        
+        let order = orders.filter((order) => order.id == order_id)[0];
+        // if order is set, add new_quantity property to the object
+        if (order !== undefined) {
+            order = {
+                ...order,
+                ingredients: order.ingredients.map((ingredient) => {
+                    return {
+                        ...ingredient,
+                        new_quantity: ingredient.quantity,
+                        editing: false,
+                    }
+
+                })
+            }
+        }
+        setSelectedOrderDetails(order);
+        console.log(selectedOrderDetails);
     };
 
     const showNewOrder = () => {
         setIsNewOrderOpen(true);
-        console.log(isNewOrderOpen);
+        const order = {
+            id: null,
+            type: 'auto',
+            ref: 1,
+            placed_on: selectedDay,
+            delivery_on: addDays(selectedDay, 1),
+            ingredients: [],
+        }
+        setNewOrderDetails(order);
+        console.log(newOrderDetails);
     };
 
     const deliveriesOnDay = (selectedDay) => {

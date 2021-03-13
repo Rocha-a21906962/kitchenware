@@ -1,113 +1,345 @@
+import { useState } from 'react';
 import styled from "styled-components";
 import { Icon, InlineIcon } from '@iconify/react';
+import { format, addDays } from "date-fns";
 import formPrevious from '@iconify-icons/grommet-icons/form-previous';
 
 const NewOrder = ({
     isNewOrderOpen,
     setIsNewOrderOpen,
-    orderIngredients,
-    setOrderIngredients
+    newOrderDetails,
+    setNewOrderDetails,
+    orders,
+    setOrders,
+    ingredientData
 }) => {
 
-    console.log("orderIngredients");
-    console.log(orderIngredients);
+    console.log("newOrderDetails");
+    console.log(newOrderDetails);
+
+    const [addIngredient, setAddIngredient] = useState(false);
 
     const hideNewOrder = () => {
         setIsNewOrderOpen(null);
         console.log(isNewOrderOpen);
     }
 
-    const onAddIngredientHandler = (event) => {
-        console.log("addIngredientHandler");
+    const onIngredientQuantityChangeHandler = (event) => {
+        const modifiedNewOrderDetails = {
+            ...newOrderDetails,
+            ingredients: newOrderDetails.ingredients.map((i) => {
+                if (i.name === event.target.name) {
+                    return {
+                        ...i,
+                        new_quantity: event.target.value,
+                    }
+                } else {
+                    return {
+                        ...i
+                    }
+                }
+
+            })
+        }
+        console.log(event.target.name + ' ' + event.target.value)
+        setNewOrderDetails(modifiedNewOrderDetails);
     };
 
-    const onIngredientQuantityChangeHandler = (event) => {
-        console.log("ingredientQuantityChangeHandler" + event.target.value);
+    const onEditIngredientQuantityHandler = (event) => {
+        const modifiedNewOrderDetails = {
+            ...newOrderDetails,
+            ingredients: newOrderDetails.ingredients.map((i) => {
+                if (i.name === event.target.value) {
+                    return {
+                        ...i,
+                        editing: true,
+                    }
+                } else {
+                    return {
+                        ...i
+                    }
+                }
+
+            })
+        }
+        setNewOrderDetails(modifiedNewOrderDetails);
     };
+
+    const onConfirmIngredientQuantityHandler = (event) => {
+        const modifiedNewOrderDetails = {
+            ...newOrderDetails,
+            ingredients: newOrderDetails.ingredients.map((i) => {
+                if (i.name === event.target.value) {
+                    return {
+                        ...i,
+                        editing: false,
+                    }
+                } else {
+                    return {
+                        ...i
+                    }
+                }
+
+            })
+        }
+        setNewOrderDetails(modifiedNewOrderDetails);
+    };
+    
+    const onRemoveIngredientHandler = (event) => {
+        const modifiedNewOrderDetails = {
+            ...newOrderDetails,
+            ingredients: newOrderDetails.ingredients.filter((i) => {
+                if (i.name != event.target.value) {
+                    return {
+                        i
+                    }
+                }
+            })
+        }
+        setNewOrderDetails(modifiedNewOrderDetails);
+    };
+    
+    const onAddIngredientHandler = (event) => {
+        setAddIngredient(true);
+    };
+    
+    const onCancelAddIngredientHandler = (event) => {
+        setAddIngredient(false);
+    };
+
+    const onSelectIngredientHandler = (event) => {
+        setAddIngredient(false);
+        const selected_ingredient_name = event.target.value;
+        const default_quantity = ingredientData.filter(i => i.name === selected_ingredient_name)[0].default_order_quantity.value;
+        const new_order_ingredient = {
+            name: selected_ingredient_name,
+            quantity: default_quantity,
+            new_quantity: default_quantity,
+            editing: true
+        }
+        const modifiedNewOrderDetails = {
+            ...newOrderDetails,
+            ingredients: [
+                ...newOrderDetails.ingredients,
+                new_order_ingredient
+            ]
+        }
+        console.log("modifiedNewOrderDetails");
+        console.log(modifiedNewOrderDetails);
+        setNewOrderDetails(modifiedNewOrderDetails);
+    };
+    
+    const onPlaceNewOrderHandler = (event) => {
+        const current_max_order_id = Math.max.apply(null, orders.map((o) => o.id));
+        const modifiedOrders = [
+            ...orders,
+            {
+                ...newOrderDetails,
+                id: current_max_order_id + 1,
+                type: 'auto',
+                ingredients: newOrderDetails.ingredients.map((i) => {
+                    return {
+                        name: i.name,
+                        quantity: i.new_quantity,
+                    }
+                })
+            }
+        ]
+        setIsNewOrderOpen(null);
+        setOrders(modifiedOrders);
+    };
+    
+    const onCancelOrderHandler = (event) => {
+        const modifiedOrders = orders.filter((o) => {
+            if (o.id != newOrderDetails.id) {
+                return {
+                    ...o
+                }
+            }
+        })
+        console.log("modifiedOrders");
+        console.log(modifiedOrders);
+        setIsNewOrderOpen(null);
+        setOrders(modifiedOrders);
+    };
+
+    const sorted_ingredients = ingredientData.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    
 
     return (
         <div id="new_order_popup" className={`${isNewOrderOpen ? 'open' : ''}`}>
-            <StyledHeader>
-                <h3>New order</h3>
-                <StyledIcon>
-                    <Icon icon={formPrevious} onClick={hideNewOrder} />
-                </StyledIcon>
-            </StyledHeader>
-            <StyledSideContext>
-                <StyledDetails>
-                    <h3>Order details</h3>
-                    <h5 className="to_do">Delivery on: ...</h5>
-                </StyledDetails>
-                <h3>Ingredients</h3>
-                {
-                    orderIngredients.map((ingredient) => {
-                        console.log("ingredient.name");
-                        console.log(ingredient.name);
-                        return (<StyledIngredient>
-                                    <div className="individual_order">
-                                        <h5>{ ingredient.name }</h5>
-                                    </div>
-                                    <div className="quantity">
-                                        {/* <h5>{ ingredient.quantity } { ingredient.unit }</h5> */}                                        
-                                        <h5>1kg</h5>
-                                        <input type="range" min="0.1" max="10" step="0.1" className="stock_input" onChange={onIngredientQuantityChangeHandler} />
-                                    </div>
-                                    {/* <button name="" id="">Remove</button> */}
-                               </StyledIngredient>)
-                    })
-                }
-                <StyledIngredient>
-                    <div className="individual_order">
-                        <select name="ingredient_options" defaultValue="name_asc" id="sort_by" onChange={onAddIngredientHandler}>
-                            <option value="" selected disabled>Add an ingredient</option>
-                            <option value="tuna">tuna</option>
-                            <option value="salmon">salmon</option>
-                            <option value="olive oil">olive oil</option>
-                        </select>
-                    </div>
-                    <div className="quantity">
-                        <h5>1kg</h5>
-                        <input type="range" min="0.1" max="10" step="0.1" className="stock_input" onChange={onIngredientQuantityChangeHandler} />
-                        {/* <button name="" id="">Remove</button> */}
-                    </div>
-                    {/* <button name="" id="">Remove</button> */}
-                </StyledIngredient>
-                <button className="to_do" name="" id="">Change delivery date</button>
-                <button className="to_do" name="" id="">Place order</button>
-            </StyledSideContext>
+            {
+            isNewOrderOpen ? 
+            <div>
+                <StyledHeader>
+                    <h3>New order</h3>
+                    <StyledIcon>
+                        <Icon icon={formPrevious} onClick={hideNewOrder} />
+                    </StyledIcon>
+                </StyledHeader>
+                <StyledSideContext>
+                    <StyledDetails>
+                        <h3>Order details</h3>
+                        <h5>Type: {newOrderDetails.type}</h5>
+                        <h5>Placed on: {format(new Date(newOrderDetails.placed_on), 'MMMM d, hh:mm')}</h5>
+                        <h5>Delivery on: {format(new Date(newOrderDetails.delivery_on), 'MMMM d, hh:mm')}</h5>
+                    </StyledDetails>
+                    <h3>Ingredients</h3>
+                        {
+                            console.log(newOrderDetails)
+                        }
+                        {
+                            newOrderDetails.ingredients.map((ingredient) => {
+                                console.log("ingredient.name");
+                                console.log(ingredient.name);
+                                return (<StyledIngredient>
+                                            <div className="individual_order">
+                                                <h5 className="ingredient_name">{ingredient.name}</h5>
+                                                <div className="ingredient_quantity"><span>{ingredient.new_quantity} kg</span></div>
+                                                <button name="" id="" value={ingredient.name} className={`${ingredient.editing == true ? 'hide' : ''}`} onClick={onEditIngredientQuantityHandler}>Edit</button>
+                                                <button name="" id="" value={ingredient.name} className={`${ingredient.editing == false ? 'hide' : ''}`} onClick={onConfirmIngredientQuantityHandler}>Confirm</button>
+                                            </div>
+                                            <div className={`quantity_input ${ingredient.editing == false ? 'hide' : ''}`} >
+                                                <input type="range" min="0.1" max="10" step="0.1" name={ingredient.name} value={ingredient.new_quantity} onChange={onIngredientQuantityChangeHandler} />,
+                                                <button name="" value={ingredient.name} id="" onClick={onRemoveIngredientHandler}>Remove</button>
+                                            </div>
+                                        </StyledIngredient>)
+                            })
+                        }
+                        <StyledAddButton>
+                            <button name="" id="" className={`${addIngredient == true ? 'hide' : ''}`} onClick={onAddIngredientHandler}>Add ingredient</button>
+                            <div className={`add_ingredient ${addIngredient == false ? 'hide' : ''}`} >
+                                <select name="ingredient_options" defaultValue="add" id="" onChange={onSelectIngredientHandler}>
+                                    <option value="add" disabled selected={addIngredient == true}>Add an ingredient</option>
+                                    {
+                                        sorted_ingredients.map((ingredient) => {
+                                            if (!newOrderDetails.ingredients.map(i => i.name).includes(ingredient.name)) {
+                                                return (<option value={ingredient.name}>{ingredient.name}</option>)
+                                            }
+                                        })
+                                    }
+                                </select>
+                                <button name="" id="" onClick={onCancelAddIngredientHandler}>Cancel</button>
+                            </div>
+                        </StyledAddButton>
+                        <StyledButtons>
+                            <button name="" id="" onClick={onPlaceNewOrderHandler}>Place order (open confirmation overlay)</button>
+                            <button name="" id="">Change delivery date</button>
+                            <button name="" id="" onClick={onCancelOrderHandler}>Cancel order</button>
+                        </StyledButtons>
+                </StyledSideContext>
+            </div>
+            :
+            <div></div>
+            }
         </div>
     )
 }
 
+
+const StyledAddButton = styled.div`
+    button {
+        width: 50%;
+        font-size: 0.75rem;
+        line-height: 0rem;
+        white-space: nowrap;
+        padding: 1rem;
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        margin-left: auto;
+    }
+    select {
+        height: 1.5rem;
+    }
+    .hide {
+        display: none;
+    }
+    .add_ingredient {
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-start;
+        button {
+            width: 35%;
+        }
+        &.hide {
+            display: none;
+        }
+    }
+`
+
+const StyledButtons = styled.div`
+    padding-bottom: 1rem;
+    margin-top: auto;
+    button {
+        width: 100%;
+        font-size: 0.75rem;
+        padding: 1rem;
+    }
+`
+
 const StyledIngredient = styled.div`
+    /* display: relative;
+    display: flex;
+    justify-content: space-between; */
     display: relative;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     height: 10vh;
     position: relative;
     width: 100%;
     color: #b2b2b2;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
     .individual_order {
-        width: 25%;
-        select {
-            width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        .ingredient_name {
+            width: 45%;
+        }
+        .ingredient_quantity {
+            align-self: center;
+            font-size: 0.75rem;
+        }
+        button {
+            margin-left: auto;
+            width: 35%;
+            font-size: 0.75rem;
+            line-height: 0rem;
+            white-space: nowrap;
+            padding: 0.75rem;
+            padding-left: 0;
+            padding-right: 0;
+            &.hide {
+                display: none;
+            }
         }
     }
-    .quantity {
-        width: 75%;
+    .quantity_input {
+        width: 100%;
         display: flex;
-        justify-content: flex-end;
-        input {
-            width: 60%;
+        margin-bottom: 2rem;
+        &.hide {
+            display: none;
         }
-        h5 {
-            display: inline-flex;
-            padding-left: 1rem;
+        button {
+            margin-left: auto;
+            width: 35%;
+            font-size: 0.65rem;
+            line-height: 0rem;
+            white-space: nowrap;
+            padding: 0.75rem;
+            padding-left: 0;
+            padding-right: 0;
         }
     }
     button {
-        width: 40%;
+        width: 50%;
         font-size: 0.75rem;
         line-height: 0rem;
         white-space: nowrap;
@@ -153,10 +385,6 @@ const StyledSideContext = styled.div`
     padding-right: 1rem;
     background-color: #000000;
     color: #b2b2b2;
-    button {
-        font-size: 0.75rem;
-        padding: 1rem;
-    }
 `
 
 export default NewOrder;

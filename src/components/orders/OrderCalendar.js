@@ -4,7 +4,11 @@ const OrderCalendar = ({
     selectedDay,
     setSelectedDay,
     orders,
-    setOrders
+    setOrders,
+    isOrderDetailOpen,
+    setIsOrderDetailOpen,
+    isNewOrderOpen,
+    setIsNewOrderOpen
 }) => {
     return (
         <Calendar
@@ -12,7 +16,11 @@ const OrderCalendar = ({
             setSelectedDay={setSelectedDay}
             calendarType="orders"
             dataState={orders}
-            setDataState={setOrders} />
+            setDataState={setOrders}
+            isItemDetailOpen={isOrderDetailOpen}
+            setIsItemDetailOpen={setIsOrderDetailOpen}
+            isNewItemOpen={isNewOrderOpen}
+            setIsNewItemOpen={setIsNewOrderOpen} />
     )
 }
 

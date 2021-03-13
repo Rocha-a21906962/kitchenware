@@ -9,7 +9,8 @@ import NewOrder from "../components/orders/NewOrder";
 const Orders = ({
     orders,
     setOrders,
-    orderData
+    orderData,
+    ingredientData
 }) => {
 
     /* Hook for the selected calendar day */
@@ -18,8 +19,10 @@ const Orders = ({
     const [isOrderDetailOpen, setIsOrderDetailOpen] = useState(null);
     /* Hook for the new order pop-up visibility */
     const [isNewOrderOpen, setIsNewOrderOpen] = useState(null);
+    /* Hook for the currently opened order (or new order) details */
+    const [selectedOrderDetails, setSelectedOrderDetails] = useState(null);
     /* Hook for the new order ingredients */
-    const [orderIngredients, setOrderIngredients] = useState([]);
+    const [newOrderDetails, setNewOrderDetails] = useState([]);
 
     return (
         <div className="content">
@@ -27,7 +30,11 @@ const Orders = ({
                 orders={orders}
                 setOrders={setOrders}
                 selectedDay={selectedDay}
-                setSelectedDay={setSelectedDay} /> 
+                setSelectedDay={setSelectedDay}
+                isOrderDetailOpen={isOrderDetailOpen}
+                setIsOrderDetailOpen={setIsOrderDetailOpen}
+                isNewOrderOpen={isNewOrderOpen}
+                setIsNewOrderOpen={setIsNewOrderOpen} /> 
             <BottomContext 
                 orderData={orderData} />
             <SideContext
@@ -38,17 +45,27 @@ const Orders = ({
                 isOrderDetailOpen={isOrderDetailOpen}
                 setIsOrderDetailOpen={setIsOrderDetailOpen}
                 isNewOrderOpen={isNewOrderOpen}
-                setIsNewOrderOpen={setIsNewOrderOpen} /> 
+                setIsNewOrderOpen={setIsNewOrderOpen}
+                selectedOrderDetails={selectedOrderDetails}
+                setSelectedOrderDetails={setSelectedOrderDetails}
+                newOrderDetails={newOrderDetails}
+                setNewOrderDetails={setNewOrderDetails} /> 
             <OrderDetail
                 isOrderDetailOpen={isOrderDetailOpen}
                 setIsOrderDetailOpen={setIsOrderDetailOpen}
+                selectedOrderDetails={selectedOrderDetails}
+                setSelectedOrderDetails={setSelectedOrderDetails}
                 orders={orders}
-                setOrders={setOrders} />
+                setOrders={setOrders}
+                ingredientData={ingredientData} />
             <NewOrder
                 isNewOrderOpen={isNewOrderOpen}
                 setIsNewOrderOpen={setIsNewOrderOpen}
-                orderIngredients={orderIngredients}
-                setOrderIngredients={setOrderIngredients} />
+                newOrderDetails={newOrderDetails}
+                setNewOrderDetails={setNewOrderDetails}
+                orders={orders}
+                setOrders={setOrders}
+                ingredientData={ingredientData} />
         </div>
     )
 }
