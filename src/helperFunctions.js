@@ -35,6 +35,14 @@ export const getDeliveredOrdersWith = (order_data, ingredient_name) => {
 };
 
 
+// Returns every ingredient with current stock below the user defined minimum
+export const getIngredientsInShortSupply = (ingredient_data) => {
+    return ingredient_data.filter((i) => {
+        return (i.minimum_stock.value > 0 && i.minimum_stock.value >= i.in_stock.value);
+    });
+};
+
+
 // 
 export const filterIngredients = (ingredient_data, order_data, filters, search_string) => {
     // name / searchString
@@ -91,6 +99,19 @@ export const getIngredientsFor = (ingredient_data, recipe) => {
     const recipe_ingredients = recipe.ingredients.map(recipe => recipe.name);
     // get the data for each matching ingredient
     return ingredient_data.filter((ingredient) => recipe_ingredients.includes(ingredient.name));
+};
+
+
+// Returns every ingredient with current stock below the user defined minimum
+export const getRecipesInShortSupply = (recipe_data, ingredient_data) => {
+    return recipe_data.filter(r => {
+        let recipe_ingredient_data = getIngredientsFor(ingredient_data, r);
+        let recipe_ingredients_in_short_supply = r.ingredients.filter((recipe_ingredient) => {
+            let ingredients_in_short_supply = recipe_ingredient_data.filter(i => i.name === recipe_ingredient.name && r.minimum_availability.value >= (i.in_stock.value / recipe_ingredient.quantity));
+            return (ingredients_in_short_supply.length > 0);
+        });
+        return (recipe_ingredients_in_short_supply.length > 0);
+    });
 };
 
 

@@ -11,7 +11,17 @@ const OrderDetail = ({
     setSelectedOrderDetails,
     orders,
     setOrders,
-    ingredientData
+    ingredientData,
+    isOrderConfirmationOverlayVisible,
+    setIsOrderConfirmationOverlayVisible,
+    confirmationOverlayModifiedData,
+    confirmationOverlayText,
+    isContentScrollBlocked,
+    setIsContentScrollBlocked,
+    isEventPopupOpen,
+    setIsEventPopupOpen,
+    eventPopupMessage,
+    setEventPopupMessage
 }) => {
 
     const [addIngredient, setAddIngredient] = useState(false);
@@ -144,8 +154,14 @@ const OrderDetail = ({
                 }
             }
         })
-        setIsOrderDetailOpen(null);
-        setOrders(modifiedOrders);
+        confirmationOverlayModifiedData.current = modifiedOrders;
+        confirmationOverlayText.current.q = `Confirm changes to this order?`;
+        setEventPopupMessage([
+            'The changes to your order have been confirmed.', 
+        ]);
+        setIsOrderConfirmationOverlayVisible(true);
+        // setIsOrderDetailOpen(null);
+        // setOrders(modifiedOrders);
     };
     
     const onCancelOrderHandler = (event) => {
@@ -158,8 +174,14 @@ const OrderDetail = ({
         })
         console.log("modifiedOrders");
         console.log(modifiedOrders);
-        setIsOrderDetailOpen(null);
-        setOrders(modifiedOrders);
+        confirmationOverlayModifiedData.current = modifiedOrders;
+        confirmationOverlayText.current.q = `Confirm cancellation of this order?`;
+        setEventPopupMessage([
+            'The cancellation of your order has been confirmed.',
+        ]);
+        setIsOrderConfirmationOverlayVisible(true);
+        // setIsOrderDetailOpen(null);
+        // setOrders(modifiedOrders);
     };
 
 
@@ -240,13 +262,19 @@ const OrderDetail = ({
                         <StyledButtons>
                             {
                                 !is_order_delivered_already ?
+                                selectedOrderDetails.ingredients.length > 0 ?
                                 [
-                                    <button name="" id="" onClick={onConfirmOrderChangesHandler}>Confirm changes (open confirmation overlay)</button>,
+                                    <button name="" id="" onClick={onConfirmOrderChangesHandler}>Confirm changes</button>,
                                     <button name="" id="">Change delivery date</button>,
-                                    <button name="" id="" onClick={onCancelOrderHandler}>Cancel order (open confirmation overlay)</button>
+                                    <button name="" id="" onClick={onCancelOrderHandler}>Cancel order</button>
                                 ]
                                 :
-                                <div></div>
+                                [
+                                    <button name="" id="">Change delivery date</button>,
+                                    <button name="" id="" onClick={onCancelOrderHandler}>Cancel order</button>
+                                ]
+                                :
+                                null
                             }
                         </StyledButtons>
                     </StyledSideContext>

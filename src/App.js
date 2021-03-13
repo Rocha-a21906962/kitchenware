@@ -4,7 +4,8 @@ import { useState } from 'react';
 import GlobalStyles from "./components/GlobalStyles.js";
 import Nav from './components/Nav.js';
 import SideNav from './components/SideNav.js';
-import AlertBubble from './components/AlertBubble.js';
+import Alerts from './components/Alerts.js';
+import EventPopup from './components/EventPopup.js';
 import SearchPage from './components/search/SearchPage.js';
 import Dashboard from './pages/Dashboard.js';
 import RecipeFeed from './pages/RecipeFeed.js';
@@ -58,6 +59,10 @@ function App() {
   /* Hook for the search string */
   const [searchString, setSearchString] = useState(null);
 
+  /* Hooks for the event popup */
+  const [isEventPopupOpen, setIsEventPopupOpen] = useState(false);
+  const [eventPopupMessage, setEventPopupMessage] = useState(null);
+
   return (
     <div className="App">
       <GlobalStyles />
@@ -67,7 +72,16 @@ function App() {
           searchString={searchString}
           setSearchString={setSearchString} />
       <SideNav />
-      <AlertBubble />
+      <Alerts 
+          ingredientData={ingredientData}
+          setIngredientData={setIngredientData} 
+          recipeData={recipeData}
+          setRecipeData={setRecipeData}
+          mealPlanning={mealPlanning}
+          setMealPlanning={setMealPlanning}
+          orders={orders}
+          setOrders={setOrders}
+          />
       <SearchPage
           isSearchPageVisible={isSearchPageVisible}
           setIsSearchPageVisible={setIsSearchPageVisible}
@@ -80,6 +94,11 @@ function App() {
           setRecipeData={setRecipeData}
           recipeCategories={recipeCategories}
           orders={orders} />
+      <EventPopup
+          isEventPopupOpen={isEventPopupOpen}
+          setIsEventPopupOpen={setIsEventPopupOpen}
+          eventPopupMessage={eventPopupMessage}
+          setEventPopupMessage={setEventPopupMessage} />
       <ScrollToTop>
         <Switch>
           <Route path="/" exact>
@@ -109,7 +128,11 @@ function App() {
                 setOrders={setOrders}
                 /* the following line must be changed */
                 orderData={ingredientData}
-                ingredientData={ingredientData} />
+                ingredientData={ingredientData}
+                isEventPopupOpen={isEventPopupOpen}
+                setIsEventPopupOpen={setIsEventPopupOpen}
+                eventPopupMessage={eventPopupMessage}
+                setEventPopupMessage={setEventPopupMessage} />
           </Route>
           <Route path="/meals_and_events" exact>
             <MealsAndEvents 
@@ -160,7 +183,11 @@ function App() {
                 setIngredientData={setIngredientData}
                 ingredientCategories={ingredientCategories}
                 orders={orders}
-                setOrders={setOrders} />
+                setOrders={setOrders}
+                isEventPopupOpen={isEventPopupOpen}
+                setIsEventPopupOpen={setIsEventPopupOpen}
+                eventPopupMessage={eventPopupMessage}
+                setEventPopupMessage={setEventPopupMessage} />
           </Route>
           <Route path="/ingredient_stats/:ingredient_name" exact>
             <IngredientStats
@@ -191,7 +218,11 @@ function App() {
                 recipeCategories={recipeCategories}
                 ingredientData={ingredientData}
                 orders={orders}
-                setOrders={setOrders} />
+                setOrders={setOrders}
+                isEventPopupOpen={isEventPopupOpen}
+                setIsEventPopupOpen={setIsEventPopupOpen}
+                eventPopupMessage={eventPopupMessage}
+                setEventPopupMessage={setEventPopupMessage} />
           </Route>
           <Route path="/recipe_stats/:recipe_name" exact>
             <RecipeStats

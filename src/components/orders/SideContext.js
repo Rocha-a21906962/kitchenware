@@ -45,8 +45,8 @@ const SideContext = ({
             id: null,
             type: 'auto',
             ref: 1,
-            placed_on: selectedDay,
-            delivery_on: addDays(selectedDay, 1),
+            placed_on: new Date(),
+            delivery_on: Math.max(addDays(new Date(), 1), selectedDay),
             ingredients: [],
         }
         setNewOrderDetails(order);

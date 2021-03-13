@@ -323,3 +323,327 @@ const orders = () => {
 };
 
 export default orders;
+
+
+
+// /* bogus order data */
+// const orders = () => {
+//     return [
+//         {
+//             id: 374,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '23/01/2021 22:00', // new Date('2021-03-03 22:00'),
+//             delivery_on: '24/01/2021 7:00', // new Date('2021-03-10 7:00'),
+//             ingredients: [
+//                 {
+//                     name: "tuna",
+//                     quantity: 2.4,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 375,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '02/02/2021 22:00',
+//             delivery_on: '03/02/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "salmon",
+//                     quantity: 7,
+//                 },
+//                 {
+//                     name: "linguine",
+//                     quantity: 2.5,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 376,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '06/02/2021 22:00',
+//             delivery_on: '07/02/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "cod",
+//                     quantity: 12,
+//                 },
+//                 {
+//                     name: "garlic",
+//                     quantity: 2,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 377,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '17/02/2021 22:00',
+//             delivery_on: '18/02/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "tuna",
+//                     quantity: 1,
+//                 },
+//                 {
+//                     name: "olives",
+//                     quantity: 1.5,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 378,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '20/02/2021 22:00',
+//             delivery_on: '21/02/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "olive oil",
+//                     quantity: 5,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 379,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '21/02/2021 22:00',
+//             delivery_on: '22/02/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "salt",
+//                     quantity: 3,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 380,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '22/02/2021 22:00',
+//             delivery_on: '23/02/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "rice",
+//                     quantity: 10,
+//                 },
+//                 {
+//                     name: "salmon",
+//                     quantity: 1,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 381,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '27/02/2021 22:00',
+//             delivery_on: '28/02/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "potatoes",
+//                     quantity: 20,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 382,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '28/02/2021 22:00',
+//             delivery_on: '01/03/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "carbonara",
+//                     quantity: 1,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 383,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '28/02/2021 22:00',
+//             delivery_on: '01/03/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "tuna",
+//                     quantity: 3,
+//                 },
+//                 {
+//                     name: "salt",
+//                     quantity: 1,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 384,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '09/03/2021 22:00',
+//             delivery_on: '10/03/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "olives",
+//                     quantity: 5,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 385,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '14/03/2021 22:00',
+//             delivery_on: '15/03/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "salmon",
+//                     quantity: 8,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 386,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '16/03/2021 22:00',
+//             delivery_on: '17/03/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "spaghetti",
+//                     quantity: 5,
+//                 },
+//                 {
+//                     name: "tuna",
+//                     quantity: 2.4,
+//                 },
+//                 {
+//                     name: "olive oil",
+//                     quantity: 3,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 387,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '31/03/2021 22:00',
+//             delivery_on: '01/04/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "olive oil",
+//                     quantity: 5,
+//                 },
+//                 {
+//                     name: "salt",
+//                     quantity: 1,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 388,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '04/04/2021 22:00',
+//             delivery_on: '05/04/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "cod",
+//                     quantity: 4,
+//                 },
+//                 {
+//                     name: "salmon",
+//                     quantity: 2,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 389,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '05/04/2021 22:00',
+//             delivery_on: '06/04/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "tuna",
+//                     quantity: 9,
+//                 },
+//                 {
+//                     name: "rice",
+//                     quantity: 15,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 390,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '11/04/2021 22:00',
+//             delivery_on: '12/04/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "linguine",
+//                     quantity: 1,
+//                 },
+//                 {
+//                     name: "salt",
+//                     quantity: 1.5,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 391,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '14/04/2021 22:00',
+//             delivery_on: '15/04/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "olive oil",
+//                     quantity: 10,
+//                 },
+//                 {
+//                     name: "olives",
+//                     quantity: 2,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 392,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '19/04/2021 22:00',
+//             delivery_on: '20/04/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "salmon",
+//                     quantity: 5,
+//                 },
+//             ],
+//         },
+//         {
+//             id: 393,
+//             type: 'auto',
+//             ref: 1,
+//             placed_on: '29/04/2021 22:00',
+//             delivery_on: '30/04/2021 7:00',
+//             ingredients: [
+//                 {
+//                     name: "cod",
+//                     quantity: 2,
+//                 },
+//                 {
+//                     name: "tuna",
+//                     quantity: 2.5,
+//                 },
+//                 {
+//                     name: "salmon",
+//                     quantity: 2.5,
+//                 },
+//             ],
+//         },
+//     ];
+// };

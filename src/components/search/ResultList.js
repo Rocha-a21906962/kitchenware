@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ListItem from "./ListItem";
-import { filterRecipes, filterIngredients } from '../../auxFunctions';
+import { filterRecipes, filterIngredients } from '../../helperFunctions';
 
 const ResultList = ({
     searchString,

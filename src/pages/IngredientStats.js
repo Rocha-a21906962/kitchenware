@@ -6,7 +6,7 @@ import Photo from '../components/ingredient/Photo';
 import StockDetails from '../components/ingredient/StockDetails';
 import StockManagement from '../components/ingredient/StockManagement';
 import LineChart from '../components/charts/LineChart';
-import { getRecipesWith, getOrdersWith, filterIngredients, filterRecipes } from '../auxFunctions';
+import { getRecipesWith, getOrdersWith, filterIngredients, filterRecipes } from '../helperFunctions';
 
 
 const data1 = [

@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import styled from "styled-components";
-import { getIngredientsFor } from "../auxFunctions.js";
+import { getIngredientsFor } from "../helperFunctions.js";
 
 
 const RecipeStats = ({

@@ -106,6 +106,13 @@ const GlobalStyles = createGlobalStyle`
         background: linear-gradient(to bottom right,#17171766 5%,#13152f66 65%,#10141b66 100%); /* W3C */
     }
 
+    .content.no_scroll {
+        /* hack */
+        // height: 90vh; 
+        /* */
+        overflow: hidden;
+    }
+
     #side_context {
         position: fixed;
         top: 10vh;
@@ -134,7 +141,7 @@ const GlobalStyles = createGlobalStyle`
         &.open {
             transform: none;
             opacity: 1;
-            z-index: 10000;
+            z-index: 20;
         }
     }
 

@@ -11,7 +11,17 @@ const NewOrder = ({
     setNewOrderDetails,
     orders,
     setOrders,
-    ingredientData
+    ingredientData,
+    isOrderConfirmationOverlayVisible,
+    setIsOrderConfirmationOverlayVisible,
+    confirmationOverlayModifiedData,
+    confirmationOverlayText,
+    isContentScrollBlocked,
+    setIsContentScrollBlocked,
+    isEventPopupOpen,
+    setIsEventPopupOpen,
+    eventPopupMessage,
+    setEventPopupMessage
 }) => {
 
     console.log("newOrderDetails");
@@ -83,6 +93,8 @@ const NewOrder = ({
             })
         }
         setNewOrderDetails(modifiedNewOrderDetails);
+        // setConfirmationOverlayData(true);
+        // setDisplayConfirmationOverlay(true);
     };
     
     const onRemoveIngredientHandler = (event) => {
@@ -145,23 +157,32 @@ const NewOrder = ({
                 })
             }
         ]
-        setIsNewOrderOpen(null);
-        setOrders(modifiedOrders);
+        confirmationOverlayModifiedData.current = modifiedOrders;
+        confirmationOverlayText.current.q = `Confirm new order?`;
+        setEventPopupMessage([
+            'Your order has been confirmed.', 
+            `It will be delivered on ${format(newOrderDetails.delivery_on, 'MMMM d hh:mm')}.`
+        ]);
+        setIsOrderConfirmationOverlayVisible(true);
+        // setIsNewOrderOpen(null);
+        // setOrders(modifiedOrders);
     };
     
-    const onCancelOrderHandler = (event) => {
-        const modifiedOrders = orders.filter((o) => {
-            if (o.id != newOrderDetails.id) {
-                return {
-                    ...o
-                }
-            }
-        })
-        console.log("modifiedOrders");
-        console.log(modifiedOrders);
-        setIsNewOrderOpen(null);
-        setOrders(modifiedOrders);
-    };
+    // const onCancelOrderHandler = (event) => {
+    //     const modifiedOrders = orders.filter((o) => {
+    //         if (o.id != newOrderDetails.id) {
+    //             return {
+    //                 ...o
+    //             }
+    //         }
+    //     })
+    //     console.log("modifiedOrders");
+    //     console.log(modifiedOrders);
+    //     confirmationOverlayModifiedData.current = modifiedOrders;
+    //     setIsOrderConfirmationOverlayVisible(true);
+    //     // setIsNewOrderOpen(null);
+    //     // setOrders(modifiedOrders);
+    // };
 
     const sorted_ingredients = ingredientData.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
     
@@ -223,9 +244,16 @@ const NewOrder = ({
                             </div>
                         </StyledAddButton>
                         <StyledButtons>
-                            <button name="" id="" onClick={onPlaceNewOrderHandler}>Place order (open confirmation overlay)</button>
-                            <button name="" id="">Change delivery date</button>
-                            <button name="" id="" onClick={onCancelOrderHandler}>Cancel order</button>
+                            {
+                                newOrderDetails.ingredients.length > 0 ?
+                                [
+                                    <button name="" id="" onClick={onPlaceNewOrderHandler}>Place order</button>,
+                                    <button name="" id="">Change delivery date</button>
+                                ]
+                                :
+                                null
+                            }
+                            {/* <button name="" id="" onClick={onCancelOrderHandler}>Cancel order</button> */}
                         </StyledButtons>
                 </StyledSideContext>
             </div>

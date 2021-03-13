@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styled from "styled-components";
 import { addDays } from "date-fns";
 import StepByStepOverlay from "../components/recipe/StepByStepOverlay";
 import NewOrder from "../components/orders/NewOrder";
+import ConfirmationOverlay from "../components/ConfirmationOverlay";
 
 
 const Recipe = ({
@@ -12,13 +13,34 @@ const Recipe = ({
     recipeCategories,
     ingredientData,
     orders,
-    setOrders
+    setOrders,
+    isEventPopupOpen,
+    setIsEventPopupOpen,
+    eventPopupMessage,
+    setEventPopupMessage
 }) => {
 
     /* Hook for the new order pop-up menu visibility */
     const [isNewOrderOpen, setIsNewOrderOpen] = useState(null);
     /* Hook for step-by-step instructions overlay visibility */
     const [isStepByStepOverlayVisible, setIsStepByStepOverlayVisible] = useState(false);
+    /* Hook for order confirmation overlay visibility */
+    const [isOrderConfirmationOverlayVisible, setIsOrderConfirmationOverlayVisible] = useState(false);
+    /* Hook for recipe changes confirmation overlay visibility */
+    const [isRecipeChangesConfirmationOverlayVisible, setIsRecipeChangesConfirmationOverlayVisible] = useState(false);
+    /* Hook for the modified data that is to be passed to the confirmation overlay */
+    const confirmationOverlayModifiedData = useRef(null);
+    /* Hook for the text that is to be presented within the confirmation overlay */
+    const confirmationOverlayText = useRef({q: '', changes: {}});
+    /* Hook for blocking background content scroll */
+    const [isContentScrollBlocked, setIsContentScrollBlocked] = useState(false);
+    
+    useEffect(() => {
+        const block_status = (isStepByStepOverlayVisible || isOrderConfirmationOverlayVisible || isRecipeChangesConfirmationOverlayVisible) ? true : false; 
+        setIsContentScrollBlocked(block_status);
+    });
+
+
 
     let { recipe_name } = useParams();
     let recipe = recipeData.filter(recipe => recipe.name === recipe_name)[0];
@@ -36,6 +58,9 @@ const Recipe = ({
     const toggleRecipeFavouriteStatus = () => {
 
         console.log("before:" + recipe.is_favourite);
+        setEventPopupMessage([
+            `The recipe ${recipe_name} was successfully ${!recipe.is_favourite ? 'added to' : 'removed from'} your favourite recipes.`,
+        ]);
 
         const modifiedRecipeData = recipeData.map((r) => {
             if (r.name === recipe.name) {
@@ -50,6 +75,7 @@ const Recipe = ({
             }
         });
         setRecipeData(modifiedRecipeData);
+        setIsEventPopupOpen(true);
         recipe = recipeData.filter(recipe => recipe.name === recipe_name)[0];
         
         console.log("after:" + recipe.is_favourite);
@@ -121,6 +147,26 @@ const Recipe = ({
                 console.log(new_minimum_availability.value);
                 console.log("new_minimum_availability.new_value");
                 console.log(new_minimum_availability.new_value);
+                // if (new_minimum_availability.value != new_minimum_availability.new_value) {
+                //     confirmationOverlayText.current.changes = {
+                //         ...confirmationOverlayText.current.changes,
+                //         minimum_availability: {
+                //             name: "minimum availability",
+                //             old: new_minimum_availability.value,
+                //             new: new_minimum_availability.new_value,
+                //         }
+                //     }
+                // } 
+                // if (new_auto_order_ingredients.value != new_auto_order_ingredients.new_value) {
+                //     confirmationOverlayText.current.changes = {
+                //         ...confirmationOverlayText.current.changes,
+                //         auto_order_ingredients: {
+                //             name: "auto order ingredients",
+                //             old: new_auto_order_ingredients.value,
+                //             new: new_auto_order_ingredients.new_value,
+                //         }
+                //     }
+                // } 
                 new_minimum_availability.value = new_minimum_availability.new_value;
                 new_auto_order_ingredients.value = new_auto_order_ingredients.new_value;
                 return {
@@ -134,7 +180,17 @@ const Recipe = ({
                 }
             }
         });
-        setRecipeData(modifiedRecipeData);
+        confirmationOverlayModifiedData.current = modifiedRecipeData;
+        confirmationOverlayText.current.q = `Confirm ingredient stock management changes?`;
+        setEventPopupMessage([
+            `Changes to automatic stock management for the recipe ${recipe_name} have been saved.`,
+        ]);
+        console.log("eventPopupMessage(recipe)");
+        console.log(eventPopupMessage);
+        console.log("confirmationOverlayText.current");
+        console.log(confirmationOverlayText.current);
+        setIsRecipeChangesConfirmationOverlayVisible(true);
+        // setRecipeData(modifiedRecipeData);
         console.log(recipeData);
     };
 
@@ -200,15 +256,6 @@ const Recipe = ({
                 }    
             })
         }
-        return (
-            recipe_ingredients.map((ingredient) => {
-                return {
-                    name: ingredient.name,
-                    quantity: 'func missing',
-                    unit: 'func missing',
-                }    
-            })
-        )
     }
     
     const TotalRecipeTime = () => {
@@ -223,7 +270,31 @@ const Recipe = ({
 
 
     return (
-        <div className="content">
+        <div className={`content ${isContentScrollBlocked ? 'no_scroll' : ''}`}>
+            <ConfirmationOverlay 
+                isConfirmationOverlayVisible={isRecipeChangesConfirmationOverlayVisible}
+                setIsConfirmationOverlayVisible={setIsRecipeChangesConfirmationOverlayVisible}
+                modifiedData={confirmationOverlayModifiedData}
+                data={recipeData}
+                setData={setRecipeData}
+                text={confirmationOverlayText}
+                isEventPopupOpen={isEventPopupOpen}
+                setIsEventPopupOpen={setIsEventPopupOpen}
+                eventPopupMessage={eventPopupMessage}
+                setEventPopupMessage={setEventPopupMessage} />
+            <ConfirmationOverlay
+                isConfirmationOverlayVisible={isOrderConfirmationOverlayVisible}
+                setIsConfirmationOverlayVisible={setIsOrderConfirmationOverlayVisible}
+                modifiedData={confirmationOverlayModifiedData}
+                data={orders}
+                setData={setOrders}
+                text={confirmationOverlayText}
+                isSideMenuOpen={isNewOrderOpen}
+                setIsSideMenuOpen={setIsNewOrderOpen}
+                isEventPopupOpen={isEventPopupOpen}
+                setIsEventPopupOpen={setIsEventPopupOpen}
+                eventPopupMessage={eventPopupMessage}
+                setEventPopupMessage={setEventPopupMessage} />
             <StepByStepOverlay 
                 recipe={recipe}
                 isStepByStepOverlayVisible={isStepByStepOverlayVisible}
@@ -318,11 +389,11 @@ const Recipe = ({
                 </StyledDetails>
                 {/* buttons */}
                     <button name="" id="" onClick={e => showNewOrder(e.target.value)}>Order ingredients (opens pop-up)</button>
-                    <button name="" id="">Schedule meal (opens pop-up)</button>
                     <Link to={`/recipe_stats/${recipe.name}`}>
                         <button name="" id="">Stats (changes page)</button>
                     </Link>
-                    <button name="" id="">Play video (opens pop-up! alt: button as image overlay with play icon?)</button>
+                    {/* <button name="" id="">Schedule meal (opens pop-up)</button> */}
+                    {/* <button name="" id="">Play video (opens pop-up! alt: button as image overlay with play icon?)</button> */}
             </StyledRecipe>
             <NewOrder
                 isNewOrderOpen={isNewOrderOpen}
@@ -331,7 +402,17 @@ const Recipe = ({
                 setNewOrderDetails={setNewOrderDetails}
                 orders={orders}
                 setOrders={setOrders}
-                ingredientData={ingredientData} />
+                ingredientData={ingredientData}
+                isOrderConfirmationOverlayVisible={isOrderConfirmationOverlayVisible}
+                setIsOrderConfirmationOverlayVisible={setIsOrderConfirmationOverlayVisible}
+                confirmationOverlayModifiedData={confirmationOverlayModifiedData}
+                confirmationOverlayText={confirmationOverlayText}
+                isContentScrollBlocked={isContentScrollBlocked}
+                setIsContentScrollBlocked={setIsContentScrollBlocked}
+                isEventPopupOpen={isEventPopupOpen}
+                setIsEventPopupOpen={setIsEventPopupOpen}
+                eventPopupMessage={eventPopupMessage}
+                setEventPopupMessage={setEventPopupMessage} />
         </div>
     )
 }

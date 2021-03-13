@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { addDays } from "date-fns";
@@ -7,7 +7,8 @@ import Photo from '../components/ingredient/Photo';
 import StockDetails from '../components/ingredient/StockDetails';
 import StockManagement from '../components/ingredient/StockManagement';
 import NewOrder from "../components/orders/NewOrder";
-import { getIncomingOrdersWith } from "../auxFunctions";
+import { getIncomingOrdersWith } from "../helperFunctions";
+import ConfirmationOverlay from "../components/ConfirmationOverlay";
 
 
 const Ingredient = ({
@@ -15,11 +16,30 @@ const Ingredient = ({
     setIngredientData,
     ingredientCategories,
     orders,
-    setOrders
+    setOrders,
+    isEventPopupOpen,
+    setIsEventPopupOpen,
+    eventPopupMessage,
+    setEventPopupMessage
 }) => {
 
     /* Hook for the new order pop-up menu visibility */
     const [isNewOrderOpen, setIsNewOrderOpen] = useState(null);
+    /* Hook for order confirmation overlay visibility */
+    const [isOrderConfirmationOverlayVisible, setIsOrderConfirmationOverlayVisible] = useState(false);
+    /* Hook for ingredient changes confirmation overlay visibility */
+    const [isIngredientChangesConfirmationOverlayVisible, setIsIngredientChangesConfirmationOverlayVisible] = useState(false);
+    /* Hook for the modified data that is to be passed to the confirmation overlay */
+    const confirmationOverlayModifiedData = useRef(null);
+    /* Hook for the text that is to be presented within the confirmation overlay */
+    const confirmationOverlayText = useRef({q: '', changes: {}});
+    /* Hook for blocking background content scroll */
+    const [isContentScrollBlocked, setIsContentScrollBlocked] = useState(false);
+    
+    useEffect(() => {
+        const block_status = (isOrderConfirmationOverlayVisible || isIngredientChangesConfirmationOverlayVisible) ? true : false; 
+        setIsContentScrollBlocked(block_status);
+    });
 
     const showNewOrder = () => {
         setIsNewOrderOpen(true);
@@ -148,7 +168,13 @@ const Ingredient = ({
                 }
             }
         });
-        setIngredientData(modifiedIngredientData);
+        confirmationOverlayModifiedData.current = modifiedIngredientData;
+        confirmationOverlayText.current.q = `Confirm ingredient stock management changes?`;
+        setEventPopupMessage([
+            `Changes to automatic stock management for the ingredient ${ingredient_name} have been saved.`,
+        ]);
+        setIsIngredientChangesConfirmationOverlayVisible(true);
+        // setIngredientData(modifiedIngredientData);
         console.log(ingredientData);
     };
 
@@ -214,7 +240,31 @@ const Ingredient = ({
 
 
     return (
-        <div className="content">
+        <div className={`content ${isContentScrollBlocked ? 'no_scroll' : ''}`}>
+            <ConfirmationOverlay 
+                isConfirmationOverlayVisible={isIngredientChangesConfirmationOverlayVisible}
+                setIsConfirmationOverlayVisible={setIsIngredientChangesConfirmationOverlayVisible}
+                modifiedData={confirmationOverlayModifiedData}
+                data={ingredientData}
+                setData={setIngredientData}
+                text={confirmationOverlayText}
+                isEventPopupOpen={isEventPopupOpen}
+                setIsEventPopupOpen={setIsEventPopupOpen}
+                eventPopupMessage={eventPopupMessage}
+                setEventPopupMessage={setEventPopupMessage} />
+            <ConfirmationOverlay
+                isConfirmationOverlayVisible={isOrderConfirmationOverlayVisible}
+                setIsConfirmationOverlayVisible={setIsOrderConfirmationOverlayVisible}
+                modifiedData={confirmationOverlayModifiedData}
+                data={orders}
+                setData={setOrders}
+                text={confirmationOverlayText}
+                isSideMenuOpen={isNewOrderOpen}
+                setIsSideMenuOpen={setIsNewOrderOpen}
+                isEventPopupOpen={isEventPopupOpen}
+                setIsEventPopupOpen={setIsEventPopupOpen}
+                eventPopupMessage={eventPopupMessage}
+                setEventPopupMessage={setEventPopupMessage} />
             <StyledIngredient>
                 <StyledPhoto>
                     <div className="gradient_overlay"></div>
@@ -280,34 +330,13 @@ const Ingredient = ({
                     </StyledStockButtons>
                 </StyledDetails>
                 {/* buttons */}
-                    <button name="" id="">Show recipes (opens pop-up / page?)</button>
+                    {/* <button name="" id="">Show recipes (opens pop-up / page?)</button> */}
                     <button name="" id="" onClick={e => showNewOrder(e.target.value)}>Order ingredient (opens pop-up)</button>
-                    <button name="" id="">Order history (opens pop-up)</button>
+                    <button className="to_do" name="" id="">Order history (opens pop-up)</button>
                     <Link to={`/ingredient_stats/${ingredient.name}`}>
                         <button name="" id="">Stats (changes page)</button>
                     </Link>
-                    <button name="" id="">Current stock details (opens pop-up) - optional (in case we have time to support different expiry dates within an ingredient stock)</button>
-                <StyledDetails>
-                    {/* Delete everything: just for testing
-
-                    <h5>Current stock: <span>{ingredient.in_stock} kg</span></h5>
-                    <h5>Forecasted consumption</h5>
-                    <p>7 days: 1.2 kg</p>
-                    <p>30 days: 5.1 kg</p>
-                    <h5>Recent consumption</h5>
-                    <p>7 days: 1.1 kg</p>
-                    <p>30 days: 6.3 kg</p>
-                    <h5>Recent consumption</h5>
-                    <p>None</p>
-                    <h5>Next order estimated in:</h5>
-                    <p>11 days</p>
-                    <p></p>
-                    */}
-                </StyledDetails>
-                {/* <StockDetails />
-                <StockManagement /> */}
-                {/* buttons */}
-                <div></div>
+                    {/* <button name="" id="">Current stock details (opens pop-up) - optional (in case we have time to support different expiry dates within an ingredient stock)</button> */}
             </StyledIngredient>
             <NewOrder
                 isNewOrderOpen={isNewOrderOpen}
@@ -316,7 +345,17 @@ const Ingredient = ({
                 setNewOrderDetails={setNewOrderDetails}
                 orders={orders}
                 setOrders={setOrders}
-                ingredientData={ingredientData} />
+                ingredientData={ingredientData}
+                isOrderConfirmationOverlayVisible={isOrderConfirmationOverlayVisible}
+                setIsOrderConfirmationOverlayVisible={setIsOrderConfirmationOverlayVisible}
+                confirmationOverlayModifiedData={confirmationOverlayModifiedData}
+                confirmationOverlayText={confirmationOverlayText}
+                isContentScrollBlocked={isContentScrollBlocked}
+                setIsContentScrollBlocked={setIsContentScrollBlocked}
+                isEventPopupOpen={isEventPopupOpen}
+                setIsEventPopupOpen={setIsEventPopupOpen}
+                eventPopupMessage={eventPopupMessage}
+                setEventPopupMessage={setEventPopupMessage} />
         </div>
     )
 }
