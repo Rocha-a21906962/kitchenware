@@ -504,7 +504,7 @@ const StyledFeedHeader = styled.div`
 
 const StyledFeed = styled.div`
     overflow-x: scroll;
-    width: 100vw;
+    width: calc(100vw - 10rem);
     padding-left: 1rem;
     font-family: GTAmericaRegular;
     color: #b1b1b1;
