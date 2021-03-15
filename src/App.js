@@ -661,10 +661,11 @@ function App() {
     // const ingredientCategories = ingredient_categories();
     // const recipeCategories = recipe_categories();
     const [open, setOpen] = useState(true);
-    const device = DevicesConnected()[0].imagem;
-    const [image, setImage] = useState(device);
+    const [deviceName, setDevice] = useState(DevicesConnected()[0].nome);
+    const [image, setImage] = useState(DevicesConnected()[0].imagem);
     const handleImageClick = (image) => {
         setImage(image);
+        setDevice(DevicesConnected().filter( device => device.imagem === image ).map( device => {return device.nome}))
     };
     const [visibility, setVisibility] = useState("show");
     const handleDisplayClick = () => {
@@ -698,7 +699,7 @@ function App() {
                                 </a>
                             </li>
                             <li>
-                                <a href="">
+                                <a href="/tool_management">
                                     <i className="fas fa-cash-register"></i>
                                     <span>Utensílios</span>
                                 </a>
@@ -863,13 +864,16 @@ function App() {
                             </GridRowCharts>
                         </Route>
                         <Route path="/device_management" exact>
-                            <DeviceManagement activeImage={image}/>
+                            <DeviceManagement name={deviceName} activeImage={image}/>
                             <FixedPlugin data={DevicesConnected}
                                          activeImage={image}
                                          handleImageClick={handleImageClick}
                                          visibility={visibility}
                                          handleDisplayClick={handleDisplayClick}
                             />
+                        </Route>
+                        <Route path="/tool_management" exact>
+                            <ToolManagement />
                         </Route>
                     </switch>
                 </Content>

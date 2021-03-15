@@ -9,7 +9,7 @@ const DeviceManagement = (props) => {
     return (
         <div className="DeviceContent">
             <div className="SelectedDevice">
-                <p className="SelectedDeviceName">Dispositivo X</p>
+                <p className="SelectedDeviceName">{props.name}</p>
                 <img className="DevicePhoto" src={props.activeImage} alt="dispositivo selecionado"/>
                 <br/>
                 <div className="OnButton" onClick={() => {setToggle(!toggle);}}>
@@ -23,5 +23,6 @@ const DeviceManagement = (props) => {
 export default DeviceManagement;
 
 DeviceManagement.propTypes = {
+    name: PropTypes.string,
     activeImage: PropTypes.string,
 };
