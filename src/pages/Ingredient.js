@@ -9,12 +9,16 @@ import StockManagement from '../components/ingredient/StockManagement';
 import NewOrder from "../components/orders/NewOrder";
 import { getIncomingOrdersWith } from "../helperFunctions";
 import ConfirmationOverlay from "../components/ConfirmationOverlay";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import RecipeLine from '../components/feed/RecipeLine';
 
 
 const Ingredient = ({
     ingredientData,
     setIngredientData,
     ingredientCategories,
+    recipeData,
     orders,
     setOrders,
     isEventPopupOpen,
@@ -313,15 +317,15 @@ const Ingredient = ({
                     <h3>Current stock:</h3>
                     <h5>{ingredient.in_stock.value}{ingredient.unit}</h5>
                     <h3>Automatic stock management:</h3>
-                    <h3>Minimum stock:</h3>
+                    <h3>Minimum stock:<FontAwesomeIcon icon={faInfoCircle} /></h3>
                     <h5>{ingredient.minimum_stock.value}{ingredient.unit} {ingredient.minimum_stock.value != ingredient.minimum_stock.new_value ? `(new value: ${ingredient.minimum_stock.new_value}${ingredient.unit})` : ''}</h5>
                     <input type="range" min={ingredient.minimum_stock.min_input} max={ingredient.minimum_stock.max_input} step={ingredient.minimum_stock.step} value={ingredient.minimum_stock.new_value} className="stock_input" onChange={onMinimumStockChangeHandler} />
-                    <h3>Action:</h3>
+                    <h3>Action:<FontAwesomeIcon icon={faInfoCircle} /></h3>
                     <select name="search_options" onChange={onAutoOrderChangeHandler}>
                         <option value="auto_order" selected={`${ingredient.auto_order.new_value ? true : ''}`}>auto-order</option>
                         <option value="alert" selected={`${!ingredient.auto_order.new_value ? true : ''}`}>alert</option>
                     </select>
-                    <h3>Default order quantity:</h3>
+                    <h3>Default order quantity:<FontAwesomeIcon icon={faInfoCircle} /></h3>
                     <h5>{ingredient.default_order_quantity.value}{ingredient.unit} {ingredient.default_order_quantity.value != ingredient.default_order_quantity.new_value ? `(new value: ${ingredient.default_order_quantity.new_value}${ingredient.unit})` : ''}</h5>
                     <input type="range" min={ingredient.default_order_quantity.min_input} max={ingredient.default_order_quantity.max_input} step={ingredient.default_order_quantity.step} value={ingredient.default_order_quantity.new_value} className={`stock_input ${ingredient.default_order_quantity.new_value != ingredient.default_order_quantity.value ? 'modified' : ''}`} onChange={onDefaultOrderQuantityChangeHandler} />
                     <StyledStockButtons>
@@ -329,15 +333,20 @@ const Ingredient = ({
                         <button name="" id="" className={`${(ingredient.minimum_stock.value != ingredient.minimum_stock.new_value) || (ingredient.default_order_quantity.value != ingredient.default_order_quantity.new_value) || (ingredient.auto_order.value != ingredient.auto_order.new_value) ? '' : 'hide'}`} onClick={onResetStockChangesHandler}>Reset changes</button>
                     </StyledStockButtons>
                 </StyledDetails>
-                {/* buttons */}
-                    {/* <button name="" id="">Show recipes (opens pop-up / page?)</button> */}
-                    <button name="" id="" onClick={e => showNewOrder(e.target.value)}>Order ingredient (opens pop-up)</button>
-                    <button className="to_do" name="" id="">Order history (opens pop-up)</button>
-                    <Link to={`/ingredient_stats/${ingredient.name}`}>
-                        <button name="" id="">Stats (changes page)</button>
-                    </Link>
-                    {/* <button name="" id="">Current stock details (opens pop-up) - optional (in case we have time to support different expiry dates within an ingredient stock)</button> */}
+                {/* <StyledFeedHeader>Recipes with {ingredient.name}</StyledFeedHeader>
+                <RecipeLine 
+                    data={recipeData} /> */}
+                <button name="" id="" onClick={e => showNewOrder(e.target.value)}>Order ingredient (opens pop-up)</button>
+                <button className="to_do" name="" id="">Order history (opens pop-up)</button>
+                <Link to={`/ingredient_stats/${ingredient.name}`}>
+                    <button name="" id="">Stats (changes page)</button>
+                </Link>
             </StyledIngredient>
+            {/* <StyledFeed>
+                <StyledFeedHeader>Recipes with {ingredient.name}</StyledFeedHeader>
+                <RecipeLine 
+                    data={recipeData} />
+            </StyledFeed> */}
             <NewOrder
                 isNewOrderOpen={isNewOrderOpen}
                 setIsNewOrderOpen={setIsNewOrderOpen}
@@ -484,13 +493,22 @@ const StyledDetails = styled.div`
     }
 `
 
-
-const StyledStockDetails = styled.div`
+const StyledFeedHeader = styled.div`
+    // background: #000;
+    width: 100%;
     color: white;
+    font-family: GTAmericaRegular;
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 4rem;
 `
 
-const StyledStockManagement = styled.div`
-    color: white;
+const StyledFeed = styled.div`
+    /* height: 24vh; */
+    display: inline-block;
+    width: 100%;
+    background: #000000dd;
+    overflow-x: scroll;
 `
 
 export default Ingredient;

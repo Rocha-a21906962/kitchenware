@@ -7,8 +7,8 @@ const orders = () => {
             id: 374,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-01-23 22:00', // new Date('2021-03-03 22:00'),
-            delivery_on: '2021-01-24 7:00', // new Date('2021-03-10 7:00'),
+            placed_on: '01/23/2021 22:00', // new Date('2021-03-03 22:00'),
+            delivery_on: '01/24/2021 7:00', // new Date('2021-03-10 7:00'),
             ingredients: [
                 {
                     name: "tuna",
@@ -20,8 +20,8 @@ const orders = () => {
             id: 375,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-02-02 22:00',
-            delivery_on: '2021-02-03 7:00',
+            placed_on: '02/02/2021 22:00',
+            delivery_on: '02/03/2021 7:00',
             ingredients: [
                 {
                     name: "salmon",
@@ -37,8 +37,8 @@ const orders = () => {
             id: 376,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-02-06 22:00',
-            delivery_on: '2021-02-07 7:00',
+            placed_on: '02/06/2021 22:00',
+            delivery_on: '02/07/2021 7:00',
             ingredients: [
                 {
                     name: "cod",
@@ -54,8 +54,8 @@ const orders = () => {
             id: 377,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-02-17 22:00',
-            delivery_on: '2021-02-18 7:00',
+            placed_on: '02/17/2021 22:00',
+            delivery_on: '02/18/2021 7:00',
             ingredients: [
                 {
                     name: "tuna",
@@ -71,8 +71,8 @@ const orders = () => {
             id: 378,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-02-20 22:00',
-            delivery_on: '2021-02-21 7:00',
+            placed_on: '02/20/2021 22:00',
+            delivery_on: '02/21/2021 7:00',
             ingredients: [
                 {
                     name: "olive oil",
@@ -84,8 +84,8 @@ const orders = () => {
             id: 379,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-02-21 22:00',
-            delivery_on: '2021-02-22 7:00',
+            placed_on: '02/21/2021 22:00',
+            delivery_on: '02/22/2021 7:00',
             ingredients: [
                 {
                     name: "salt",
@@ -97,8 +97,8 @@ const orders = () => {
             id: 380,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-02-22 22:00',
-            delivery_on: '2021-02-23 7:00',
+            placed_on: '02/22/2021 22:00',
+            delivery_on: '02/23/2021 7:00',
             ingredients: [
                 {
                     name: "rice",
@@ -114,8 +114,8 @@ const orders = () => {
             id: 381,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-02-27 22:00',
-            delivery_on: '2021-02-28 7:00',
+            placed_on: '02/27/2021 22:00',
+            delivery_on: '02/28/2021 7:00',
             ingredients: [
                 {
                     name: "potatoes",
@@ -127,8 +127,8 @@ const orders = () => {
             id: 382,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-02-28 22:00',
-            delivery_on: '2021-03-01 7:00',
+            placed_on: '02/28/2021 22:00',
+            delivery_on: '03/01/2021 7:00',
             ingredients: [
                 {
                     name: "carbonara",
@@ -140,8 +140,8 @@ const orders = () => {
             id: 383,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-02-28 22:00',
-            delivery_on: '2021-03-01 7:00',
+            placed_on: '02/28/2021 22:00',
+            delivery_on: '03/01/2021 7:00',
             ingredients: [
                 {
                     name: "tuna",
@@ -157,8 +157,8 @@ const orders = () => {
             id: 384,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-03-09 22:00',
-            delivery_on: '2021-03-10 7:00',
+            placed_on: '03/09/2021 22:00',
+            delivery_on: '03/10/2021 7:00',
             ingredients: [
                 {
                     name: "olives",
@@ -170,8 +170,8 @@ const orders = () => {
             id: 385,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-03-14 22:00',
-            delivery_on: '2021-03-15 7:00',
+            placed_on: '03/14/2021 22:00',
+            delivery_on: '03/15/2021 7:00',
             ingredients: [
                 {
                     name: "salmon",
@@ -183,8 +183,8 @@ const orders = () => {
             id: 386,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-03-16 22:00',
-            delivery_on: '2021-03-17 7:00',
+            placed_on: '03/16/2021 22:00',
+            delivery_on: '03/17/2021 7:00',
             ingredients: [
                 {
                     name: "spaghetti",
@@ -204,8 +204,8 @@ const orders = () => {
             id: 387,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-03-31 22:00',
-            delivery_on: '2021-04-01 7:00',
+            placed_on: '03/31/2021 22:00',
+            delivery_on: '04/01/2021 7:00',
             ingredients: [
                 {
                     name: "olive oil",
@@ -221,8 +221,8 @@ const orders = () => {
             id: 388,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-04-04 22:00',
-            delivery_on: '2021-04-05 7:00',
+            placed_on: '04/04/2021 22:00',
+            delivery_on: '04/05/2021 7:00',
             ingredients: [
                 {
                     name: "cod",
@@ -238,8 +238,8 @@ const orders = () => {
             id: 389,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-04-05 22:00',
-            delivery_on: '2021-04-06 7:00',
+            placed_on: '04/05/2021 22:00',
+            delivery_on: '04/06/2021 7:00',
             ingredients: [
                 {
                     name: "tuna",
@@ -255,8 +255,8 @@ const orders = () => {
             id: 390,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-04-11 22:00',
-            delivery_on: '2021-04-12 7:00',
+            placed_on: '04/11/2021 22:00',
+            delivery_on: '04/12/2021 7:00',
             ingredients: [
                 {
                     name: "linguine",
@@ -272,8 +272,8 @@ const orders = () => {
             id: 391,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-04-14 22:00',
-            delivery_on: '2021-04-15 7:00',
+            placed_on: '04/14/2021 22:00',
+            delivery_on: '04/15/2021 7:00',
             ingredients: [
                 {
                     name: "olive oil",
@@ -289,8 +289,8 @@ const orders = () => {
             id: 392,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-04-19 22:00',
-            delivery_on: '2021-04-20 7:00',
+            placed_on: '04/19/2021 22:00',
+            delivery_on: '04/20/2021 7:00',
             ingredients: [
                 {
                     name: "salmon",
@@ -302,8 +302,8 @@ const orders = () => {
             id: 393,
             type: 'auto',
             ref: 1,
-            placed_on: '2021-04-29 22:00',
-            delivery_on: '2021-04-30 7:00',
+            placed_on: '04/29/2021 22:00',
+            delivery_on: '04/30/2021 7:00',
             ingredients: [
                 {
                     name: "cod",
@@ -322,10 +322,6 @@ const orders = () => {
     ];
 };
 
-export default orders;
-
-
-
 // /* bogus order data */
 // const orders = () => {
 //     return [
@@ -333,8 +329,8 @@ export default orders;
 //             id: 374,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '23/01/2021 22:00', // new Date('2021-03-03 22:00'),
-//             delivery_on: '24/01/2021 7:00', // new Date('2021-03-10 7:00'),
+//             placed_on: '2021-01-23 22:00', // new Date('2021-03-03 22:00'),
+//             delivery_on: '2021-01-24 7:00', // new Date('2021-03-10 7:00'),
 //             ingredients: [
 //                 {
 //                     name: "tuna",
@@ -346,8 +342,8 @@ export default orders;
 //             id: 375,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '02/02/2021 22:00',
-//             delivery_on: '03/02/2021 7:00',
+//             placed_on: '2021-02-02 22:00',
+//             delivery_on: '2021-02-03 7:00',
 //             ingredients: [
 //                 {
 //                     name: "salmon",
@@ -363,8 +359,8 @@ export default orders;
 //             id: 376,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '06/02/2021 22:00',
-//             delivery_on: '07/02/2021 7:00',
+//             placed_on: '2021-02-06 22:00',
+//             delivery_on: '2021-02-07 7:00',
 //             ingredients: [
 //                 {
 //                     name: "cod",
@@ -380,8 +376,8 @@ export default orders;
 //             id: 377,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '17/02/2021 22:00',
-//             delivery_on: '18/02/2021 7:00',
+//             placed_on: '2021-02-17 22:00',
+//             delivery_on: '2021-02-18 7:00',
 //             ingredients: [
 //                 {
 //                     name: "tuna",
@@ -397,8 +393,8 @@ export default orders;
 //             id: 378,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '20/02/2021 22:00',
-//             delivery_on: '21/02/2021 7:00',
+//             placed_on: '2021-02-20 22:00',
+//             delivery_on: '2021-02-21 7:00',
 //             ingredients: [
 //                 {
 //                     name: "olive oil",
@@ -410,8 +406,8 @@ export default orders;
 //             id: 379,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '21/02/2021 22:00',
-//             delivery_on: '22/02/2021 7:00',
+//             placed_on: '2021-02-21 22:00',
+//             delivery_on: '2021-02-22 7:00',
 //             ingredients: [
 //                 {
 //                     name: "salt",
@@ -423,8 +419,8 @@ export default orders;
 //             id: 380,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '22/02/2021 22:00',
-//             delivery_on: '23/02/2021 7:00',
+//             placed_on: '2021-02-22 22:00',
+//             delivery_on: '2021-02-23 7:00',
 //             ingredients: [
 //                 {
 //                     name: "rice",
@@ -440,8 +436,8 @@ export default orders;
 //             id: 381,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '27/02/2021 22:00',
-//             delivery_on: '28/02/2021 7:00',
+//             placed_on: '2021-02-27 22:00',
+//             delivery_on: '2021-02-28 7:00',
 //             ingredients: [
 //                 {
 //                     name: "potatoes",
@@ -453,8 +449,8 @@ export default orders;
 //             id: 382,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '28/02/2021 22:00',
-//             delivery_on: '01/03/2021 7:00',
+//             placed_on: '2021-02-28 22:00',
+//             delivery_on: '2021-03-01 7:00',
 //             ingredients: [
 //                 {
 //                     name: "carbonara",
@@ -466,8 +462,8 @@ export default orders;
 //             id: 383,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '28/02/2021 22:00',
-//             delivery_on: '01/03/2021 7:00',
+//             placed_on: '2021-02-28 22:00',
+//             delivery_on: '2021-03-01 7:00',
 //             ingredients: [
 //                 {
 //                     name: "tuna",
@@ -483,8 +479,8 @@ export default orders;
 //             id: 384,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '09/03/2021 22:00',
-//             delivery_on: '10/03/2021 7:00',
+//             placed_on: '2021-03-09 22:00',
+//             delivery_on: '2021-03-10 7:00',
 //             ingredients: [
 //                 {
 //                     name: "olives",
@@ -496,8 +492,8 @@ export default orders;
 //             id: 385,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '14/03/2021 22:00',
-//             delivery_on: '15/03/2021 7:00',
+//             placed_on: '2021-03-14 22:00',
+//             delivery_on: '2021-03-15 7:00',
 //             ingredients: [
 //                 {
 //                     name: "salmon",
@@ -509,8 +505,8 @@ export default orders;
 //             id: 386,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '16/03/2021 22:00',
-//             delivery_on: '17/03/2021 7:00',
+//             placed_on: '2021-03-16 22:00',
+//             delivery_on: '2021-03-17 7:00',
 //             ingredients: [
 //                 {
 //                     name: "spaghetti",
@@ -530,8 +526,8 @@ export default orders;
 //             id: 387,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '31/03/2021 22:00',
-//             delivery_on: '01/04/2021 7:00',
+//             placed_on: '2021-03-31 22:00',
+//             delivery_on: '2021-04-01 7:00',
 //             ingredients: [
 //                 {
 //                     name: "olive oil",
@@ -547,8 +543,8 @@ export default orders;
 //             id: 388,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '04/04/2021 22:00',
-//             delivery_on: '05/04/2021 7:00',
+//             placed_on: '2021-04-04 22:00',
+//             delivery_on: '2021-04-05 7:00',
 //             ingredients: [
 //                 {
 //                     name: "cod",
@@ -564,8 +560,8 @@ export default orders;
 //             id: 389,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '05/04/2021 22:00',
-//             delivery_on: '06/04/2021 7:00',
+//             placed_on: '2021-04-05 22:00',
+//             delivery_on: '2021-04-06 7:00',
 //             ingredients: [
 //                 {
 //                     name: "tuna",
@@ -581,8 +577,8 @@ export default orders;
 //             id: 390,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '11/04/2021 22:00',
-//             delivery_on: '12/04/2021 7:00',
+//             placed_on: '2021-04-11 22:00',
+//             delivery_on: '2021-04-12 7:00',
 //             ingredients: [
 //                 {
 //                     name: "linguine",
@@ -598,8 +594,8 @@ export default orders;
 //             id: 391,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '14/04/2021 22:00',
-//             delivery_on: '15/04/2021 7:00',
+//             placed_on: '2021-04-14 22:00',
+//             delivery_on: '2021-04-15 7:00',
 //             ingredients: [
 //                 {
 //                     name: "olive oil",
@@ -615,8 +611,8 @@ export default orders;
 //             id: 392,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '19/04/2021 22:00',
-//             delivery_on: '20/04/2021 7:00',
+//             placed_on: '2021-04-19 22:00',
+//             delivery_on: '2021-04-20 7:00',
 //             ingredients: [
 //                 {
 //                     name: "salmon",
@@ -628,8 +624,8 @@ export default orders;
 //             id: 393,
 //             type: 'auto',
 //             ref: 1,
-//             placed_on: '29/04/2021 22:00',
-//             delivery_on: '30/04/2021 7:00',
+//             placed_on: '2021-04-29 22:00',
+//             delivery_on: '2021-04-30 7:00',
 //             ingredients: [
 //                 {
 //                     name: "cod",
@@ -647,3 +643,5 @@ export default orders;
 //         },
 //     ];
 // };
+
+export default orders;

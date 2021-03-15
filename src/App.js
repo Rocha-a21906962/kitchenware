@@ -37,6 +37,8 @@ import recipe_categories from './data/recipe_categories';
 import recipes from './data/recipes';
 import ScrollToTop from './components/ScrollToTop.js';
 
+import alert_data from './data/alerts';
+
 /* import for feed test */
 import Feed from './components/feed/Feed.js';
 
@@ -63,6 +65,57 @@ function App() {
   const [isEventPopupOpen, setIsEventPopupOpen] = useState(false);
   const [eventPopupMessage, setEventPopupMessage] = useState(null);
 
+  /* Hooks for the alerts */
+  const [alerts, setAlerts] = useState(alert_data());
+  const [isAlertListVisible, setIsAlertListVisible] = useState(false);
+
+  // const dates = [
+  //   '04/19/2021 22:00',
+  //   '19/04/2021T22:00:00 Z',
+  //   '19/04/2021 22:00Z',
+  //   '19/04/2021 sdfsdf22:00Z',
+  //   '2021-03-14 22:00Z',
+  //   '19/04/2021 22:00',
+  //   '19/04/2021 sdfsdf22:00',
+  //   '2021-03-14 22:00',
+  // ];
+
+  // let dates_arr = [];
+  // for (let d in dates) {
+  //   // //         date = dates[d];
+  //   let date = dates[d];
+  //   console.log("testing:", date, "...");
+  //   let date_obj = new Date(date);
+  //   try {
+  //     date_obj = date_obj.toISOString();
+  //   } catch (e) {    
+  //     return (
+  //       <div className="App">  
+  //       <h5>ERROR ON DATE:</h5>
+  //       <p>{date}</p>
+  //       </div>
+  //     )
+  //     throw (e)
+  //   }
+  //   dates_arr = [
+  //     ...dates_arr,
+  //     date_obj
+  //   ]
+  // }
+  // console.log("dates_arr");
+  // console.log(dates_arr);
+  // return (
+  //   <div className="App">  
+  //   <h5>ALL DATES OK!!</h5>
+  //   {/* {
+  //     dates_arr.map((d) => {
+  //       return (<p>{d}</p>
+  //       )
+  //     })
+  //   } */}
+  //   </div>
+  // )
+
   return (
     <div className="App">
       <GlobalStyles />
@@ -70,7 +123,11 @@ function App() {
           isSearchPageVisible={isSearchPageVisible}
           setIsSearchPageVisible={setIsSearchPageVisible}
           searchString={searchString}
-          setSearchString={setSearchString} />
+          setSearchString={setSearchString}
+          alerts={alerts}
+          setAlerts={setAlerts}
+          isAlertListVisible={isAlertListVisible}
+          setIsAlertListVisible={setIsAlertListVisible} />
       <SideNav />
       <Alerts 
           ingredientData={ingredientData}
@@ -81,6 +138,14 @@ function App() {
           setMealPlanning={setMealPlanning}
           orders={orders}
           setOrders={setOrders}
+          isEventPopupOpen={isEventPopupOpen}
+          setIsEventPopupOpen={setIsEventPopupOpen}
+          eventPopupMessage={eventPopupMessage}
+          setEventPopupMessage={setEventPopupMessage}
+          alerts={alerts}
+          setAlerts={setAlerts}
+          isAlertListVisible={isAlertListVisible}
+          setIsAlertListVisible={setIsAlertListVisible}
           />
       <SearchPage
           isSearchPageVisible={isSearchPageVisible}
@@ -120,7 +185,8 @@ function App() {
             <RecipeFeed
                 recipeData={recipeData}
                 setRecipeData={setRecipeData}
-                recipeCategories={recipeCategories} />
+                recipeCategories={recipeCategories}
+                ingredientData={ingredientData} />
           </Route>
           <Route path="/orders" exact>
             <Orders
@@ -141,7 +207,9 @@ function App() {
                 mealPlanningData={recipeData} />
           </Route>
           <Route path="/stats" exact>
-            <Stats />
+            <Stats 
+                recipeData={recipeData}
+                ingredientData={ingredientData} />
           </Route>
           <Route path="/about" exact>
             <About />
@@ -182,6 +250,7 @@ function App() {
                 ingredientData={ingredientData}
                 setIngredientData={setIngredientData}
                 ingredientCategories={ingredientCategories}
+                recipeData={recipeData}
                 orders={orders}
                 setOrders={setOrders}
                 isEventPopupOpen={isEventPopupOpen}

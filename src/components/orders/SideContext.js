@@ -99,7 +99,8 @@ const SideContext = ({
                                 return (<StyledOrder>
                                             <div className="individual_order">
                                                 <h5>Order #{ order.id }</h5>
-                                                <h5>@{format(new Date(order.delivery_on), 'hh:mm')} <span>{ order.type }</span></h5>
+                                                {/* <h5>@{format(new Date(order.delivery_on), 'hh:mm')} <span>{ order.type }</span></h5> */}
+                                                <h5><span>{ order.type }</span></h5>
                                             </div>
                                             <button name={`order_${ order.id }`} id={ order.id } onClick={e => showOrderDetail(e.target.id)}>View order</button>
                                         </StyledOrder>)

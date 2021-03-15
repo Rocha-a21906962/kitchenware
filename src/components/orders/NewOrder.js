@@ -221,7 +221,7 @@ const NewOrder = ({
                                                 <button name="" id="" value={ingredient.name} className={`${ingredient.editing == false ? 'hide' : ''}`} onClick={onConfirmIngredientQuantityHandler}>Confirm</button>
                                             </div>
                                             <div className={`quantity_input ${ingredient.editing == false ? 'hide' : ''}`} >
-                                                <input type="range" min="0.1" max="10" step="0.1" name={ingredient.name} value={ingredient.new_quantity} onChange={onIngredientQuantityChangeHandler} />,
+                                                <input type="range" min="0.1" max="10" step="0.1" name={ingredient.name} value={ingredient.new_quantity} onChange={onIngredientQuantityChangeHandler} />
                                                 <button name="" value={ingredient.name} id="" onClick={onRemoveIngredientHandler}>Remove</button>
                                             </div>
                                         </StyledIngredient>)

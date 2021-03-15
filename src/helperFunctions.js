@@ -1,5 +1,25 @@
 
 
+/* Alerts */
+
+// Returns the number of unread alerts
+export const getUnreadAlertsNumber = (alert_data) => {
+    console.log(alert_data);
+    let unread_alerts = [];
+    for (let key in alert_data) {
+        console.log("key:", key);
+        unread_alerts = [
+            ...unread_alerts,
+            ...alert_data[key].filter((alert) => alert.read === false)
+        ]
+    }
+    console.log("unread_alerts:", unread_alerts);
+
+    return unread_alerts.length;
+};
+
+
+
 
 /* Ingredients */
 

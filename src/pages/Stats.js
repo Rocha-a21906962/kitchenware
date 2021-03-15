@@ -1,9 +1,14 @@
 import StatCategories from "../components/categories/StatCategories";
 
-const Stats = () => {
+const Stats = ({
+    recipeData,
+    ingredientData
+}) => {
     return (
         <div className="content">
-            <StatCategories />
+            <StatCategories 
+                recipeData={recipeData}
+                ingredientData={ingredientData}/>
         </div>
     )
 }

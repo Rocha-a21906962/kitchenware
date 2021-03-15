@@ -106,11 +106,16 @@ const GlobalStyles = createGlobalStyle`
         background: linear-gradient(to bottom right,#17171766 5%,#13152f66 65%,#10141b66 100%); /* W3C */
     }
 
-    .content.no_scroll {
+    .content.no_scroll>* {
         /* hack */
         // height: 90vh; 
         /* */
         overflow: hidden;
+        filter: blur(3px);
+    }
+
+    .content.no_scroll>.confirmation_overlay {
+        filter: blur(0px);
     }
 
     #side_context {

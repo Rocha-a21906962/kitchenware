@@ -6,7 +6,7 @@ import { format, parseISO, addDays, addMonths, subMonths, startOfWeek, endOfWeek
 import { Icon } from '@iconify/react';
 import formPrevious from '@iconify-icons/grommet-icons/form-previous';
 import formNext from '@iconify-icons/grommet-icons/form-next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTruck} from '@fortawesome/free-solid-svg-icons';
 // import potOfFood from '@iconify/icons-emojione-monotone/shallow-pan-of-food';
 import bxsDish from '@iconify-icons/bx/bxs-dish';

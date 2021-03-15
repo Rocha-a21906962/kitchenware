@@ -35,7 +35,7 @@ const ConfirmationOverlay = ({
     console.log(isConfirmationOverlayVisible);
 
     return (
-        <StyledOverlay className={`${isConfirmationOverlayVisible ? 'open' : ''}`}>
+        <StyledOverlay className={`confirmation_overlay ${isConfirmationOverlayVisible ? 'open' : ''}`}>
             <StyledText>
                 <p>{text.current.q}</p>
                 {

@@ -1,42 +1,68 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import RecipeLine from "../feed/RecipeLine";
+import IngredientLine from "../feed/IngredientLine";
 
-const StatCategories = () => {
+const StatCategories = ({
+    recipeData,
+    ingredientData
+}) => {
     return (
-        <div className="ingredient_categories">
-            <StyledHeader>
-                {/* <h3>Ingredient Categories?</h3> */}
-            </StyledHeader>
-            {/* Show N ingredient categories */}
-            <StyledCategories>
-                <StyledCell>
-                    <Link to="/most_used_ingredients">
-                        <img src="dairy_products.bmp" alt="stat category image"/>
-                        Most used ingredients
-                    </Link>
-                </StyledCell>
-                <StyledCell>
-                    <Link to="/individual_ingredient_stats">
-                        <img src="dairy_products.bmp" alt="stat category image"/>
-                        Individual ingredient stats
-                    </Link>
-                </StyledCell>
-                <StyledCell>
-                    <Link to="/most_used_recipes">
-                        <img src="dairy_products.bmp" alt="stat category image"/>
-                        Most used recipes
-                    </Link>
-                </StyledCell>
-                <StyledCell>
-                    <Link to="/individual_recipe_stats">
-                        <img src="dairy_products.bmp" alt="stat category image"/>
-                        Individual recipe stats
-                    </Link>
-                </StyledCell>
-            </StyledCategories>
+        <div className="feed">
+            <div>
+                <StyledFeedHeader>Most used recipes</StyledFeedHeader>
+                <RecipeLine 
+                    data={recipeData}
+                    stats={true} />
+                <StyledFeedHeader>Most used ingredients</StyledFeedHeader>
+                <IngredientLine 
+                    data={ingredientData}
+                    stats={true} />
+            </div>
         </div>
+        // <div className="ingredient_categories">
+        //     <StyledHeader>
+        //         {/* <h3>Ingredient Categories?</h3> */}
+        //     </StyledHeader>
+        //     {/* Show N ingredient categories */}
+        //     <StyledCategories>
+        //         <StyledCell>
+        //             <Link to="/most_used_ingredients">
+        //                 <img src="dairy_products.bmp" alt="stat category image"/>
+        //                 Most used ingredients
+        //             </Link>
+        //         </StyledCell>
+        //         <StyledCell>
+        //             <Link to="/individual_ingredient_stats">
+        //                 <img src="dairy_products.bmp" alt="stat category image"/>
+        //                 Individual ingredient stats
+        //             </Link>
+        //         </StyledCell>
+        //         <StyledCell>
+        //             <Link to="/most_used_recipes">
+        //                 <img src="dairy_products.bmp" alt="stat category image"/>
+        //                 Most used recipes
+        //             </Link>
+        //         </StyledCell>
+        //         <StyledCell>
+        //             <Link to="/individual_recipe_stats">
+        //                 <img src="dairy_products.bmp" alt="stat category image"/>
+        //                 Individual recipe stats
+        //             </Link>
+        //         </StyledCell>
+        //     </StyledCategories>
+        // </div>
     )
 }
+
+const StyledFeedHeader = styled.div`
+    // background: #000;
+    color: white;
+    font-family: GTAmericaRegular;
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 4rem;
+`
 
 const StyledHeader = styled.div`
     display: flex;

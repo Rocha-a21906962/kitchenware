@@ -3,7 +3,8 @@ import RecipeCategories from "../components/categories/RecipeCategories";
 const RecipeFeed = ({
     recipeData,
     setRecipeData,
-    recipeCategories
+    recipeCategories,
+    ingredientData
 }) => {
     return (
         <div className="content">
@@ -18,6 +19,7 @@ const RecipeFeed = ({
                 recipeData={recipeData}
                 setRecipeData={setRecipeData}
                 recipeCategories={recipeCategories}
+                ingredientData={ingredientData}
                 stats={false} />
         </div>
     )

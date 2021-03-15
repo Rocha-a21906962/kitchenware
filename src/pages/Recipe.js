@@ -5,6 +5,8 @@ import { addDays } from "date-fns";
 import StepByStepOverlay from "../components/recipe/StepByStepOverlay";
 import NewOrder from "../components/orders/NewOrder";
 import ConfirmationOverlay from "../components/ConfirmationOverlay";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 
 
 const Recipe = ({
@@ -324,7 +326,7 @@ const Recipe = ({
                     <h5 className="to_do">sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
                 </StyledDescription>
                 <StyledDetails>
-                    <h3>Number of servings:</h3>
+                    <h3>Number of servings:<FontAwesomeIcon icon={faInfoCircle} /></h3>
                     <h5>{numberServings} {numberServings != recipe.servings ? `(default: ${recipe.servings})` : ""}</h5> 
                     <input type="range" min="2" max="12" step="1" value={numberServings} className="servings_input" onChange={onNumberServingsChangeHandler} />
                     <h3>Nutrition info:</h3>
@@ -343,11 +345,11 @@ const Recipe = ({
                     <h3>Immediate availability:</h3>
                     <h5 className="to_do">Current ingredient stock allows for this dish to be cooked 4 times.</h5>
                     <h3>Automatic stock management:</h3>
-                    <h3>Minimum availability:</h3>
+                    <h3>Minimum availability:<FontAwesomeIcon icon={faInfoCircle} /></h3>
                     <h5>{recipe.minimum_availability.value} servings {recipe.minimum_availability.value != recipe.minimum_availability.new_value ? `(new value: ${recipe.minimum_availability.new_value})` : ''}</h5>
                     <input type="range" min={recipe.minimum_availability.min_input} max={recipe.minimum_availability.max_input} step={recipe.minimum_availability.step} value={recipe.minimum_availability.new_value} className="stock_input" onChange={onMinimumAvailabilityChangeHandler} />
                     <h5>(immediate availability => nr servings * nr immediate avail. = 20)</h5>
-                    <h3>Action:</h3>
+                    <h3>Action:<FontAwesomeIcon icon={faInfoCircle} /></h3>
                     <select name="search_options" onChange={onAutoOrderChangeHandler}>
                         <option value="auto_order" selected={`${recipe.auto_order_ingredients.new_value ? true : ''}`}>auto-order</option>
                         <option value="alert" selected={`${!recipe.auto_order_ingredients.new_value ? true : ''}`}>alert</option>

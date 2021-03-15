@@ -5,6 +5,11 @@ import { Icon, InlineIcon } from '@iconify/react';
 import bxSearch from '@iconify/icons-bx/bx-search';
 import settings28Filled from '@iconify/icons-fluent/settings-28-filled';
 import fluent28alert from '@iconify/icons-fluent/alert-28-filled';
+import { getUnreadAlertsNumber } from '../helperFunctions';
+import formPrevious from '@iconify-icons/grommet-icons/form-previous';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+
 
 import kitchenware_logo from "../img/kitchenware.svg";
 
@@ -12,9 +17,14 @@ const Nav = ({
     isSearchPageVisible,
     setIsSearchPageVisible,
     searchString,
-    setSearchString
+    setSearchString,
+    alerts,
+    setAlerts,
+    isAlertListVisible,
+    setIsAlertListVisible
 }) => {
 
+    let history = useHistory();
     // let history = useHistory();
     // const redirectToSearchPage = () => {
     //     history.push('/search')
@@ -42,6 +52,40 @@ const Nav = ({
         console.log("searchString:" + searchString);
     }
 
+    const toggleAlertListHandler = () => {
+        // if we're closing the alert list, set all alerts as read
+        if (isAlertListVisible) {
+            setAllAlertsAsRead(alerts);
+        }
+        setIsAlertListVisible(!isAlertListVisible);
+      }
+
+    const onBackToPreviousPageHandler = () => {
+        history.goBack();
+        console.log("history");
+        console.log(history);
+        // history.push('/orders');
+    };
+
+    const setAllAlertsAsRead = (alerts) => {
+        let modifiedAlerts = [];
+        for (let key in alerts) {
+            console.log("key:", key);
+            modifiedAlerts[key] = [
+                ...alerts[key].map((alert) => {
+                        return {
+                            ...alert,
+                            read: true
+                        }
+                })
+            ]
+        }
+        setAlerts(modifiedAlerts);
+    };
+
+    
+    const numberAlertsUnread = getUnreadAlertsNumber(alerts);
+
     return (
         <StyledNav>
             {/*
@@ -56,8 +100,10 @@ const Nav = ({
                 <img src={kitchenware_logo} alt="kitchenware logo"/>
                 </Link> 
             </StyledLogo>
-            <div></div>
-            <div></div>
+            <StyledBackIcon>
+                <FontAwesomeIcon icon={faChevronLeft} onClick={onBackToPreviousPageHandler} />
+                {/* <Icon icon={formPrevious} onClick={onBackToPreviousPageHandler} /> */}
+            </StyledBackIcon>
             <StyledSearch>
                 <div className={`search ${isSearchBarVisible ? 'open' : ''}`}>
                     {/*
@@ -73,12 +119,12 @@ const Nav = ({
                         <Icon icon={bxSearch} />
                     </StyledIcon>
                 </button>
-                <button onClick="">
+                <button  onClick={toggleAlertListHandler}>
                     <StyledIcon>
-                        <Icon icon={fluent28alert} />
+                        <Icon icon={fluent28alert}/>
                     </StyledIcon>
-                    <StyledRedBubble>
-                        1
+                    <StyledRedBubble className={`${numberAlertsUnread === 0 ? 'hide' : ''}`}>
+                    {numberAlertsUnread}
                     </StyledRedBubble>
                 </button>
             </StyledSearch>
@@ -174,7 +220,7 @@ const StyledSearch = styled.div`
     .search {
         position: absolute;
         height: 60%;
-        width: 100%;
+        // width: 100%;
         opacity: 0;
         transform: translateX(200%);
         transition: transform 2s ease, opacity 1s ease;
@@ -191,7 +237,7 @@ const StyledSearch = styled.div`
         */
         input {
             padding-left: 1rem;
-            width: 100%;
+            width: calc(100vw - 13.5rem);
             height: 100%;
             background-color: #1c1c1c;
             // background-color: #050c2c;
@@ -228,6 +274,21 @@ const StyledIcon = styled.div`
         width: 1.75rem;
     }
 `
+
+const StyledBackIcon = styled.div`
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: #b1b1b1;
+    height: 10vh;
+    svg {
+        height: 1.25rem;
+        width: 1rem!important;
+    }
+`
+
 const StyledRedBubble = styled.div`
     position: absolute;
     top: 31%;
@@ -238,6 +299,13 @@ const StyledRedBubble = styled.div`
     border-radius: 50%;
     background-color: red;
     color: #b1b1b1;
+    opacity: 1;
+    transition-delay: 1.5s;
+    transition: opacity 0.25s cubic-bezier(0.88, 0.11, 0.83, 0.65);
+    &.hide {
+        display: none;
+        opacity: 0;
+    }
 `
 
 export default Nav;
