@@ -4,6 +4,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
+import './styles/fixed-plugin.css';
+import './styles/device-management.css';
+
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
