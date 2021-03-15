@@ -88,7 +88,7 @@ const RecipeCategories = ({
 }
 
 const StyledFeedHeader = styled.div`
-    // background: #000;
+    background: #000000dd;
     color: white;
     font-family: GTAmericaRegular;
     font-size: 1.1rem;

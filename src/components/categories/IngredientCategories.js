@@ -260,13 +260,13 @@ const StyledFilterSection = styled.div`
 const StyledFeedHeader = styled.div`
     display: flex;
     align-items: baseline;
-    // background: #000;
+    background: #000000dd;
     color: white;
     font-family: GTAmericaRegular;
     font-size: 1.1rem;
     font-weight: bold;
     line-height: 4rem;
-    margin-top: 2rem;
+    padding-top: 2rem;
 `
 
 const StyledHeader = styled.div`

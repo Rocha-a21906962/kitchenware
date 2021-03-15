@@ -14,6 +14,7 @@ const ingredients = () => {
                     name: 'healthy',
                 }
             ],
+            calories_per_unit: 240,
             unit: 'kg',
             in_stock : {
                 value: 14,
@@ -49,6 +50,7 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
+            calories_per_unit: 240,
             unit: 'kg',
             in_stock : {
                 value: 12,
@@ -84,6 +86,7 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
+            calories_per_unit: 240,
             unit: 'kg',
             in_stock : {
                 value: 9,
@@ -119,6 +122,7 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
+            calories_per_unit: 240,
             unit: 'kg',
             in_stock : {
                 value: 13,
@@ -154,6 +158,7 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
+            calories_per_unit: 240,
             unit: 'kg',
             in_stock : {
                 value: 15,
@@ -189,6 +194,7 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
+            calories_per_unit: 240,
             unit: 'kg',
             in_stock : {
                 value: 0,
@@ -224,6 +230,7 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
+            calories_per_unit: 240,
             unit: 'kg',
             in_stock : {
                 value: 2,
@@ -259,6 +266,7 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
+            calories_per_unit: 240,
             unit: 'kg',
             in_stock : {
                 value: 0,
@@ -294,6 +302,7 @@ const ingredients = () => {
                     name: 'fish'
                 },
             ],
+            calories_per_unit: 240,
             unit: 'kg',
             in_stock : {
                 value: 0,

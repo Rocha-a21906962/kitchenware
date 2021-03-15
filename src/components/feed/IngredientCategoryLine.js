@@ -29,6 +29,7 @@ const StyledLine = styled.div`
     height: 24vh;
     overflow-x: auto;
     overflow-y: hidden;
+    background: #000000dd;
 `
 
 export default IngredientCategoryLine;

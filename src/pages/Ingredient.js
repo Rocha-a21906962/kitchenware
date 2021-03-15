@@ -12,6 +12,7 @@ import ConfirmationOverlay from "../components/ConfirmationOverlay";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import RecipeLine from '../components/feed/RecipeLine';
+import { getRecipesWith } from '../helperFunctions';
 
 
 const Ingredient = ({
@@ -333,20 +334,17 @@ const Ingredient = ({
                         <button name="" id="" className={`${(ingredient.minimum_stock.value != ingredient.minimum_stock.new_value) || (ingredient.default_order_quantity.value != ingredient.default_order_quantity.new_value) || (ingredient.auto_order.value != ingredient.auto_order.new_value) ? '' : 'hide'}`} onClick={onResetStockChangesHandler}>Reset changes</button>
                     </StyledStockButtons>
                 </StyledDetails>
-                {/* <StyledFeedHeader>Recipes with {ingredient.name}</StyledFeedHeader>
-                <RecipeLine 
-                    data={recipeData} /> */}
+                <StyledFeed>
+                    <StyledFeedHeader>Recipes with {ingredient.name}</StyledFeedHeader>
+                    <RecipeLine 
+                        data={getRecipesWith(recipeData, ingredient_name)} />
+                </StyledFeed>
                 <button name="" id="" onClick={e => showNewOrder(e.target.value)}>Order ingredient (opens pop-up)</button>
                 <button className="to_do" name="" id="">Order history (opens pop-up)</button>
                 <Link to={`/ingredient_stats/${ingredient.name}`}>
                     <button name="" id="">Stats (changes page)</button>
                 </Link>
             </StyledIngredient>
-            {/* <StyledFeed>
-                <StyledFeedHeader>Recipes with {ingredient.name}</StyledFeedHeader>
-                <RecipeLine 
-                    data={recipeData} />
-            </StyledFeed> */}
             <NewOrder
                 isNewOrderOpen={isNewOrderOpen}
                 setIsNewOrderOpen={setIsNewOrderOpen}
@@ -496,19 +494,31 @@ const StyledDetails = styled.div`
 const StyledFeedHeader = styled.div`
     // background: #000;
     width: 100%;
+    background: #000;
     color: white;
     font-family: GTAmericaRegular;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
-    line-height: 4rem;
+    line-height: 2.25rem;
 `
 
 const StyledFeed = styled.div`
-    /* height: 24vh; */
-    display: inline-block;
-    width: 100%;
-    background: #000000dd;
     overflow-x: scroll;
+    width: 100vw;
+    padding-left: 1rem;
+    font-family: GTAmericaRegular;
+    color: #b1b1b1;
+    background: #000000dd;
+    padding-bottom: 1rem;
+    .stock_input {
+        /* not working for now */
+        transform: none;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    .modified {
+        /* not working for now */
+        color: green;
+    }
 `
 
 export default Ingredient;
