@@ -268,6 +268,7 @@ const StyledIcon = styled.div`
     justify-content: flex-end;
     align-items: center;
     color: #b1b1b1;
+    background-color: transparent;
     height: 10vh;
     svg {
         height: 1.75rem;
@@ -282,6 +283,7 @@ const StyledBackIcon = styled.div`
     justify-content: flex-end;
     align-items: center;
     color: #b1b1b1;
+    background-color: transparent;
     height: 10vh;
     svg {
         height: 1.25rem;

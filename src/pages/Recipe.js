@@ -7,6 +7,14 @@ import NewOrder from "../components/orders/NewOrder";
 import ConfirmationOverlay from "../components/ConfirmationOverlay";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import {faStar} from '@fortawesome/free-solid-svg-icons';
+import {faClock} from '@fortawesome/free-solid-svg-icons';
+import {faChartLine} from '@fortawesome/free-solid-svg-icons';
+import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+import {faCheck} from '@fortawesome/free-solid-svg-icons';
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
+import {faShoePrints} from '@fortawesome/free-solid-svg-icons';
+import { getStockOf } from '../helperFunctions';
 
 
 const Recipe = ({
@@ -264,6 +272,9 @@ const Recipe = ({
         const total_recipe_time = recipe.steps.reduce((a, b) => a + b.time, 0);
         return total_recipe_time < 60 ? total_recipe_time + "mins" : Math.floor(total_recipe_time / 60) + "h" + total_recipe_time % 60;
     }
+
+    
+    const categories = recipe.categories.map((category) => {return category.name});
     
     /* Hook for the new order ingredients */
     const [newOrderDetails, setNewOrderDetails] = useState(newOrder(recipe.ingredients));
@@ -306,50 +317,69 @@ const Recipe = ({
                     <div className="gradient_overlay"></div>
                     <img src={recipe.image} alt={`${recipe.name} image`}/>
                     <div className="recipe_name">
-                        <h2>Recipe: <span>{recipe.name}</span></h2>
-                        <StyledFavouriteButton>
-                            <button name="" id="" className={`${recipe.is_favourite ? 'hide_favourite_button ' : ''}`} onClick={toggleRecipeFavouriteStatus}>Set as favourite</button>
-                            <button name="" id="" className={`${!recipe.is_favourite ? 'hide_favourite_button ' : ''}`} onClick={toggleRecipeFavouriteStatus}>Remove from favourites</button>
-                        </StyledFavouriteButton>
+                        <div className="favourite_container">
+                            <h2>{recipe.name}</h2>
+                            <StyledFavouriteButton>
+                                <button name="" id="" className={`${recipe.is_favourite ? 'hide_favourite_button ' : ''}`} onClick={toggleRecipeFavouriteStatus}><FontAwesomeIcon icon={faStar} />Add as favourite</button>
+                                <button name="" id="" className={`${!recipe.is_favourite ? 'hide_favourite_button ' : ''}`} onClick={toggleRecipeFavouriteStatus}><FontAwesomeIcon icon={faStar} />Remove from favourites</button>
+                            </StyledFavouriteButton>
+                        </div>
+                        <h5>{categories.flat().join(' • ')}</h5>
+                        <StyledTimes>
+                            <StyledCookingTime>
+                                <FontAwesomeIcon icon={faClock} />
+                                <h5>Preparation time: {recipe.preparation_time} minutes</h5>
+                            </StyledCookingTime>
+                            <StyledCookingTime>
+                                <FontAwesomeIcon icon={faClock} />
+                                <h5>Cooking time: {recipe.cooking_time} minutes</h5>
+                            </StyledCookingTime>
+                        </StyledTimes>
                     </div>
                     <button name="" id="">Set as favourite</button>
-                    <div className="main_details">
-                        <p><span>5</span> ingredients</p>
-                        <p>|</p>
-                        <p><span>240</span> calories</p>
-                        <p>|</p>
-                        <p><span>20</span> minutes</p>
-                    </div>
                 </StyledPhoto>
+                <StyledHr></StyledHr>
+                <StyledMainDetails>
+                    <div>Ingredients: <span>5</span></div>
+                    <div>|</div>
+                    <div>Nutrition info: <span>240</span> calories/serving</div>
+                    <div>|</div>
+                    <div>Total cooking time: <span>{TotalRecipeTime()}</span></div>
+                    <div>|</div>
+                    <div> Allergy-safe: <span>Yes</span></div>
+                </StyledMainDetails>
+                <StyledHr></StyledHr>
                 <StyledDescription>
                     <h3>Recipe short description</h3>
-                    <h5 className="to_do">sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
+                    <h5>sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
                 </StyledDescription>
+                <StyledButtons>
+                    <Link to={`/recipe_stats/${recipe.name}`}>
+                        <button name="" id=""><FontAwesomeIcon icon={faChartLine} />Stats</button>
+                    </Link>
+                    <button name="" id="" onClick={e => showNewOrder(e.target.value)}><FontAwesomeIcon icon={faShoppingCart} />Order ingredients</button>
+                    <button name="" id="" onClick={onShowStepByStepOverlay}><FontAwesomeIcon icon={faShoePrints} />Step-by-step instructions</button>
+                </StyledButtons>
+                <StyledHr></StyledHr>
                 <StyledDetails>
-                    <h3>Number of servings:<FontAwesomeIcon icon={faInfoCircle} /></h3>
+                    <h3>Number of servings <FontAwesomeIcon icon={faInfoCircle} /></h3>
                     <h5>{numberServings} {numberServings != recipe.servings ? `(default: ${recipe.servings})` : ""}</h5> 
                     <input type="range" min="2" max="12" step="1" value={numberServings} className="servings_input" onChange={onNumberServingsChangeHandler} />
-                    <h3>Nutrition info:</h3>
-                    <h5>240 cal/serving</h5>
+                    <StyledSmallHr></StyledSmallHr>
                     <h3>Ingredient list:</h3>
-                    <h5><span>X</span> 750g Salmon</h5>
-                    <h5><span>V</span> 10ml Pesto</h5>
-                    <h5><span>V</span> 1/2ts Salt</h5>
                     {
                         recipe.ingredients.map((ingredient) => {
-                            console.log("ingredient.name");
-                            console.log(ingredient.name);
-                            return (<h5><span>X</span> { (ingredient.quantity * numberServings / recipe.servings).toFixed(2) }{ ingredient.unit }<Link to={`/ingredient/${ingredient.name}`}>{ ingredient.name }</Link></h5>)
+                            return (<StyledIngredient><span>{getStockOf(ingredientData, ingredient.name) >= (ingredient.quantity * numberServings / recipe.servings) ? <FontAwesomeIcon icon={faCheck} /> : <FontAwesomeIcon icon={faTimes} />}</span><Link to={`/ingredient/${ingredient.name}`}>{ ingredient.name }</Link> { (ingredient.quantity * numberServings / recipe.servings).toFixed(2) } { ingredient.unit }</StyledIngredient>)
                         })
                     }
+                    <StyledSmallHr></StyledSmallHr>
                     <h3>Immediate availability:</h3>
                     <h5 className="to_do">Current ingredient stock allows for this dish to be cooked 4 times.</h5>
-                    <h3>Automatic stock management:</h3>
-                    <h3>Minimum availability:<FontAwesomeIcon icon={faInfoCircle} /></h3>
-                    <h5>{recipe.minimum_availability.value} servings {recipe.minimum_availability.value != recipe.minimum_availability.new_value ? `(new value: ${recipe.minimum_availability.new_value})` : ''}</h5>
+                    <StyledSmallHr></StyledSmallHr>
+                    <h3>Automatic stock management<FontAwesomeIcon icon={faInfoCircle} /></h3>
+                    <h5>Minimum availability: {recipe.minimum_availability.value} servings {recipe.minimum_availability.value != recipe.minimum_availability.new_value ? `(new value: ${recipe.minimum_availability.new_value})` : ''}</h5>
                     <input type="range" min={recipe.minimum_availability.min_input} max={recipe.minimum_availability.max_input} step={recipe.minimum_availability.step} value={recipe.minimum_availability.new_value} className="stock_input" onChange={onMinimumAvailabilityChangeHandler} />
-                    <h5>(immediate availability => nr servings * nr immediate avail. = 20)</h5>
-                    <h3>Action:<FontAwesomeIcon icon={faInfoCircle} /></h3>
+                    <h3>Action <FontAwesomeIcon icon={faInfoCircle} /></h3>
                     <select name="search_options" onChange={onAutoOrderChangeHandler}>
                         <option value="auto_order" selected={`${recipe.auto_order_ingredients.new_value ? true : ''}`}>auto-order</option>
                         <option value="alert" selected={`${!recipe.auto_order_ingredients.new_value ? true : ''}`}>alert</option>
@@ -358,6 +388,7 @@ const Recipe = ({
                         <button name="" id="" className={`${(recipe.minimum_availability.value != recipe.minimum_availability.new_value) || (recipe.auto_order_ingredients.value != recipe.auto_order_ingredients.new_value) ? '' : 'hide'}`} onClick={onConfirmStockManagementChangesHandler}>Confirm changes</button>
                         <button name="" id="" className={`${(recipe.minimum_availability.value != recipe.minimum_availability.new_value) || (recipe.auto_order_ingredients.value != recipe.auto_order_ingredients.new_value) ? '' : 'hide'}`} onClick={onResetStockManagementChangesHandler}>Reset changes</button>
                     </StyledStockButtons>
+                    <StyledSmallHr></StyledSmallHr>
                     {/* Delete everything: just for testing
                     <h5>Current stock: <span>{ingredient.in_stock} kg</span></h5>
                     <h5>Forecasted consumption</h5>
@@ -373,27 +404,23 @@ const Recipe = ({
                     <p></p>
                     */}
                 </StyledDetails>
-                <StyledDetails>
-                    <h3>Preparation (a la Tasty):</h3>
+                <StyledInstructions>
+                    {/* <h3>Preparation (a la Tasty):</h3>
                     <h3>Preparation time:</h3>
                     <h5>{recipe.preparation_time} minutes</h5> 
                     <h3>Cooking time:</h3>
                     <h5>{recipe.cooking_time} minutes</h5> 
                     <h3>Total time:</h3>
-                    <h5>{TotalRecipeTime()}</h5> 
-                    <button name="" id="" onClick={onShowStepByStepOverlay}>Step-by-step mode button (opens pop-up)</button>
+                    <h5>{TotalRecipeTime()}</h5>  */}
+                    {/* <button name="" id="" onClick={onShowStepByStepOverlay}>Step-by-step mode button</button> */}
                     <h3>Instructions:</h3>
                     {
                         recipe.steps.map((step) => {
-                        return (<h5>Step {step.number} - {step.description}</h5>)
+                        return (<p>Step {step.number} - {step.description}</p>)
                         })
                     }
-                </StyledDetails>
+                </StyledInstructions>
                 {/* buttons */}
-                    <button name="" id="" onClick={e => showNewOrder(e.target.value)}>Order ingredients (opens pop-up)</button>
-                    <Link to={`/recipe_stats/${recipe.name}`}>
-                        <button name="" id="">Stats (changes page)</button>
-                    </Link>
                     {/* <button name="" id="">Schedule meal (opens pop-up)</button> */}
                     {/* <button name="" id="">Play video (opens pop-up! alt: button as image overlay with play icon?)</button> */}
             </StyledRecipe>
@@ -419,6 +446,19 @@ const Recipe = ({
     )
 }
 
+const StyledHr = styled.hr`
+    width: 100%;
+    margin: 1rem;
+    border: 1px solid #2b2b2b;
+`
+
+const StyledSmallHr = styled.hr`
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #2b2b2b;
+`
+
 const StyledRecipe = styled.div`
     display: flex;
     flex-direction: row;
@@ -432,7 +472,7 @@ const StyledRecipe = styled.div`
 const StyledPhoto = styled.div`
     position: relative;
     width: calc(100vw - 10rem);
-    height: 40vh;
+    height: 25vh;
     img {
         position: absolute;
         display: block;
@@ -457,24 +497,33 @@ const StyledPhoto = styled.div`
     }
     .recipe_name {
         position: absolute;
-        left: 0;
-        top: 50%;
+        left: 1rem;
+        /* bottom: 1rem; */
+        top: 4.25rem;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        padding-left: 1rem;
+        padding-right: 2rem;
         width: 100%;
         z-index: 5;
         h2 {
-            padding-left: 2.5rem;
-            display: block;
-            font-size: 1.5rem;
-            font-style: italic;
+            font-size: 2rem;
             text-transform: capitalize;
-            color: #b1b1b1;
+            color: white;
             z-index: 5;
+        }
+        h5 {
+            font-size: 1rem;
+            color: #b2b2b2;
         }
         span {
             font-size: 3rem;
             font-style: normal;
+        }
+        .favourite_container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
         }
     }
     .main_details {
@@ -503,20 +552,79 @@ const StyledPhoto = styled.div`
     }
 `
 
+const StyledMainDetail = styled.div`
+    display: flex;
+    display: column;
+    justify-content: center;
+    align-items: center;
+`
+
+const StyledMainDetails = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    z-index: 4;
+    color: white;
+    p {
+        padding: 1rem;
+        font-size: 1rem;
+        font-style: italic;
+    }
+    p span {
+        font-size: 2rem;
+        color: white;
+        font-weight: 100;
+        font-style: normal;
+    }
+`
+
 const StyledFavouriteButton = styled.div`
     display: flex;
-    align-self: flex-start;
+    align-items: center;
     width: 5rem;
-    padding-left: 1rem;
+    padding-left: 0.5rem;
     font-family: GTAmericaRegular;
     color: #b1b1b1;
     button {
         position: absolute;
-        width: 8rem;
-        height: 4rem;
+        height: 2rem;
         font-size: 0.75rem;
-        padding: 1rem;
+        padding: 0;
+        border: none;
+        border-style: none;
     }
+    svg {
+        color: yellow;
+    }
+`
+
+const StyledCookingTime = styled.div`
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+    width: 20rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    font-family: GTAmericaRegular;
+    color: #b1b1b1;
+    h5 {
+        padding-left: 0.25rem;
+    }
+    svg {
+        /* padding-left: 0.25rem;
+        padding-right: 0.25rem;
+        height: 1.5rem;
+        width: 1.5rem!important; */
+    }
+`
+
+const StyledTimes = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
 `
 
 const StyledStockButtons = styled.div`
@@ -534,8 +642,26 @@ const StyledStockButtons = styled.div`
     }
 `
 
+const StyledButtons = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-family: GTAmericaRegular;
+    color: #b1b1b1;
+    button {
+        width: 16rem;
+        font-size: 0.85rem;
+        margin: 0.25rem;
+        padding: 1rem;
+        svg {
+            margin-right: 0.45rem;
+            height: 0.85rem;
+        }
+    }
+`
+
 const StyledDescription = styled.div`
-    width: 80vw;
+    width: 100%;
     padding-left: 1rem;
     margin-bottom: 1rem;
     font-family: GTAmericaRegular;
@@ -547,6 +673,50 @@ const StyledDetails = styled.div`
     padding-left: 1rem;
     font-family: GTAmericaRegular;
     color: #b1b1b1;
+    h3 {
+        svg {
+            margin-left: 0.25rem;
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+`
+
+const StyledInstructions = styled.div`
+    width: 40vw;
+    padding-left: 1rem;
+    font-family: GTAmericaRegular;
+    color: #b1b1b1;
+    p {
+        font-size: 0.75rem;
+        letter-spacing: 0;
+        padding: 0.5rem;
+    }
+`
+
+const StyledIngredient = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    a {
+        text-decoration: none;
+        color: white;
+        padding: 0.25rem;
+        font-size: 1rem;
+    }
+    svg {
+        margin: 0.25rem;
+    }
+    [class*="fa-check"] {
+            color: green;
+            height: 1rem;
+            width: 1rem;
+    }
+    [class*="fa-times"] {
+            color: #b31515;
+            height: 1rem;
+            width: 1rem;
+    }
 `
 
 export default Recipe;

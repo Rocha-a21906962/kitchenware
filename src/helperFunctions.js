@@ -23,6 +23,13 @@ export const getUnreadAlertsNumber = (alert_data) => {
 
 /* Ingredients */
 
+export const getStockOf = (ingredient_data, ingredient_name) => {
+    const ingredient = ingredient_data.filter(ingredient => ingredient.name === ingredient_name);
+    if (ingredient.length > 0) {
+        return ingredient_data.filter(ingredient => ingredient.name === ingredient_name)[0].in_stock.value;
+    }
+};
+
 // Returns every recipe that requires a given ingredient
 export const getRecipesWith = (recipe_data, ingredient_name) => {
     return recipe_data.filter((recipe) => {

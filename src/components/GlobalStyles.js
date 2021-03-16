@@ -114,7 +114,9 @@ const GlobalStyles = createGlobalStyle`
         filter: blur(3px);
     }
 
-    .content.no_scroll>.confirmation_overlay {
+    .content.no_scroll>.confirmation_overlay,
+    .content.no_scroll>.step_by_step_overlay
+     {
         filter: blur(0px);
     }
 

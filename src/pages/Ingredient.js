@@ -13,6 +13,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import RecipeLine from '../components/feed/RecipeLine';
 import { getRecipesWith } from '../helperFunctions';
+import { Button } from 'semantic-ui-react';
+import {faChartLine} from '@fortawesome/free-solid-svg-icons';
+import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 
 
 const Ingredient = ({
@@ -243,6 +246,8 @@ const Ingredient = ({
 
     console.log(newOrderDetails);
 
+    const categories = ingredient.categories.map((category) => {return category.name});
+
 
     return (
         <div className={`content ${isContentScrollBlocked ? 'no_scroll' : ''}`}>
@@ -274,36 +279,46 @@ const Ingredient = ({
                 <StyledPhoto>
                     <div className="gradient_overlay"></div>
                     <img src={ingredient.image} alt={`${ingredient.name} image`}/>
+                    
                     <div className="ingredient_name">
-                        <h2>Ingredient: <span>{ingredient.name}</span></h2>
-                    </div>
-                    <div className="main_details">
-                        <p><span>5</span> recipes</p>
-                        <p>|</p>
-                        <p><span>240</span>/? calories</p>
-                        <p>|</p>
-                        <p>On auto-order: <span>Yes</span></p>
+                        <div className="favourite_container">
+                            <h2>{ingredient.name}</h2>
+                        </div>
+                        <h5>{categories.flat().join(' • ')}</h5>
                     </div>
                 </StyledPhoto>
+                <StyledHr></StyledHr>
+                <StyledMainDetails>
+                    <div>Recipes: <span>5</span></div>
+                    <div>|</div>
+                    <div>Nutrition info: <span>240</span> calories/{ingredient.unit}</div>
+                    <div>|</div>
+                    <div>Auto-order: <span>Yes</span></div>
+                    <div>|</div>
+                    <div> Allergy-safe: <span>Yes</span></div>
+                </StyledMainDetails>
+                <StyledHr></StyledHr>
                 <StyledDescription>
                     <h3>Ingredient short description</h3>
-                    <h5 className="to_do">sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
+                    <h5>sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
                 </StyledDescription>
+                <StyledButtons>    
+                    <Link to={`/ingredient_stats/${ingredient.name}`}>
+                        <Button name="" id=""><FontAwesomeIcon icon={faChartLine} />Stats</Button>
+                    </Link>
+                    <Button name="" id="" onClick={e => showNewOrder(e.target.value)}><FontAwesomeIcon icon={faShoppingCart} />Order ingredient</Button>
+                    <Button className="to_do" name="" id="">Order history (opens pop-up)</Button>
+                </StyledButtons>
+                <StyledHr></StyledHr>
                 <StyledDetails>
-                    <h3>Categories:</h3>
-                    {
-                        ingredient.categories.map((category) => {
-                            return (<h5>{category.name}</h5>)
-                        })
-                    }
-                    <h3>Nutritional value:</h3>
-                    <h5 className="to_do">240 cal/?</h5>
                     <h3>Restrictions and alerts:</h3>
                     <h5 className="to_do">Diet: Non-vegetarian</h5>
                     <h5 className="to_do">Allergies and intolerances: Fish</h5>
+                    <StyledSmallHr></StyledSmallHr>
                     <h3>Typical expiration date:</h3>
                     <h5 className="to_do">1 year</h5>
                     <h5>(has implications on how stock management should be performed.. and should be abstracted for now)</h5>
+                    <StyledSmallHr></StyledSmallHr>
                     <h3>Incoming orders:</h3>
                     {
                         incoming_ingredient_orders.length > 0 ?
@@ -317,6 +332,7 @@ const Ingredient = ({
                 <StyledDetails>
                     <h3>Current stock:</h3>
                     <h5>{ingredient.in_stock.value}{ingredient.unit}</h5>
+                    <StyledSmallHr></StyledSmallHr>
                     <h3>Automatic stock management:</h3>
                     <h3>Minimum stock:<FontAwesomeIcon icon={faInfoCircle} /></h3>
                     <h5>{ingredient.minimum_stock.value}{ingredient.unit} {ingredient.minimum_stock.value != ingredient.minimum_stock.new_value ? `(new value: ${ingredient.minimum_stock.new_value}${ingredient.unit})` : ''}</h5>
@@ -334,16 +350,12 @@ const Ingredient = ({
                         <button name="" id="" className={`${(ingredient.minimum_stock.value != ingredient.minimum_stock.new_value) || (ingredient.default_order_quantity.value != ingredient.default_order_quantity.new_value) || (ingredient.auto_order.value != ingredient.auto_order.new_value) ? '' : 'hide'}`} onClick={onResetStockChangesHandler}>Reset changes</button>
                     </StyledStockButtons>
                 </StyledDetails>
+                <StyledHr></StyledHr>
                 <StyledFeed>
                     <StyledFeedHeader>Recipes with {ingredient.name}</StyledFeedHeader>
                     <RecipeLine 
                         data={getRecipesWith(recipeData, ingredient_name)} />
                 </StyledFeed>
-                <button name="" id="" onClick={e => showNewOrder(e.target.value)}>Order ingredient (opens pop-up)</button>
-                <button className="to_do" name="" id="">Order history (opens pop-up)</button>
-                <Link to={`/ingredient_stats/${ingredient.name}`}>
-                    <button name="" id="">Stats (changes page)</button>
-                </Link>
             </StyledIngredient>
             <NewOrder
                 isNewOrderOpen={isNewOrderOpen}
@@ -367,6 +379,20 @@ const Ingredient = ({
     )
 }
 
+const StyledHr = styled.hr`
+    width: 100%;
+    margin: 1rem;
+    border: 1px solid #2b2b2b;
+`
+
+const StyledSmallHr = styled.hr`
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #2b2b2b;
+`
+
+
 const StyledIngredient = styled.div`
     display: flex;
     flex-direction: row;
@@ -380,7 +406,7 @@ const StyledIngredient = styled.div`
 const StyledPhoto = styled.div`
     position: relative;
     width: calc(100vw - 10rem);
-    height: 40vh;
+    height: 25vh;
     img {
         position: absolute;
         display: block;
@@ -405,24 +431,33 @@ const StyledPhoto = styled.div`
     }
     .ingredient_name {
         position: absolute;
-        left: 0;
-        top: 50%;
+        left: 1rem;
+        /* bottom: 1rem; */
+        top: 4.25rem;
         display: flex;
         flex-direction: column;
+        padding-left: 1rem;
+        padding-right: 2rem;
         width: 100%;
         z-index: 5;
         h2 {
-            padding-left: 2.5rem;
-            display: block;
-            font-size: 1.5rem;
-            font-style: italic;
+            font-size: 2rem;
             text-transform: capitalize;
-            color: #b1b1b1;
+            color: white;
             z-index: 5;
+        }
+        h5 {
+            font-size: 1rem;
+            color: #b2b2b2;
         }
         span {
             font-size: 3rem;
             font-style: normal;
+        }
+        .favourite_container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
         }
     }
 
@@ -452,6 +487,28 @@ const StyledPhoto = styled.div`
     }
 `
 
+const StyledMainDetails = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    z-index: 4;
+    color: white;
+    p {
+        padding: 1rem;
+        font-size: 1rem;
+        font-style: italic;
+    }
+    p span {
+        font-size: 2rem;
+        color: white;
+        font-weight: 100;
+        font-style: normal;
+    }
+`
+
 const StyledStockButtons = styled.div`
     display: flex;
     justify-content: flex-start;
@@ -463,6 +520,24 @@ const StyledStockButtons = styled.div`
         padding: 0.5rem;
         &.hide {
             display: none;
+        }
+    }
+`
+
+const StyledButtons = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-family: GTAmericaRegular;
+    color: #b1b1b1;
+    button {
+        width: 16rem;
+        font-size: 0.85rem;
+        margin: 0.25rem;
+        padding: 1rem;
+        svg {
+            margin-right: 0.45rem;
+            height: 0.85rem;
         }
     }
 `
