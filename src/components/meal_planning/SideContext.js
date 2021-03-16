@@ -27,10 +27,18 @@ const SideContext = ({
                 <h5>{format(selectedDay, 'iiii')}</h5>
             </StyledDay>
             <StyledSideContext>
-                <h3>Expected meals</h3>
-                <h5>(this should change depending on whether the meals  
-                    have been served already or not)</h5>
-                <h5>Expected meals today: <span>16</span></h5>
+                {
+                    new Date(selectedDay) >= new Date() ?
+                    <div>
+                        <h3>Expected meals</h3>
+                        <h5>Total: <span>16</span></h5>
+                    </div>
+                    :
+                    <div>
+                        <h3>Served meals</h3>
+                        <h5>Total: <span>16</span></h5>
+                    </div>
+                }
                 <StyledMeal>
                     <div className="scheduled_recipe">
                         <h5>Tuna with Tuna</h5>
@@ -63,7 +71,7 @@ const SideContext = ({
                     <h5><span>1 serving</span> @ 20:00</h5>
                     <h5><span>2 servings</span> @ 23:00</h5>
                 </StyledMeal>
-                <StyledButtons>
+                {/* <StyledButtons>
                     {
                         new Date(addDays(selectedDay,1)) > new Date() ?
                         <div>
@@ -73,7 +81,7 @@ const SideContext = ({
                         :
                         <div></div>
                     }
-                </StyledButtons>
+                </StyledButtons> */}
             </StyledSideContext>
         </div>
     )

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
 
 const StepByStepOverlay = ({
@@ -68,7 +70,9 @@ const StepByStepOverlay = ({
                 </StyledInstructions>
             </StyledContent>
             <StyledCloseButton>
-                <button name="" id="" onClick={onHideStepByStepOverlay}>Close</button>
+                <button name="" id="" onClick={onHideStepByStepOverlay}>
+                    <FontAwesomeIcon icon={faTimes} />
+                </button>
             </StyledCloseButton>
             <StyledTimer>
                 {/* <button name="" id="">Activate timer</button> */}
@@ -145,8 +149,9 @@ const StyledCloseButton = styled.div`
     top: 0;
     right: 0;
     button {
-        font-size: 0.75rem;
+        font-size: 1rem;
         padding: 1rem;
+        border: none;
     }
 `
 

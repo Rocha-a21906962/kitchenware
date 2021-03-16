@@ -5,6 +5,8 @@ import { Icon, InlineIcon } from '@iconify/react';
 import alert16Regular from '@iconify/icons-fluent/alert-16-regular';
 import { getIngredientsInShortSupply, getRecipesInShortSupply } from '../helperFunctions';
 import { format } from 'date-fns';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
 
 const Alerts = ({
@@ -212,7 +214,9 @@ const Alerts = ({
                     <h3>Alerts</h3>
                 </StyledHeader>
                 <StyledCloseButton>
-                    <button name="" id="" onClick={onCloseAlertListHandler}>Close</button>
+                    <button name="" id="" onClick={onCloseAlertListHandler}>
+                        <FontAwesomeIcon icon={faTimes} />
+                    </button>
                 </StyledCloseButton>
                 <ul>
                 {
@@ -242,6 +246,7 @@ const Alerts = ({
     )
 }
 
+
 const StyledCloseButton = styled.div`
     position: absolute;
     top: 0;
@@ -249,6 +254,12 @@ const StyledCloseButton = styled.div`
     button {
         font-size: 0.5rem;
         padding: 0.25rem;
+        border: none;
+        svg {
+            color: #b2b2b2;
+            height: 0.75rem;
+            width: 0.75rem!important;
+        }
     }
 `
 

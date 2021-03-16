@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Icon, InlineIcon } from '@iconify/react';
 import { format } from "date-fns";
 import formPrevious from '@iconify-icons/grommet-icons/form-previous';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faTrash} from '@fortawesome/free-solid-svg-icons';
 
 const OrderDetail = ({
     isOrderDetailOpen,
@@ -227,14 +229,14 @@ const OrderDetail = ({
                                                 <h5 className="ingredient_name">{ingredient.name}</h5>
                                                 <div className="ingredient_quantity"><span>{ingredient.new_quantity} kg</span></div>
                                                 <button name="" id="" value={ingredient.name} className={`${(ingredient.editing == true || is_order_delivered_already) ? 'hide' : ''}`} onClick={onEditIngredientQuantityHandler}>Edit</button>
-                                                <button name="" id="" value={ingredient.name} className={`${ingredient.editing == false ? 'hide' : ''}`} onClick={onConfirmIngredientQuantityHandler}>Confirm</button>
+                                                <button name="" id="" value={ingredient.name} className={`${ingredient.editing == false ? 'hide' : ''}`} onClick={onConfirmIngredientQuantityHandler}>Done</button>
                                             </div>
                                             <div className={`quantity_input ${ingredient.editing == false ? 'hide' : ''}`} >
                                                 {
                                                     new Date(selectedOrderDetails.delivery_on) >= new Date() ?
                                                     [
                                                         <input type="range" min="0.1" max="10" step="0.1" name={ingredient.name} value={ingredient.new_quantity} onChange={onIngredientQuantityChangeHandler} />,
-                                                        <button name="" value={ingredient.name} id="" onClick={onRemoveIngredientHandler}>Remove</button>
+                                                        <button name="" value={ingredient.name} id="" className="no_border" onClick={onRemoveIngredientHandler}><FontAwesomeIcon icon={faTrash} /></button>
                                                     ]
                                                     :
                                                     ''
@@ -265,12 +267,12 @@ const OrderDetail = ({
                                 selectedOrderDetails.ingredients.length > 0 ?
                                 [
                                     <button name="" id="" onClick={onConfirmOrderChangesHandler}>Confirm changes</button>,
-                                    <button name="" id="">Change delivery date</button>,
+                                    // <button name="" id="">Change delivery date</button>,
                                     <button name="" id="" onClick={onCancelOrderHandler}>Cancel order</button>
                                 ]
                                 :
                                 [
-                                    <button name="" id="">Change delivery date</button>,
+                                    // <button name="" id="">Change delivery date</button>,
                                     <button name="" id="" onClick={onCancelOrderHandler}>Cancel order</button>
                                 ]
                                 :
@@ -289,7 +291,7 @@ const OrderDetail = ({
 
 const StyledAddButton = styled.div`
     button {
-        width: 50%;
+        width: 8rem;
         font-size: 0.75rem;
         line-height: 0rem;
         white-space: nowrap;
@@ -301,7 +303,21 @@ const StyledAddButton = styled.div`
         margin-left: auto;
     }
     select {
-        height: 1.5rem;
+        /* height: 1.5rem; */
+        
+        font-size: 0.65rem;
+        width: 8rem;
+        height: 2rem;
+        line-height: 0rem;
+        margin-right: auto;
+        text-align-last: center;
+        border-radius: 0;
+        /* border: #b1b1b1 1px solid;
+        color: #b1b1b1; */
+        background-color: transparent;
+        border: #b2b2b2 1px solid;
+        color: #b2b2b2;
+        border-radius: 0.25rem;
     }
     .hide {
         display: none;
@@ -394,6 +410,9 @@ const StyledIngredient = styled.div`
         line-height: 0rem;
         white-space: nowrap;
         padding: 1rem;
+    }
+    .no_border {
+        border: none;
     }
 `
 

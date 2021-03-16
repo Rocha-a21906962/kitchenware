@@ -5,7 +5,7 @@ const recipes = () => {
     return [
         {
             name: 'tuna recipe 1',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
+            image: '',
             servings: 4,
             categories : [
                 {
@@ -32,18 +32,6 @@ const recipes = () => {
                     unit: 'ts',
                 },
             ],
-            minimum_availability : {
-                value: 20,
-                new_value: 20,
-                min_input: 0,
-                max_input: 100,
-                step: 1,
-            },
-            auto_order_ingredients : {
-                value: false,
-                new_value: false,
-            },
-            is_favourite: false,
             preparation_time: 30,
             cooking_time: 60,
             steps: [
@@ -77,8 +65,22 @@ const recipes = () => {
                     time: 2,
                     description: "Carve the beef thinly and pour the gravy into a warm jug. Serve with Yorkshire Puddings and steamed chard."
                 },
-            ],
+            ], 
+            servings: 4,
+            minimum_availability : {
+                value: 20,
+                new_value: 20,
+                min_input: 0,
+                max_input: 100,
+                step: 1,
+            },
+            auto_order_ingredients : {
+                value: false,
+                new_value: false,
+            },
         },
+
+
         {
             name: 'cod recipe 1',
             image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',

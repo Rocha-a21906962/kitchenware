@@ -218,7 +218,7 @@ const NewOrder = ({
                                                 <h5 className="ingredient_name">{ingredient.name}</h5>
                                                 <div className="ingredient_quantity"><span>{ingredient.new_quantity} kg</span></div>
                                                 <button name="" id="" value={ingredient.name} className={`${ingredient.editing == true ? 'hide' : ''}`} onClick={onEditIngredientQuantityHandler}>Edit</button>
-                                                <button name="" id="" value={ingredient.name} className={`${ingredient.editing == false ? 'hide' : ''}`} onClick={onConfirmIngredientQuantityHandler}>Confirm</button>
+                                                <button name="" id="" value={ingredient.name} className={`${ingredient.editing == false ? 'hide' : ''}`} onClick={onConfirmIngredientQuantityHandler}>Done</button>
                                             </div>
                                             <div className={`quantity_input ${ingredient.editing == false ? 'hide' : ''}`} >
                                                 <input type="range" min="0.1" max="10" step="0.1" name={ingredient.name} value={ingredient.new_quantity} onChange={onIngredientQuantityChangeHandler} />
@@ -248,7 +248,7 @@ const NewOrder = ({
                                 newOrderDetails.ingredients.length > 0 ?
                                 [
                                     <button name="" id="" onClick={onPlaceNewOrderHandler}>Place order</button>,
-                                    <button name="" id="">Change delivery date</button>
+                                    // <button name="" id="">Change delivery date</button>
                                 ]
                                 :
                                 null
@@ -267,7 +267,7 @@ const NewOrder = ({
 
 const StyledAddButton = styled.div`
     button {
-        width: 50%;
+        width: 8rem;
         font-size: 0.75rem;
         line-height: 0rem;
         white-space: nowrap;
@@ -279,7 +279,21 @@ const StyledAddButton = styled.div`
         margin-left: auto;
     }
     select {
-        height: 1.5rem;
+        /* height: 1.5rem; */
+        
+        font-size: 0.65rem;
+        width: 8rem;
+        height: 2rem;
+        line-height: 0rem;
+        margin-right: auto;
+        text-align-last: center;
+        border-radius: 0;
+        /* border: #b1b1b1 1px solid;
+        color: #b1b1b1; */
+        background-color: transparent;
+        border: #b2b2b2 1px solid;
+        color: #b2b2b2;
+        border-radius: 0.25rem;
     }
     .hide {
         display: none;

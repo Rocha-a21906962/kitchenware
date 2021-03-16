@@ -51,13 +51,13 @@ const StyledCell = styled.div`
         position: relative;
         display: flex;
         /* margin: 0.15rem; */
-        margin-right: 1.7rem;
+        margin-right: 0.7rem;
         align-items: center;
         height: 24vh;
     }
     a img {
         height: 24vh;
-        width: 18vw;
+        width: 24vw;
         object-fit: cover;
         border-radius: 0.25rem;
     }

@@ -336,7 +336,6 @@ const Recipe = ({
                             </StyledCookingTime>
                         </StyledTimes>
                     </div>
-                    <button name="" id="">Set as favourite</button>
                 </StyledPhoto>
                 <StyledHr></StyledHr>
                 <StyledMainDetails>
@@ -503,8 +502,7 @@ const StyledPhoto = styled.div`
         display: flex;
         flex-direction: column;
         padding-left: 1rem;
-        padding-right: 2rem;
-        width: 100%;
+        width: calc(100vw - 11rem);
         z-index: 5;
         h2 {
             font-size: 2rem;

@@ -128,6 +128,7 @@ const GlobalStyles = createGlobalStyle`
         flex-direction: column;
         height: 90vh;
         width: calc(100vw - 60vw - 10rem);
+        box-shadow: 3px 3px 4px 3px #555;
     }
 
     #order_detail_popup,
@@ -141,6 +142,7 @@ const GlobalStyles = createGlobalStyle`
         flex-direction: column;
         height: 90vh;
         width: 24vw;
+        box-shadow: 3px 3px 4px 3px #555;
         opacity: 0;
         transform: translateY(-90vh);
         // transform: translateX(30vw);
