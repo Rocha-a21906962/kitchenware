@@ -19,7 +19,7 @@ const SearchFilters = ({
     console.log("ingredientSearchFilters");
     console.log(ingredientSearchFilters);
 
-    const toggleSearchTarget = () => {
+    const toggleSearchTarget = (event) => {
         const new_target = (searchTarget === 'recipes') ? 'ingredients' : 'recipes';
         setSearchTarget(new_target);
     };
@@ -163,8 +163,8 @@ const SearchFilters = ({
                         <StyledFiltersSection>
                             <h5>Type</h5>
                             <StyledFilterCategory>
-                                <button name="" id="" className={`${searchTarget === 'recipes' ? 'active' : ''}`} onClick={toggleSearchTarget}>recipes</button>
-                                <button name="" id="" className={`${searchTarget === 'ingredients' ? 'active' : ''}`} onClick={toggleSearchTarget}>ingredients</button>
+                                <button name="" id="" value="recipes" className={`${searchTarget === 'recipes' ? 'active' : ''}`} onClick={toggleSearchTarget}>recipes</button>
+                                <button name="" id="" value="ingredients" className={`${searchTarget === 'ingredients' ? 'active' : ''}`} onClick={toggleSearchTarget}>ingredients</button>
                             </StyledFilterCategory>
                             <h5>Stock status</h5>
                             <StyledFilterCategory>

@@ -2,7 +2,7 @@
     background-color: #2d3436;
     width: calc(100vw - 10px);
     height: calc(100vh - 10px);
-    border-radius: 5px;
+    /* border-radius: 5px; */
     padding: 10px;
     box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.1);
 }

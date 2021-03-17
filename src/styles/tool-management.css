@@ -22,9 +22,13 @@
     grid-gap: 20px;
 }
 
-h3 {
+.grid3slots h3 {
     margin: 10px 0;
 }
+
+/* h3 {
+    margin: 10px 0;
+} */
 
 p {
     font-size: 13px;

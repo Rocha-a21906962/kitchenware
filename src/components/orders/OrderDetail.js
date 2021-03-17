@@ -234,7 +234,7 @@ const OrderDetail = ({
                                                         new Date(selectedOrderDetails.delivery_on) >= new Date() ?
                                                         [
                                                             <input type="range" min="0.1" max="10" step="0.1" name={ingredient.name} value={ingredient.new_quantity} onChange={onIngredientQuantityChangeHandler} />,
-                                                            <button name="" value={ingredient.name} id="" className="no_border" onClick={onRemoveIngredientHandler}><FontAwesomeIcon icon={faTrash} /></button>
+                                                            <button name="" value={ingredient.name} id="" onClick={onRemoveIngredientHandler}>Remove</button>
                                                         ]
                                                         :
                                                         ''

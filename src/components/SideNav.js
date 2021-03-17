@@ -83,22 +83,6 @@ const SideNav = () => {
                     </Link>
                 </StyledSideNavButton>
             </li>
-            <li>
-                <StyledSideNavButton>
-                    <Link to="/favourites">
-                        <Icon icon={favoriteSolid} />
-                        <h5>Favourites</h5>
-                    </Link>
-                </StyledSideNavButton>
-            </li>
-            <li>
-                <StyledSideNavButton>
-                    <Link to="/feed">
-                        <Icon icon={bxQuestionMark} />
-                        <h5>Feed test</h5>
-                    </Link>
-                </StyledSideNavButton>
-            </li>
             
         {/*
         <ToolManagement />

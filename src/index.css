@@ -15,7 +15,7 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
-  background-color: #1e453e;
+  /* background-color: #1e453e; */
   background-image: linear-gradient(314deg, #1e453e 0%, #182c25 74%);
   background-repeat: no-repeat;
   background-attachment: fixed;

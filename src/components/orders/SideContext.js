@@ -138,7 +138,7 @@ const SideContext = ({
                         new Date(addDays(selectedDay,1)) > new Date() ?
                         <div>
                             <button name="" id="" value="regular" onClick={e => showNewOrder(e.target.value)}>Place new order for delivery on {format(selectedDay, 'd MMMM')}</button>
-                            <button name="" id="" value="periodic" onClick={e => showNewOrder(e.target.value)}>Schedule new order for delivery every {format(selectedDay, 'iiii')}</button>
+                            {/* <button name="" id="" value="periodic" onClick={e => showNewOrder(e.target.value)}>Schedule new order for delivery every {format(selectedDay, 'iiii')}</button> */}
                         </div>
                         :
                         <div></div>

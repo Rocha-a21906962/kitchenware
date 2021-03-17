@@ -17,253 +17,223 @@ import { getRecipesWith, getOrdersWith, filterIngredients, filterRecipes } from 
 
 const data1 = [
 	{
-		month: "Jan",
-		city: "Tokyo",
-		temperature: 7
+		day: "Mar 1",
+		city: "stock quantity",
+		qty: 7
 	},
 	{
-		month: "Feb",
-		city: "Tokyo",
-		temperature: 13
+		day: "Mar 2",
+		city: "stock quantity",
+		qty: 13
 	},
 	{
-		month: "Mar",
-		city: "Tokyo",
-		temperature: 16.5
+		day: "Mar 3",
+		city: "stock quantity",
+		qty: 16.5
 	},
 	{
-		month: "Apr",
-		city: "Tokyo",
-		temperature: 14.5
+		day: "Mar 4",
+		city: "stock quantity",
+		qty: 14.5
 	},
 	{
-		month: "May",
-		city: "Tokyo",
-		temperature: 10
+		day: "Mar 5",
+		city: "stock quantity",
+		qty: 10
 	},
 	{
-		month: "Jun",
-		city: "Tokyo",
-		temperature: 7.5
+		day: "Mar 6",
+		city: "stock quantity",
+		qty: 7.5
 	},
 	{
-		month: "Jul",
-		city: "Tokyo",
-		temperature: 9.2
+		day: "Mar 7",
+		city: "stock quantity",
+		qty: 9.2
 	},
 	{
-		month: "Aug",
-		city: "Tokyo",
-		temperature: 14.5
+		day: "Mar 8",
+		city: "stock quantity",
+		qty: 14.5
 	},
 	{
-		month: "Sep",
-		city: "Tokyo",
-		temperature: 9.3
+		day: "Mar 9",
+		city: "stock quantity",
+		qty: 9.3
 	},
 	{
-		month: "Oct",
-		city: "Tokyo",
-		temperature: 8.3
+		day: "Mar 10",
+		city: "stock quantity",
+		qty: 8.3
 	},
 	{
-		month: "Nov",
-		city: "Tokyo",
-		temperature: 8.9
+		day: "Mar 11",
+		city: "stock quantity",
+		qty: 8.9
 	},
 	{
-		month: "Dec",
-		city: "Tokyo",
-		temperature: 5.6
+		day: "Mar 12",
+		city: "stock quantity",
+		qty: 5.6
+	},
+	{
+		day: "Mar 13",
+		city: "stock quantity",
+		qty: 5.6
+	},
+	{
+		day: "Mar 14",
+		city: "stock quantity",
+		qty: 5.6
 	},
 ];
 
 
 const data2 = [
 	{
-		month: "Jan",
-		city: "Tokyo",
-		temperature: 3.9
+		day: "Mar 1",
+		city: "daily usage",
+		qty: 3.9
 	},
 	{
-		month: "Feb",
-		city: "Tokyo",
-		temperature: 4.2
+		day: "Mar 2",
+		city: "daily usage",
+		qty: 4.2
 	},
 	{
-		month: "Mar",
-		city: "Tokyo",
-		temperature: 5.7
+		day: "Mar 3",
+		city: "daily usage",
+		qty: 5.7
 	},
 	{
-		month: "Apr",
-		city: "Tokyo",
-		temperature: 8.5
+		day: "Mar 4",
+		city: "daily usage",
+		qty: 8.5
 	},
 	{
-		month: "May",
-		city: "Tokyo",
-		temperature: 11.9
+		day: "Mar 5",
+		city: "daily usage",
+		qty: 11.9
 	},
 	{
-		month: "Jun",
-		city: "Tokyo",
-		temperature: 15.2
+		day: "Mar 6",
+		city: "daily usage",
+		qty: 15.2
 	},
 	{
-		month: "Jul",
-		city: "Tokyo",
-		temperature: 17
+		day: "Mar 7",
+		city: "daily usage",
+		qty: 14
 	},
 	{
-		month: "Aug",
-		city: "Tokyo",
-		temperature: 16.6
+		day: "Mar 8",
+		city: "daily usage",
+		qty: 16.6
 	},
 	{
-		month: "Sep",
-		city: "Tokyo",
-		temperature: 14.2
+		day: "Mar 9",
+		city: "daily usage",
+		qty: 14.2
 	},
 	{
-		month: "Oct",
-		city: "Tokyo",
-		temperature: 10.3
+		day: "Mar 10",
+		city: "daily usage",
+		qty: 10.3
 	},
 	{
-		month: "Nov",
-		city: "Tokyo",
-		temperature: 5.6
+		day: "Mar 11",
+		city: "daily usage",
+		qty: 5.6
 	},
 	{
-		month: "Dec",
-		city: "Tokyo",
-		temperature: 9.8
-	}
+		day: "Mar 12",
+		city: "daily usage",
+		qty: 9.8
+	},
+	{
+		day: "Mar 13",
+		city: "daily usage",
+		qty: 4.3
+	},
+	{
+		day: "Mar 14",
+		city: "daily usage",
+		qty: 4.1
+	},
 ];
 
 
 const data3 = [
 	{
-		month: "Jan",
-		city: "Tokyo",
-		temperature: 7
+		day: "Mar 1",
+		city: "meals per day",
+		qty: 9.9
 	},
 	{
-		month: "Jan",
-		city: "London",
-		temperature: 3.9
+		day: "Mar 2",
+		city: "meals per day",
+		qty: 7.2
 	},
 	{
-		month: "Feb",
-		city: "Tokyo",
-		temperature: 13
+		day: "Mar 3",
+		city: "meals per day",
+		qty: 6.7
 	},
 	{
-		month: "Feb",
-		city: "London",
-		temperature: 4.2
+		day: "Mar 4",
+		city: "meals per day",
+		qty: 8.5
 	},
 	{
-		month: "Mar",
-		city: "Tokyo",
-		temperature: 16.5
+		day: "Mar 5",
+		city: "meals per day",
+		qty: 11.9
 	},
 	{
-		month: "Mar",
-		city: "London",
-		temperature: 5.7
+		day: "Mar 6",
+		city: "meals per day",
+		qty: 8.2
 	},
 	{
-		month: "Apr",
-		city: "Tokyo",
-		temperature: 14.5
+		day: "Mar 7",
+		city: "meals per day",
+		qty: 7
 	},
 	{
-		month: "Apr",
-		city: "London",
-		temperature: 8.5
+		day: "Mar 8",
+		city: "meals per day",
+		qty: 9.6
 	},
 	{
-		month: "May",
-		city: "Tokyo",
-		temperature: 10
+		day: "Mar 9",
+		city: "meals per day",
+		qty: 6.2
 	},
 	{
-		month: "May",
-		city: "London",
-		temperature: 11.9
+		day: "Mar 10",
+		city: "meals per day",
+		qty: 4.3
 	},
 	{
-		month: "Jun",
-		city: "Tokyo",
-		temperature: 7.5
+		day: "Mar 11",
+		city: "meals per day",
+		qty: 5.6
 	},
 	{
-		month: "Jun",
-		city: "London",
-		temperature: 15.2
+		day: "Mar 12",
+		city: "meals per day",
+		qty: 7.8
 	},
 	{
-		month: "Jul",
-		city: "Tokyo",
-		temperature: 9.2
+		day: "Mar 13",
+		city: "meals per day",
+		qty: 3.3
 	},
 	{
-		month: "Jul",
-		city: "London",
-		temperature: 17
+		day: "Mar 14",
+		city: "meals per day",
+		qty: 2.1
 	},
-	{
-		month: "Aug",
-		city: "Tokyo",
-		temperature: 14.5
-	},
-	{
-		month: "Aug",
-		city: "London",
-		temperature: 16.6
-	},
-	{
-		month: "Sep",
-		city: "Tokyo",
-		temperature: 9.3
-	},
-	{
-		month: "Sep",
-		city: "London",
-		temperature: 14.2
-	},
-	{
-		month: "Oct",
-		city: "Tokyo",
-		temperature: 8.3
-	},
-	{
-		month: "Oct",
-		city: "London",
-		temperature: 10.3
-	},
-	{
-		month: "Nov",
-		city: "Tokyo",
-		temperature: 8.9
-	},
-	{
-		month: "Nov",
-		city: "London",
-		temperature: 5.6
-	},
-	{
-		month: "Dec",
-		city: "Tokyo",
-		temperature: 5.6
-	},
-	{
-		month: "Dec",
-		city: "London",
-		temperature: 9.8
-	}
 ];
 
 
@@ -389,7 +359,7 @@ const IngredientStats = ({
                             <LineChart 
                                 data={chartData}
                                 height={250}
-                                position="month*temperature" //{"day*quantity"}
+                                position="day*qty" //{"day*quantity"}
                                 color="city" //{"stock quantity"} 
                                 />
                         </div>
