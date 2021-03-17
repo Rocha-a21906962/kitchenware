@@ -42,7 +42,3 @@ const ToolManagement = () => {
 }
 
 export default ToolManagement;
-
-const Paragraph = styled.p`
-  all: revert;
-`;

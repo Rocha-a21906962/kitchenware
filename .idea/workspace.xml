@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="516906c4-e322-42d8-82e8-8b8a4b29bf4a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EventPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EventPopup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SideNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SideNav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/DeviceManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DeviceManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Alerts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Alerts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/ToolManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ToolManagement.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
