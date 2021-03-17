@@ -35,18 +35,16 @@ const RecipeCategories = ({
                     setSelectedCategory={setSelectedCategory} />
                 <StyledFeedHeader>Selected category: {selectedCategory}</StyledFeedHeader>
                 <LargeRecipeLine data={categoryRecipes} />
-                
-                <StyledFeedHeader>Upcoming meals</StyledFeedHeader>
+                <StyledFeedHeader>Quick to prepare</StyledFeedHeader>
                 <RecipeLine data={recipeData} />
-                
+                <StyledFeedHeader>Ready to cook</StyledFeedHeader>
+                <RecipeLine data={recipeData} />
                 <StyledFeedHeader>All Recipes</StyledFeedHeader>
                 <RecipeLine data={recipeData} />
 
-                <StyledFeedHeader>Quick to prepare</StyledFeedHeader>
-                <RecipeLine data={recipeData} />
-                <StyledFeedHeader>Ready to cook (every ingredient in stock)</StyledFeedHeader>
-                <RecipeLine data={recipeData} />
-                <StyledFeedHeader>Last cooked</StyledFeedHeader>
+                {/* <StyledFeedHeader>Upcoming meals</StyledFeedHeader>
+                <RecipeLine data={recipeData} /> */}
+                {/* <StyledFeedHeader>Last cooked</StyledFeedHeader>
                 <RecipeLine data={recipeData} />
                 <StyledFeedHeader>About to expire</StyledFeedHeader>
                 <RecipeLine data={recipeData} />
@@ -63,7 +61,7 @@ const RecipeCategories = ({
                 <StyledFeedHeader>Vegan</StyledFeedHeader>
                 <RecipeLine data={recipeData} />
                 <StyledFeedHeader>Seafood's finest</StyledFeedHeader>
-                <RecipeLine data={recipeData} />
+                <RecipeLine data={recipeData} /> */}
             </div>
         
             {/* <div className="recipe_categories">

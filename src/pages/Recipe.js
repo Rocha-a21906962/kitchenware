@@ -368,7 +368,7 @@ const Recipe = ({
                     <h5>{numberServings} {numberServings != recipe.servings ? `(default: ${recipe.servings})` : ""}</h5> 
                     <input type="range" min="2" max="12" step="1" value={numberServings} className="servings_input" onChange={onNumberServingsChangeHandler} />
                     <StyledSmallHr></StyledSmallHr>
-                    <h3>Ingredient list:</h3>
+                    <h3>Ingredient list</h3>
                     {
                         recipe.ingredients.map((ingredient) => {
                             if (ingredient.unit === 'g') {
@@ -428,7 +428,7 @@ const Recipe = ({
                     <h3>Total time:</h3>
                     <h5>{TotalRecipeTime()}</h5>  */}
                     {/* <button name="" id="" onClick={onShowStepByStepOverlay}>Step-by-step mode button</button> */}
-                    <h3>Instructions:</h3>
+                    <h3>Instructions</h3>
                     {
                         recipe.steps.map((step) => {
                         return (<p>Step {step.number} - {step.description}</p>)

@@ -384,21 +384,21 @@ const IngredientStats = ({
                     <h5>11 days</h5>
                 </StyledDetails>
                 <StyledDetails>
-                <StyledChart>
-                    <div id="chart_1" className={`chart ${visibleChart != "1" ? 'hide' : ''}`}>
-                        <LineChart 
-                            data={chartData}
-                            height={250}
-                            position="month*temperature" //{"day*quantity"}
-                            color="city" //{"stock quantity"} 
-                            />
-                    </div>
-                    <div className="chart_buttons">
-                        <button name="" value="1" onClick={onToggleVisibleChart}>Stock qty</button>
-                        <button name="" value="2" onClick={onToggleVisibleChart}>Daily usage</button>
-                        <button name="" value="3" onClick={onToggleVisibleChart}>Meals per day</button>
-                    </div>
-                </StyledChart>
+                    <StyledChart>
+                        <div id="chart_1" className={`chart ${visibleChart != "1" ? 'hide' : ''}`}>
+                            <LineChart 
+                                data={chartData}
+                                height={250}
+                                position="month*temperature" //{"day*quantity"}
+                                color="city" //{"stock quantity"} 
+                                />
+                        </div>
+                        <div className="chart_buttons">
+                            <button name="" value="1" onClick={onToggleVisibleChart}>Stock qty</button>
+                            <button name="" value="2" onClick={onToggleVisibleChart}>Daily usage</button>
+                            <button name="" value="3" onClick={onToggleVisibleChart}>Meals per day</button>
+                        </div>
+                    </StyledChart>
                 </StyledDetails>
                 <StyledHr></StyledHr>
                 {/* <StockDetails />

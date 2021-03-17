@@ -192,19 +192,27 @@ const SearchFilters = ({
                             <StyledFilterCategory>
                                 <button name="" id="" value="fish" className={`${recipeSearchFilters.categories.includes('fish') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>fish</button>
                                 <button name="" id="" value="meat" className={`${recipeSearchFilters.categories.includes('meat') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>meat</button>
-                                <button name="" id="" value="vegan" className={`${recipeSearchFilters.categories.includes('vegan') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>vegan</button>
+                                <button name="" id="" value="soups" className={`${recipeSearchFilters.categories.includes('soups') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>soups</button>
+                                <button name="" id="" value="vegetarian" className={`${recipeSearchFilters.categories.includes('vegetarian') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>vegetarian</button>
                                 <button name="" id="" value="gluten free" className={`${recipeSearchFilters.categories.includes('gluten free') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>gluten free</button>
-                                <button name="" id="" value="halal" className={`${recipeSearchFilters.categories.includes('halal') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>halal</button>
-                                <button name="" id="" value="kids" className={`${recipeSearchFilters.categories.includes('kids') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>kids</button>
+                                {/* <button name="" id="" value="halal" className={`${recipeSearchFilters.categories.includes('halal') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>halal</button>
+                                <button name="" id="" value="kids" className={`${recipeSearchFilters.categories.includes('kids') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>kids</button> */}
+                                <button name="" id="" value="italian" className={`${recipeSearchFilters.categories.includes('italian') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>italian</button>
+                                <button name="" id="" value="japanese" className={`${recipeSearchFilters.categories.includes('japanese') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>japanese</button>
+                                <button name="" id="" value="mexican" className={`${recipeSearchFilters.categories.includes('mexican') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>mexican</button>
+                                <button name="" id="" value="portuguese" className={`${recipeSearchFilters.categories.includes('portuguese') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>portuguese</button>
+                                <button name="" id="" value="drinks" className={`${recipeSearchFilters.categories.includes('drinks') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>drinks</button>
+                                <button name="" id="" value="smoothies" className={`${recipeSearchFilters.categories.includes('smoothies') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>smoothies</button>
+                                {/* <button name="" id="" value="mediterranean" className={`${recipeSearchFilters.categories.includes('mediterranean') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'category')}>mediterranean</button> */}
                             </StyledFilterCategory>
-                            <h5>Cuisine</h5>
+                            {/* <h5>Cuisine</h5>
                             <StyledFilterCategory>
                                 <button name="" id="" value="italian" className={`${recipeSearchFilters.categories.includes('italian') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'cuisine')}>italian</button>
                                 <button name="" id="" value="japanese" className={`${recipeSearchFilters.categories.includes('japanese') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'cuisine')}>japanese</button>
                                 <button name="" id="" value="chinese" className={`${recipeSearchFilters.categories.includes('chinese') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'cuisine')}>chinese</button>
                                 <button name="" id="" value="portuguese" className={`${recipeSearchFilters.categories.includes('portuguese') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'cuisine')}>portuguese</button>
                                 <button name="" id="" value="mediterranean" className={`${recipeSearchFilters.categories.includes('mediterranean') ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'cuisine')}>mediterranean</button>
-                            </StyledFilterCategory>
+                            </StyledFilterCategory> */}
                         </StyledFiltersSection>
                         :
                         <StyledFiltersSection>
@@ -223,10 +231,21 @@ const SearchFilters = ({
                             <StyledFilterCategory>
                                 <button name="" id="" value="fish" className={`${ingredientSearchFilters.categories.includes('fish') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>fish</button>
                                 <button name="" id="" value="meat" className={`${ingredientSearchFilters.categories.includes('meat') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>meat</button>
-                                <button name="" id="" value="vegan" className={`${ingredientSearchFilters.categories.includes('vegan') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>vegan</button>
+                                <button name="" id="" value="vegetarian" className={`${ingredientSearchFilters.categories.includes('vegetarian') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>vegetarian</button>
                                 <button name="" id="" value="gluten free" className={`${ingredientSearchFilters.categories.includes('gluten free') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>gluten free</button>
-                                <button name="" id="" value="halal" className={`${ingredientSearchFilters.categories.includes('halal') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>halal</button>
-                                <button name="" id="" value="kids" className={`${ingredientSearchFilters.categories.includes('kids') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>kids</button>
+                                <button name="" id="" value="oil and vinegar" className={`${ingredientSearchFilters.categories.includes('oil and vinegar') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>oil and vinegar</button>
+                                <button name="" id="" value="healthy" className={`${ingredientSearchFilters.categories.includes('healthy') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>healthy</button>
+                                <button name="" id="" value="vegetables" className={`${ingredientSearchFilters.categories.includes('vegetables') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>vegetables</button>
+                                <button name="" id="" value="pasta" className={`${ingredientSearchFilters.categories.includes('pasta') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>pasta</button>
+                                <button name="" id="" value="condiments" className={`${ingredientSearchFilters.categories.includes('condiments') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>condiments</button>
+                                <button name="" id="" value="eggs and dairy products" className={`${ingredientSearchFilters.categories.includes('eggs and dairy products') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>eggs and dairy products</button>
+                                <button name="" id="" value="bread" className={`${ingredientSearchFilters.categories.includes('bread') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>bread</button>
+                                <button name="" id="" value="chicken" className={`${ingredientSearchFilters.categories.includes('chicken') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>chicken</button>
+                                <button name="" id="" value="fruit" className={`${ingredientSearchFilters.categories.includes('fruit') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>fruit</button>
+                                <button name="" id="" value="grains" className={`${ingredientSearchFilters.categories.includes('grains') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>grains</button>
+                                <button name="" id="" value="miscellaneous" className={`${ingredientSearchFilters.categories.includes('miscellaneous') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>miscellaneous</button>
+                                {/* <button name="" id="" value="halal" className={`${ingredientSearchFilters.categories.includes('halal') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>halal</button>
+                                <button name="" id="" value="kids" className={`${ingredientSearchFilters.categories.includes('kids') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>kids</button> */}
                             </StyledFilterCategory>
                             <h5>With incoming orders</h5>
                             <StyledFilterCategory>

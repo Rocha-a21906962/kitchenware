@@ -85,7 +85,7 @@ const ingredients = () => {
             name: 'vegetable oil',
             image: '/vegetable_oil.jpg', 
             calories_per_unit: 88,
-            unit: 'l',
+            unit:'L',
             categories : [
                 {
                     name: 'oil and vinegar',
@@ -349,7 +349,7 @@ const ingredients = () => {
             name: 'red wine vinegar',
             image: '/red_wine_vinegar.jpg', 
             calories_per_unit: 3,
-            unit: 'l',
+            unit:'L',
             categories : [
                 {
                     name: 'oil and vinegar',
@@ -683,7 +683,7 @@ const ingredients = () => {
             name: 'olive oil',
             image: '/olive_oil.jpg', 
             calories_per_unit: 119,
-            unit: 'l',
+            unit:'L',
             categories : [
                 {
                     name: 'oil and vinegar',
@@ -792,15 +792,15 @@ const ingredients = () => {
             name: 'Eggs',
             image: '/eggs.jpg', 
             calories_per_unit: 72,
-            unit: '',
+            unit: 'u',
             categories : [
                 {
                     name: 'eggs and dairy products',
                 },
             ],
             in_stock : {
-                value: 1,
-                new_value: 1,
+                value: 10,
+                new_value: 10,
                 min_input: 0,
                 max_input: 100,
                 step: 0.1,
@@ -842,8 +842,8 @@ const ingredients = () => {
 
             ],
             in_stock : {
-                value: 2,
-                new_value: 2,
+                value: 1.2,
+                new_value: 1.2,
                 min_input: 0,
                 max_input: 100,
                 step: 0.1,
@@ -1020,7 +1020,7 @@ const ingredients = () => {
             name: 'honey',
             image: '/honey.jpg', 
             calories_per_unit: 64,
-            unit: 'l',
+            unit:'L',
             categories : [
                 {
                     name: 'miscellaneous',
@@ -1056,7 +1056,7 @@ const ingredients = () => {
             name: 'Dijon mustard',
             image: '/dijon.webp', 
             calories_per_unit: 7,
-            unit: 'l',
+            unit:'L',
             categories : [
                 {
                     name: 'condiments',
@@ -1092,7 +1092,7 @@ const ingredients = () => {
             name: 'Mexican-style hot sauce',
             image: '/mexican_sauce.jpg', 
             calories_per_unit: 2,
-            unit: 'l',
+            unit:'L',
             categories : [
                 {
                     name: 'condiments',
@@ -1468,7 +1468,7 @@ const ingredients = () => {
             name: 'skimmed milk',
             image: '/milk.webp', 
             calories_per_unit: 0.35,
-            unit: 'ml',
+            unit: 'L',
             categories : [
                 {
                     name: 'eggs and dairy products',

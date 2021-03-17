@@ -139,7 +139,7 @@ export const getCaloriesFor = (ingredient_data, recipe) => {
             return ingredient_calories * recipe_ingredient.quantity;
         }
     });
-    return recipe_ingredients.reduce((a, b) => a + b, 0);
+    return Math.round(recipe_ingredients.reduce((a, b) => a + b, 0),0);
 };
 
 

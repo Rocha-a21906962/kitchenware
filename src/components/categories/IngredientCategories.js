@@ -176,7 +176,13 @@ const IngredientCategories = ({
                     selectedCategory={selectedCategory}
                     setSelectedCategory={setSelectedCategory} />
                 <StyledFeedHeader>
-                    Selected category: {selectedCategory}
+                    {
+                        /* temporary hack */
+                        selectedCategory === 'eggs and dairy products' ?
+                        "Selected category: eggs and dairy"
+                        :
+                        `Selected category: ${selectedCategory}`
+                    }
                     <StyledFilterSection>
                         {/* <label for="sort_by">Sort by</label> */}
                         <select name="sort_options" defaultValue="name_asc" id="sort_by" onChange={onChangeSortOptionButtonHandler}>Sort by
@@ -250,6 +256,14 @@ const StyledFilterSection = styled.div`
         color: #b2b2b2;
         border-radius: 0.25rem;
     }
+    option {
+        color: black;
+        background-color: #b2b2b2;
+        &::selected {
+            color: black;
+            background-color: #b2b2b2;
+        }
+    }
     button.active {
         color: white;
         background-color: #025202;
@@ -266,6 +280,8 @@ const StyledFeedHeader = styled.div`
     font-weight: bold;
     line-height: 4rem;
     padding-top: 2rem;
+    overflow-x: hidden;
+    white-space: nowrap;
 `
 
 const StyledHeader = styled.div`
