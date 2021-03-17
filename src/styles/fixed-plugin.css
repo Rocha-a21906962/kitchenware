@@ -1,0 +1,207 @@
+.fixed-plugin {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  line-height: 1.5em;
+  position: fixed;
+  right: 0;
+  width: 100px;
+  height: 75px;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1024;
+  border-radius: 8px 0 0 8px;
+  text-align: center;
+  top: 80px;
+}
+
+.fixed-plugin li > a {
+  transition: all 0.34s;
+  -webkit-transition: all 0.34s;
+  -moz-transition: all 0.34s;
+  text-decoration: none;
+}
+
+.fixed-plugin .fa-plug {
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 0 0 6px 6px;
+  width: auto;
+}
+
+.fixed-plugin .dropdown-menu {
+  top: 80px;
+  right: 100px;
+  left: auto;
+  width: 230px;
+  height: calc(100vh - 90px);
+  border-radius: 5px;
+  padding: 0 10px;
+  position: absolute;
+  color: rgba(0, 0, 0, 0.87);
+  display: inline-block;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  background: #bae0bd;
+  /*cor dos paineis por baixo #2d3436*/
+  border-radius: 5px;
+}
+
+.fixed-plugin .dropdown-menu > .active > a,
+.fixed-plugin .dropdown-menu > .active > a:hover,
+.fixed-plugin .dropdown-menu > .active > a:focus {
+  color: #777777;
+  text-align: center;
+}
+
+.fixed-plugin img {
+  border-radius: 0;
+  width: 100%;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.fixed-plugin .dropdown-menu li > a:hover,
+.fixed-plugin .dropdown-menu li > a:focus {
+  box-shadow: none;
+}
+
+.fixed-plugin h5 {
+  font-size: 14px;
+  margin: 10px;
+}
+.fixed-plugin .dropdown-menu li {
+  display: block;
+  padding: 4px 0px;
+  width: 50%;
+  float: left;
+}
+
+.fixed-plugin li.header-title {
+  text-transform: uppercase;
+  width: 100%;
+  height: 50px;
+  line-height: 25px;
+  font-size: 12px;
+  font-weight: 600;
+  min-height: inherit;
+  padding: 10px;
+  text-align: center;
+  color: #2d3436;
+}
+
+.fixed-plugin .dropdown-menu > li > a.img-holder {
+  font-size: 16px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #2d3436;
+  border: 3px solid #2d3436;
+  padding-left: 0;
+  padding-right: 0;
+  opacity: 1;
+  cursor: pointer;
+  display: block;
+  max-height: 100px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.fixed-plugin .dropdown-menu > li > a.img-holder img {
+  margin-top: auto;
+}
+.fixed-plugin .dropdown-menu > li:hover > a.img-holder,
+.fixed-plugin .dropdown-menu > li:focus > a.img-holder {
+  border-color: rgba(0, 242, 195, 0.53);
+}
+
+.fixed-plugin .dropdown-menu > .active > a.img-holder,
+.fixed-plugin .dropdown-menu > .active > a.img-holder {
+  border-color: #00f2c3;
+  background-color: #00f262;
+}
+.fixed-plugin .hide .dropdown-menu {
+  -webkit-transform: translateY(-15%);
+  -moz-transform: translateY(-15%);
+  -o-transform: translateY(-15%);
+  -ms-transform: translateY(-15%);
+  transform: translateY(-15%);
+  top: 27px;
+  opacity: 0;
+  transform-origin: 0 0;
+  display: none;
+  transition: .5s;
+}
+
+.fixed-plugin .hide .dropdown-menu:before {
+  border-bottom: 0.4em solid transparent;
+  border-left: 0.4em solid rgba(0, 0, 0, 0.2);
+  border-top: 0.4em solid transparent;
+  right: -16px;
+  top: 46px;
+}
+.fixed-plugin .hide .dropdown-menu:after {
+  border-bottom: 0.4em solid transparent;
+  border-left: 0.4em solid #2d3436;
+  border-top: 0.4em solid transparent;
+  right: -16px;
+}
+
+.fixed-plugin .hide .dropdown-menu:before,
+.fixed-plugin .hide .dropdown-menu:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 46px;
+  width: 16px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+}
+
+.fixed-plugin .show .dropdown-menu {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transform: translateY(-13%);
+  -moz-transform: translateY(-13%);
+  -o-transform: translateY(-13%);
+  -ms-transform: translateY(-13%);
+  transform: translateY(-13%);
+  transform-origin: 0 0;
+  transition: .5s;
+}
+
+.fixed-plugin .button {
+  background-color: white; /* Green */
+  border: none;
+  color: #4CAF50;
+  padding: 10px 30px 7px 30px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px;
+  font-family: "Poppins", SansSerif;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+}
+
+.fixed-plugin .button1 {
+  background-color: #4CAF50;
+  color: black;
+  border: 3px solid black;
+  border-radius: 5px;
+}
+
+.fixed-plugin .button1:hover {
+  background-color: white;
+  color: #4CAF50;
+}
+
+.fixed-plugin .fa-plus-square {
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+
+.fixed-plugin .button1:hover .fa-plus-square {
+  color: #4CAF50;
+  padding: 5px;
+  border-radius: 5px;
+}

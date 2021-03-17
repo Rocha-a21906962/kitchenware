@@ -176,7 +176,7 @@ const StyledSideNavButton = styled.div`
 const StyledSideNav = styled.nav`
     position: fixed;
     width: 10rem;
-    height: 90vh;
+    height: 100vh;
     float: left;
     top: 10vh;
     left: 0;

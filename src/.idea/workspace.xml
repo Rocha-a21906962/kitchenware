@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b4b8120d-0894-4a84-afda-6b8b7c68eec2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/GlobalCalendarStyles.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/GlobalCalendarStyles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/GlobalStyles.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/GlobalStyles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SideNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SideNav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/buttons/Plug.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/buttons/Plug.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/calendar/Calendar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/calendar/Day.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/calendar/Month.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/categories/IngredientCategories.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/categories/IngredientCategories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/categories/IngredientCell.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/categories/IngredientCell.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/categories/RecipeCategories.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/categories/RecipeCategories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/categories/StatCategories.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/categories/StatCategories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/meal_planning/MealDetail.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/meal_planning/MealPlanningCalendar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/meal_planning/NewMeal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/meal_planning/SideContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/orders/BottomContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/orders/NewOrder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/orders/OrderCalendar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/orders/OrderDetail.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/orders/SideContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/search/ListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/search/ListItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/search/ResultList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/search/ResultList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/search/SearchFilters.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/search/SearchFilters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ingredients.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/meal_planning.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/orders.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/recipe_categories.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/recipes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/sidebar-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/sidebar-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/sidebar-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/sidebar-4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Ingredient.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Ingredient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/IngredientList.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/IngredientList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/IngredientStats.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/IngredientStats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/MealsAndEvents.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/MealsAndEvents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Orders.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Orders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Recipe.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Recipe.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/RecipeFeed.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/RecipeFeed.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/RecipeStats.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/RecipeStats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Stats.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Stats.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1pqizgYpl5TdA5BODRdtlezZtuZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\franc\OneDrive\Ambiente de Trabalho\kitchenware\src" />
+      <recent name="C:\Users\franc\OneDrive\Ambiente de Trabalho\kitchenware\src\components" />
+      <recent name="C:\Users\franc\OneDrive\Ambiente de Trabalho\kitchenware\src\components\search" />
+      <recent name="C:\Users\franc\OneDrive\Ambiente de Trabalho\kitchenware\src\components\recipe" />
+      <recent name="C:\Users\franc\OneDrive\Ambiente de Trabalho\kitchenware\src\components\orders" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b4b8120d-0894-4a84-afda-6b8b7c68eec2" name="Default Changelist" comment="" />
+      <created>1615917284106</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615917284106</updated>
+      <workItem from="1615917285154" duration="11928000" />
+      <workItem from="1615974206394" duration="98000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

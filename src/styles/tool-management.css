@@ -1,0 +1,81 @@
+/*.ToolsContent {*/
+/*    background-color: #2d3436;*/
+/*    height: calc(100vh - 90px);*/
+/*    border-radius: 5px;*/
+/*    padding: 10px;*/
+/*    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+.content.tools {
+    left: 11rem;
+    background-color: transparent;
+}
+
+.ToolsContent {
+    width: calc(100% - 2rem);
+}
+
+.grid3slots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+h3 {
+    margin: 10px 0;
+}
+
+p {
+    font-size: 13px;
+    line-height: 21px;
+}
+
+.card-container {
+    background-color: #2d3436;
+    border-radius: 5px;
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.35);
+    color: #B3B8CD;
+    padding: 30px 0 0;
+    position: relative;
+    text-align: center;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.card-container .LowAlert {
+    color: #ffffff;
+    background: #fd5d93;
+    background-image: linear-gradient(to bottom left, #fd5d93, #ec250d, #fd5d93);
+    background-size: 210% 210%;
+    background-position: 100% 0;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 7px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.card-container img {
+    border: 1px solid #00f262;
+    border-radius: 50%;
+    padding: 7px;
+    height: 150px;
+    width: 150px;
+}
+
+button.primary {
+    background-color: #00f262;
+    border: 1px solid #008000;
+    border-radius: 5px;
+    color: #231E39;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    padding: 10px 25px;
+}
+
+button.primary.ghost {
+    background-color: transparent;
+    color: #00f262;
+}
