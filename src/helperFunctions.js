@@ -129,16 +129,48 @@ export const getIngredientsFor = (ingredient_data, recipe) => {
 };
 
 
+// Returns the calories for a given recipe
+export const getCaloriesFor = (ingredient_data, recipe) => {
+    const recipe_ingredients = recipe.ingredients.map((recipe_ingredient) => {
+        let ingredient_calories = ingredient_data.filter((i) => i.name === recipe_ingredient.name)[0].calories_per_unit;
+        if (ingredient_calories == 0) {
+            return 0;
+        } else {
+            return ingredient_calories * recipe_ingredient.quantity;
+        }
+    });
+    return recipe_ingredients.reduce((a, b) => a + b, 0);
+};
+
+
 // Returns every ingredient with current stock below the user defined minimum
 export const getRecipesInShortSupply = (recipe_data, ingredient_data) => {
     return recipe_data.filter(r => {
         let recipe_ingredient_data = getIngredientsFor(ingredient_data, r);
         let recipe_ingredients_in_short_supply = r.ingredients.filter((recipe_ingredient) => {
-            let ingredients_in_short_supply = recipe_ingredient_data.filter(i => i.name === recipe_ingredient.name && r.minimum_availability.value >= (i.in_stock.value / recipe_ingredient.quantity));
+            let ingredients_in_short_supply = recipe_ingredient_data.filter(i => i.name === recipe_ingredient.name && (r.minimum_availability.value >= (i.in_stock.value*1000 / recipe_ingredient.quantity)) && recipe_ingredient.unit === 'g');
+            console.log(r.name, ingredients_in_short_supply);
             return (ingredients_in_short_supply.length > 0);
         });
         return (recipe_ingredients_in_short_supply.length > 0);
     });
+};
+
+// Returns the current availability for a given recipe
+export const getRecipeAvailability = (recipe_data, ingredient_data, recipe_name) => {
+    const recipe = recipe_data.filter(r => r.name === recipe_name)[0];
+    let recipe_ingredient_data = getIngredientsFor(ingredient_data, recipe);
+    let recipe_ingredient_supply = recipe.ingredients.map((recipe_ingredient) => {
+        let ing = recipe_ingredient_data.filter(i => {
+            if (i.name === recipe_ingredient.name && recipe_ingredient.unit === 'g') {
+                return (i.in_stock.value*1000 / recipe_ingredient.quantity);
+            } else {
+                return 99;
+            }
+        });
+        return (ing[0].in_stock.value*1000 / recipe_ingredient.quantity);
+    });
+    return Math.min.apply(null, recipe_ingredient_supply);
 };
 
 

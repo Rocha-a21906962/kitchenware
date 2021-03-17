@@ -88,12 +88,14 @@ const Calendar = ({
         
         console.log(dataState);
         console.log(selectedDay);
+        console.log("currentMonth");
         console.log(currentMonth);
+        console.log(format(currentMonth, monthFormat));
 
         return (
           <div className="calendar_header row flex-middle">
             <div className="gradient_overlay"></div>
-            <img src="https://www.healthyeating.org/images/default-source/home-0.0/nutrition-topics-2.0/general-nutrition-wellness/2-2-2-3foodgroups_fruits_detailfeature.jpg?sfvrsn=64942d53_4" alt="month image"/>
+            <img src={`/${format(currentMonth, monthFormat)}.jpg`} alt="month image"/>
             <div className="col col-start">
               <div className="icon prev" onClick={prevMonth}>
                 <Icon icon={formPrevious} />

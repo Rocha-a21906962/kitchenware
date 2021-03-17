@@ -264,7 +264,8 @@ function App() {
                 setIngredientData={setIngredientData}
                 ingredientCategories={ingredientCategories}
                 recipeData={recipeData}
-                orders={orders} />
+                orders={orders}
+                 />
           </Route>
           <Route path="/recipe_category/:category_name" exact>
             <RecipeList 

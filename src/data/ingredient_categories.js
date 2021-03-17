@@ -55,6 +55,10 @@ const ingredient_categories = () => {
             name: 'fruit',
             image: '/fruit.jpg',
         },
+        {
+            name: 'grains',
+            image: 'https://2rdnmg1qbg403gumla1v9i2h-wpengine.netdna-ssl.com/wp-content/uploads/sites/3/2013/07/wholeGrainProducts-842797430-770x533-1-650x428.jpg',
+        },
         // {
         //     name: 'fish',
         //     image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',

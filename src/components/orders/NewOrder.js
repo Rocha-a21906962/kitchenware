@@ -206,9 +206,7 @@ const NewOrder = ({
                         <h5>Delivery on: {format(new Date(newOrderDetails.delivery_on), 'MMMM d, hh:mm')}</h5>
                     </StyledDetails>
                     <h3>Ingredients</h3>
-                        {
-                            console.log(newOrderDetails)
-                        }
+                    <StyledScrollDiv>
                         {
                             newOrderDetails.ingredients.map((ingredient) => {
                                 console.log("ingredient.name");
@@ -227,34 +225,35 @@ const NewOrder = ({
                                         </StyledIngredient>)
                             })
                         }
-                        <StyledAddButton>
-                            <button name="" id="" className={`${addIngredient == true ? 'hide' : ''}`} onClick={onAddIngredientHandler}>Add ingredient</button>
-                            <div className={`add_ingredient ${addIngredient == false ? 'hide' : ''}`} >
-                                <select name="ingredient_options" defaultValue="add" id="" onChange={onSelectIngredientHandler}>
-                                    <option value="add" disabled selected={addIngredient == true}>Add an ingredient</option>
-                                    {
-                                        sorted_ingredients.map((ingredient) => {
-                                            if (!newOrderDetails.ingredients.map(i => i.name).includes(ingredient.name)) {
-                                                return (<option value={ingredient.name}>{ingredient.name}</option>)
-                                            }
-                                        })
-                                    }
-                                </select>
-                                <button name="" id="" onClick={onCancelAddIngredientHandler}>Cancel</button>
-                            </div>
-                        </StyledAddButton>
-                        <StyledButtons>
-                            {
-                                newOrderDetails.ingredients.length > 0 ?
-                                [
-                                    <button name="" id="" onClick={onPlaceNewOrderHandler}>Place order</button>,
-                                    // <button name="" id="">Change delivery date</button>
-                                ]
-                                :
-                                null
-                            }
-                            {/* <button name="" id="" onClick={onCancelOrderHandler}>Cancel order</button> */}
-                        </StyledButtons>
+                    </StyledScrollDiv>
+                    <StyledAddButton>
+                        <button name="" id="" className={`${addIngredient == true ? 'hide' : ''}`} onClick={onAddIngredientHandler}>Add ingredient</button>
+                        <div className={`add_ingredient ${addIngredient == false ? 'hide' : ''}`} >
+                            <select name="ingredient_options" defaultValue="add" id="" onChange={onSelectIngredientHandler}>
+                                <option value="add" disabled selected={addIngredient == true}>Add an ingredient</option>
+                                {
+                                    sorted_ingredients.map((ingredient) => {
+                                        if (!newOrderDetails.ingredients.map(i => i.name).includes(ingredient.name)) {
+                                            return (<option value={ingredient.name}>{ingredient.name}</option>)
+                                        }
+                                    })
+                                }
+                            </select>
+                            <button name="" id="" onClick={onCancelAddIngredientHandler}>Cancel</button>
+                        </div>
+                    </StyledAddButton>
+                    <StyledButtons>
+                        {
+                            newOrderDetails.ingredients.length > 0 ?
+                            [
+                                <button name="" id="" onClick={onPlaceNewOrderHandler}>Place order</button>,
+                                // <button name="" id="">Change delivery date</button>
+                            ]
+                            :
+                            null
+                        }
+                        {/* <button name="" id="" onClick={onCancelOrderHandler}>Cancel order</button> */}
+                    </StyledButtons>
                 </StyledSideContext>
             </div>
             :
@@ -295,6 +294,10 @@ const StyledAddButton = styled.div`
         color: #b2b2b2;
         border-radius: 0.25rem;
     }
+    option {
+        color: black;
+        background-color: #b2b2b2;
+    }
     .hide {
         display: none;
     }
@@ -330,7 +333,6 @@ const StyledIngredient = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 10vh;
     position: relative;
     width: 100%;
     color: #b2b2b2;
@@ -387,6 +389,10 @@ const StyledIngredient = styled.div`
         white-space: nowrap;
         padding: 1rem;
     }
+`
+
+const StyledScrollDiv = styled.div`
+    overflow-y: scroll;
 `
 
 const StyledDetails = styled.div`

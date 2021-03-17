@@ -29,9 +29,10 @@ const ListItem = ({
                     </StyledPhoto>
                     <StyledDescription>
                         <h3>{item.name}</h3>
-                        <p>categories: {categories.flat().join(', ')} </p>
-                        <p>ingredients: {ingredients.flat().join(', ')} </p>
-                        <h5>sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl </h5>
+                        {/* array.slice(0, n) */}
+                        <p>categories: {categories.slice(0,3).flat().join(', ')}{categories.length > 4 ? ', etc': null}</p>
+                        <p>ingredients: {ingredients.slice(0,6).flat().join(', ')}{ingredients.length > 6 ? ', etc': null} </p>
+                        <h5>sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg </h5>
                     </StyledDescription>
                 </StyledItem>
                 :

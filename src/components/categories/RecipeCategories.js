@@ -3,6 +3,7 @@ import styled from 'styled-components';
 // import RecipeCategoryCell from "./RecipeCategoryCell";
 
 import RecipeLine from "../feed/RecipeLine";
+import LargeRecipeLine from "../feed/LargeRecipeLine";
 import RecipeCategoryLine from "../feed/RecipeCategoryLine";
 import RecipeCategoryCell from "../feed/RecipeCategoryCell";
 
@@ -32,8 +33,8 @@ const RecipeCategories = ({
                     data={recipeCategories}
                     selectedCategory={selectedCategory}
                     setSelectedCategory={setSelectedCategory} />
-                <StyledFeedHeader>{selectedCategory} recipes</StyledFeedHeader>
-                <RecipeLine data={categoryRecipes} />
+                <StyledFeedHeader>Selected category: {selectedCategory}</StyledFeedHeader>
+                <LargeRecipeLine data={categoryRecipes} />
                 
                 <StyledFeedHeader>Upcoming meals</StyledFeedHeader>
                 <RecipeLine data={recipeData} />
@@ -92,6 +93,7 @@ const StyledFeedHeader = styled.div`
     font-size: 1.1rem;
     font-weight: bold;
     line-height: 4rem;
+    padding-top: 2rem;
 `
 
 const StyledHeader = styled.div`

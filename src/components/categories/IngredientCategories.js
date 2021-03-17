@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 // import IngredientCategoryCell from "./IngredientCategoryCell";
-import IngredientLine from "../feed/IngredientLine";
+import LargeIngredientLine from "../feed/LargeIngredientLine";
 import IngredientCategoryLine from "../feed/IngredientCategoryLine";
-import IngredientCategoryCell from "../feed/IngredientCategoryCell";
 
 
 const IngredientCategories = ({
@@ -195,7 +194,7 @@ const IngredientCategories = ({
                         <button name="" id="">Expired</button> */}
                     </StyledFilterSection>
                 </StyledFeedHeader>
-                <IngredientLine data={filteredIngredients} />
+                <LargeIngredientLine data={filteredIngredients} />
                 
                 
                 {/* <StyledFeedHeader>Upcoming deliveries</StyledFeedHeader>

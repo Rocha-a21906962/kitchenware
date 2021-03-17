@@ -217,34 +217,33 @@ const OrderDetail = ({
                             <h5>Delivery on: {format(new Date(selectedOrderDetails.delivery_on), 'MMMM d, hh:mm')}</h5>
                         </StyledDetails>
                         <h3>Ordered ingredients</h3>
-                        {
-                            console.log(selectedOrderDetails)
-                        }
-                        {
-                            selectedOrderDetails.ingredients.map((ingredient) => {
-                                console.log("ingredient.name");
-                                console.log(ingredient.name);
-                                return (<StyledIngredient>
-                                            <div className="individual_order">
-                                                <h5 className="ingredient_name">{ingredient.name}</h5>
-                                                <div className="ingredient_quantity"><span>{ingredient.new_quantity} kg</span></div>
-                                                <button name="" id="" value={ingredient.name} className={`${(ingredient.editing == true || is_order_delivered_already) ? 'hide' : ''}`} onClick={onEditIngredientQuantityHandler}>Edit</button>
-                                                <button name="" id="" value={ingredient.name} className={`${ingredient.editing == false ? 'hide' : ''}`} onClick={onConfirmIngredientQuantityHandler}>Done</button>
-                                            </div>
-                                            <div className={`quantity_input ${ingredient.editing == false ? 'hide' : ''}`} >
-                                                {
-                                                    new Date(selectedOrderDetails.delivery_on) >= new Date() ?
-                                                    [
-                                                        <input type="range" min="0.1" max="10" step="0.1" name={ingredient.name} value={ingredient.new_quantity} onChange={onIngredientQuantityChangeHandler} />,
-                                                        <button name="" value={ingredient.name} id="" className="no_border" onClick={onRemoveIngredientHandler}><FontAwesomeIcon icon={faTrash} /></button>
-                                                    ]
-                                                    :
-                                                    ''
-                                                }
-                                            </div>
-                                        </StyledIngredient>)
-                            })
-                        }
+                        <StyledScrollDiv>
+                            {
+                                selectedOrderDetails.ingredients.map((ingredient) => {
+                                    console.log("ingredient.name");
+                                    console.log(ingredient.name);
+                                    return (<StyledIngredient>
+                                                <div className="individual_order">
+                                                    <h5 className="ingredient_name">{ingredient.name}</h5>
+                                                    <div className="ingredient_quantity"><span>{ingredient.new_quantity} kg</span></div>
+                                                    <button name="" id="" value={ingredient.name} className={`${(ingredient.editing == true || is_order_delivered_already) ? 'hide' : ''}`} onClick={onEditIngredientQuantityHandler}>Edit</button>
+                                                    <button name="" id="" value={ingredient.name} className={`${ingredient.editing == false ? 'hide' : ''}`} onClick={onConfirmIngredientQuantityHandler}>Done</button>
+                                                </div>
+                                                <div className={`quantity_input ${ingredient.editing == false ? 'hide' : ''}`} >
+                                                    {
+                                                        new Date(selectedOrderDetails.delivery_on) >= new Date() ?
+                                                        [
+                                                            <input type="range" min="0.1" max="10" step="0.1" name={ingredient.name} value={ingredient.new_quantity} onChange={onIngredientQuantityChangeHandler} />,
+                                                            <button name="" value={ingredient.name} id="" className="no_border" onClick={onRemoveIngredientHandler}><FontAwesomeIcon icon={faTrash} /></button>
+                                                        ]
+                                                        :
+                                                        ''
+                                                    }
+                                                </div>
+                                            </StyledIngredient>)
+                                })
+                            }
+                        </StyledScrollDiv>
                         <StyledAddButton>
                             <button name="" id="" className={`${(addIngredient == true || is_order_delivered_already) ? 'hide' : ''}`} onClick={onAddIngredientHandler}>Add ingredient</button>
                             <div className={`add_ingredient ${addIngredient == false ? 'hide' : ''}`} >
@@ -319,6 +318,10 @@ const StyledAddButton = styled.div`
         color: #b2b2b2;
         border-radius: 0.25rem;
     }
+    option {
+        color: black;
+        background-color: #b2b2b2;
+    }
     .hide {
         display: none;
     }
@@ -354,7 +357,6 @@ const StyledIngredient = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 10vh;
     position: relative;
     width: 100%;
     color: #b2b2b2;
@@ -414,6 +416,10 @@ const StyledIngredient = styled.div`
     .no_border {
         border: none;
     }
+`
+
+const StyledScrollDiv = styled.div`
+    overflow-y: scroll;
 `
 
 const StyledDetails = styled.div`

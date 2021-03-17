@@ -6,6 +6,12 @@ import Photo from '../components/ingredient/Photo';
 import StockDetails from '../components/ingredient/StockDetails';
 import StockManagement from '../components/ingredient/StockManagement';
 import LineChart from '../components/charts/LineChart';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import { Button } from 'semantic-ui-react';
+import {faChartLine} from '@fortawesome/free-solid-svg-icons';
+import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+import {faHome} from '@fortawesome/free-solid-svg-icons';
 import { getRecipesWith, getOrdersWith, filterIngredients, filterRecipes } from '../helperFunctions';
 
 
@@ -301,7 +307,6 @@ const IngredientStats = ({
     console.log("filterRecipes");
     console.log(filterRecipes(recipeData, ingredientData, recipe_filters, search_string));
 
-
     const onToggleVisibleChart = (event) => {
         // setVisibleChart(event.target.value)
         let new_data;
@@ -324,16 +329,61 @@ const IngredientStats = ({
         setChartData(new_data);
     }
 
+    const categories = ingredient.categories.map((category) => {return category.name});
+
     return (
         <div className="content">
+            
             <StyledIngredient>
                 <StyledPhoto>
                     <div className="gradient_overlay"></div>
                     <img src={ingredient.image} alt={`${ingredient.name} image`}/>
+                    
                     <div className="ingredient_name">
-                        <h2>Ingredient: <span>{ingredient.name}</span></h2>
+                        <div className="favourite_container">
+                            <h2>{ingredient.name}</h2>
+                        </div>
+                        <h5>{categories.flat().join(' • ')}</h5>
                     </div>
                 </StyledPhoto>
+                <StyledHr></StyledHr>
+                <StyledMainDetails>
+                    <div>Nutrition info: <span>240</span> calories/{ingredient.unit}</div>
+                    <div>|</div>
+                    <div>Auto-order: <span>{ingredient.auto_order.value ? "Yes" : "No"}</span></div>
+                    <div>|</div>
+                    <div> Allergy-safe: <span>Yes</span></div>
+                    <div>|</div>
+                    <div>Recipes: <span>{getRecipesWith(recipeData, ingredient_name).length}</span></div>
+                </StyledMainDetails>
+                <StyledHr></StyledHr>
+                <StyledDescription>
+                    <h3>Ingredient short description</h3>
+                    <h5>sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
+                </StyledDescription>
+                <StyledButtons>    
+                    <Link to={`/ingredient/${ingredient.name}`}>
+                        <Button name="" id=""><FontAwesomeIcon icon={faHome} />Main ingredient page</Button>
+                    </Link>
+                    {/* <Button className="to_do" name="" id="">Order history (opens pop-up)</Button> */}
+                </StyledButtons>
+                <StyledHr></StyledHr>
+                <StyledDetails>
+                    <h3>Forecasted consumption</h3>
+                    <h5>7 days: 1.2 kg</h5>
+                    <h5>30 days: 5.1 kg</h5>
+                    <StyledSmallHr></StyledSmallHr>
+                    <h3>Recent consumption</h3>
+                    <h5>7 days: 1.1 kg</h5>
+                    <h5>30 days: 6.3 kg</h5>
+                    <StyledSmallHr></StyledSmallHr>
+                    <h3>Incoming orders</h3>
+                    <h5>None</h5>
+                    <StyledSmallHr></StyledSmallHr>
+                    <h3>Next order estimated in:</h3>
+                    <h5>11 days</h5>
+                </StyledDetails>
+                <StyledDetails>
                 <StyledChart>
                     <div id="chart_1" className={`chart ${visibleChart != "1" ? 'hide' : ''}`}>
                         <LineChart 
@@ -343,87 +393,55 @@ const IngredientStats = ({
                             color="city" //{"stock quantity"} 
                             />
                     </div>
-                    {/* <div id="chart_2" className={`chart ${visibleChart != "2" ? 'hide' : ''}`}>
-                        <LineChart 
-                            data={data2}
-                            height={250}
-                            position="month*temperature" //{"day*quantity"}
-                            color="city" //{"daily usage"} 
-                            />
-                    </div>
-                    <div id="chart_3" className={`chart ${visibleChart != "3" ? 'hide' : ''}`}>
-                        <LineChart
-                            data={data3}
-                            height={250}
-                            position="month*temperature" //{"day*quantity"}
-                            color="city" //{"meals per day"} 
-                            />
-                    </div> */}
                     <div className="chart_buttons">
                         <button name="" value="1" onClick={onToggleVisibleChart}>Stock qty</button>
                         <button name="" value="2" onClick={onToggleVisibleChart}>Daily usage</button>
                         <button name="" value="3" onClick={onToggleVisibleChart}>Meals per day</button>
                     </div>
                 </StyledChart>
-                <StyledDescription>
-                    <h3>Ingredient short description</h3>
-                    <h5 className="to_do">sfksdjfs dklfsdkfklsdfklsdgklsd lgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdg klsdlgkdslg sfksdjfs dklfsdkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsdgklsdlg kdslg sfksdjfsdklfs dkfklsdfkls dgklsdlgkdslg sfksdjfsdkl fsdkfklsdfklsd gklsdlgkdslg sfksdj f sdklfsdkfklsdfklsdgk  lsdlgkdslgsfksdjfs dklf sdkfklsdfklsdgklsdlg kdslg </h5>
-                </StyledDescription>
-                <StyledDetails>
-                    <h3>Forecasted consumption</h3>
-                    <h5 className="to_do">7 days: 1.2 kg</h5>
-                    <h5 className="to_do">30 days: 5.1 kg</h5>
-                    <h3>Recent consumption</h3>
-                    <h5 className="to_do">7 days: 1.1 kg</h5>
-                    <h5 className="to_do">30 days: 6.3 kg</h5>
-                    <h3>Incoming orders</h3>
-                    <h5 className="to_do">None</h5>
-                    <h3>Next order estimated in:</h3>
-                    <h5 className="to_do">11 days</h5>
                 </StyledDetails>
-                <StyledDetails>
-                    <h3>Current stock:</h3>
-                    <h5 className="to_do">4.8kg</h5>
-                    <h3>Automatic stock management:</h3>
-                    <h3>Minimum stock:</h3>
-                    <h5 className="to_do">3kg</h5>
-                    <h5>(should be an input)</h5> 
-                    <h3>Action:</h3>
-                    <h5 className="to_do">Auto-order / Issue alert</h5>
-                    <h5>(should be a select input)</h5> 
-                    <h3>Auto-order quantity:</h3>
-                    <h5 className="to_do">2kg</h5>
-                    <h5>(should be an input)</h5> 
-                    <h3>Incoming orders:</h3>
-                    <h5 className="to_do">None</h5>
-                </StyledDetails>
-                {/* buttons */}
-                    <Link to={`/ingredient/${ingredient.name}`}>
-                        <button name="" id="">Show ingredient main page (changes page)</button>
-                    </Link>
-                <StyledDetails>
-                    {/* Delete everything: just for testing
-
-                    <h5>Current stock: <span>{ingredient.in_stock} kg</span></h5>
-                    <h5>Forecasted consumption</h5>
-                    <p>7 days: 1.2 kg</p>
-                    <p>30 days: 5.1 kg</p>
-                    <h5>Recent consumption</h5>
-                    <p>7 days: 1.1 kg</p>
-                    <p>30 days: 6.3 kg</p>
-                    <h5>Recent consumption</h5>
-                    <p>None</p>
-                    <h5>Next order estimated in:</h5>
-                    <p>11 days</p>
-                    <p></p>
-                    */}
-                </StyledDetails>
+                <StyledHr></StyledHr>
                 {/* <StockDetails />
                 <StockManagement /> */}
             </StyledIngredient>
         </div>
     )
 }
+
+const StyledHr = styled.hr`
+    width: 100%;
+    margin: 1rem;
+    border: 1px solid #2b2b2b;
+`
+
+const StyledSmallHr = styled.hr`
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #2b2b2b;
+`
+
+const StyledMainDetails = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    z-index: 4;
+    color: white;
+    p {
+        padding: 1rem;
+        font-size: 1rem;
+        font-style: italic;
+    }
+    p span {
+        font-size: 2rem;
+        color: white;
+        font-weight: 100;
+        font-style: normal;
+    }
+`
 
 const StyledIngredient = styled.div`
     display: flex;
@@ -442,9 +460,8 @@ const StyledChart = styled.div`
     justify-content: flex-end;
     width: calc((100vw - 10rem)/2);
     height: 40vh;
+    width: 50vw;
     background-color: #0a0a0a;
-    border-left: 1px solid #414141;
-    border-bottom: 1px solid #414141;
     .chart_buttons {
         display: flex;
         justify-content: center;
@@ -462,8 +479,8 @@ const StyledChart = styled.div`
 
 const StyledPhoto = styled.div`
     position: relative;
-    width: calc((100vw - 10rem)/2);
-    height: 40vh;
+    width: calc(100vw - 10rem);
+    height: 25vh;
     img {
         position: absolute;
         display: block;
@@ -488,24 +505,32 @@ const StyledPhoto = styled.div`
     }
     .ingredient_name {
         position: absolute;
-        left: 0;
-        top: 50%;
+        left: 1rem;
+        /* bottom: 1rem; */
+        top: 4.25rem;
         display: flex;
         flex-direction: column;
-        width: 100%;
+        padding-left: 1rem;
+        width: calc(100vw - 11rem);
         z-index: 5;
         h2 {
-            padding-left: 2.5rem;
-            display: block;
-            font-size: 1.5rem;
-            font-style: italic;
+            font-size: 2rem;
             text-transform: capitalize;
-            color: #b1b1b1;
+            color: white;
             z-index: 5;
+        }
+        h5 {
+            font-size: 1rem;
+            color: #b2b2b2;
         }
         span {
             font-size: 3rem;
             font-style: normal;
+        }
+        .favourite_container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
         }
     }
 
@@ -535,6 +560,24 @@ const StyledPhoto = styled.div`
     }
 `
 
+const StyledButtons = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-family: GTAmericaRegular;
+    color: #b1b1b1;
+    button {
+        width: 16rem;
+        font-size: 0.85rem;
+        margin: 0.25rem;
+        padding: 1rem;
+        svg {
+            margin-right: 0.45rem;
+            height: 0.85rem;
+        }
+    }
+`
+
 const StyledDescription = styled.div`
     width: 80vw;
     padding-left: 1rem;
@@ -544,12 +587,20 @@ const StyledDescription = styled.div`
 `
 
 const StyledDetails = styled.div`
-    width: 40vw;
+    width: 30vw;
     padding-left: 1rem;
     font-family: GTAmericaRegular;
     color: #b1b1b1;
+    .stock_input {
+        /* not working for now */
+        transform: none;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    .modified {
+        /* not working for now */
+        color: green;
+    }
 `
-
 
 const StyledStockDetails = styled.div`
     color: white;

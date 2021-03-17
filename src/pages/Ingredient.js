@@ -223,6 +223,15 @@ const Ingredient = ({
     };
 
     
+
+    function handleScroll() {
+        window.scroll({
+        top: document.body.offsetHeight,
+        left: 0, 
+        behavior: 'smooth',
+        });
+    }
+    
     const newOrder = (ingredient) => {
         return {
             id: null,
@@ -289,13 +298,13 @@ const Ingredient = ({
                 </StyledPhoto>
                 <StyledHr></StyledHr>
                 <StyledMainDetails>
-                    <div>Recipes: <span>5</span></div>
-                    <div>|</div>
                     <div>Nutrition info: <span>240</span> calories/{ingredient.unit}</div>
                     <div>|</div>
-                    <div>Auto-order: <span>Yes</span></div>
+                    <div>Auto-order: <span>{ingredient.auto_order.value ? "Yes" : "No"}</span></div>
                     <div>|</div>
                     <div> Allergy-safe: <span>Yes</span></div>
+                    <div>|</div>
+                    <div>Recipes: <span>{getRecipesWith(recipeData, ingredient_name).length}</span></div>
                 </StyledMainDetails>
                 <StyledHr></StyledHr>
                 <StyledDescription>
@@ -307,17 +316,16 @@ const Ingredient = ({
                         <Button name="" id=""><FontAwesomeIcon icon={faChartLine} />Stats</Button>
                     </Link>
                     <Button name="" id="" onClick={e => showNewOrder(e.target.value)}><FontAwesomeIcon icon={faShoppingCart} />Order ingredient</Button>
-                    <Button className="to_do" name="" id="">Order history (opens pop-up)</Button>
+                    {/* <Button className="to_do" name="" id="">Order history (opens pop-up)</Button> */}
                 </StyledButtons>
                 <StyledHr></StyledHr>
                 <StyledDetails>
                     <h3>Restrictions and alerts:</h3>
-                    <h5 className="to_do">Diet: Non-vegetarian</h5>
-                    <h5 className="to_do">Allergies and intolerances: Fish</h5>
+                    <h5>Diet: Non-vegetarian</h5>
+                    <h5>Allergies and intolerances: Fish</h5>
                     <StyledSmallHr></StyledSmallHr>
                     <h3>Typical expiration date:</h3>
-                    <h5 className="to_do">1 year</h5>
-                    <h5>(has implications on how stock management should be performed.. and should be abstracted for now)</h5>
+                    <h5>1 year</h5>
                     <StyledSmallHr></StyledSmallHr>
                     <h3>Incoming orders:</h3>
                     {
@@ -391,7 +399,6 @@ const StyledSmallHr = styled.hr`
     margin-bottom: 1rem;
     border: 1px solid #2b2b2b;
 `
-
 
 const StyledIngredient = styled.div`
     display: flex;

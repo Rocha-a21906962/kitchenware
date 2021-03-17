@@ -152,15 +152,20 @@ const SearchFilters = ({
         <div className="search_filters">
             <StyledSideContext>
                 <StyledDetails>
-                    <h3>Currently searching for {searchTarget}</h3>
-                    <StyledFavouriteButton>
+                    <h3>Search filters</h3>
+                    {/* <StyledFavouriteButton>
                         <button name="" id="" className={`${searchTarget === 'recipes' ? 'hide_search_target_filter' : ''}`} onClick={toggleSearchTarget}>Search for recipes</button>
                         <button name="" id="" className={`${searchTarget === 'ingredients' ? 'hide_search_target_filter' : ''}`} onClick={toggleSearchTarget}>Search for ingredients</button>
-                    </StyledFavouriteButton>
+                    </StyledFavouriteButton> */}
                     {
                         searchTarget === 'recipes' ?
 
                         <StyledFiltersSection>
+                            <h5>Type</h5>
+                            <StyledFilterCategory>
+                                <button name="" id="" className={`${searchTarget === 'recipes' ? 'active' : ''}`} onClick={toggleSearchTarget}>recipes</button>
+                                <button name="" id="" className={`${searchTarget === 'ingredients' ? 'active' : ''}`} onClick={toggleSearchTarget}>ingredients</button>
+                            </StyledFilterCategory>
                             <h5>Stock status</h5>
                             <StyledFilterCategory>
                                 <button name="" id="" value="in_stock" className={`${recipeSearchFilters.stock_status === 'in_stock' ? 'active' : ''}`} onClick={(e) => onToggleRecipeFiltersHandler(e, 'stock_status')}>in stock</button>
@@ -203,6 +208,11 @@ const SearchFilters = ({
                         </StyledFiltersSection>
                         :
                         <StyledFiltersSection>
+                        <h5>Type</h5>
+                            <StyledFilterCategory>
+                                <button name="" id="" className={`${searchTarget === 'recipes' ? 'active' : ''}`} onClick={toggleSearchTarget}>recipes</button>
+                                <button name="" id="" className={`${searchTarget === 'ingredients' ? 'active' : ''}`} onClick={toggleSearchTarget}>ingredients</button>
+                            </StyledFilterCategory>
                             <h5>Stock status</h5>
                             <StyledFilterCategory>
                                 <button name="" id="" value="in_stock" className={`${ingredientSearchFilters.stock_status === 'in_stock' ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'stock_status')}>in stock</button>

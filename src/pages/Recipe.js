@@ -14,7 +14,7 @@ import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
 import {faShoePrints} from '@fortawesome/free-solid-svg-icons';
-import { getStockOf } from '../helperFunctions';
+import { getStockOf, getRecipeAvailability, getCaloriesFor, getIngredientsFor } from '../helperFunctions';
 
 
 const Recipe = ({
@@ -273,6 +273,9 @@ const Recipe = ({
         return total_recipe_time < 60 ? total_recipe_time + "mins" : Math.floor(total_recipe_time / 60) + "h" + total_recipe_time % 60;
     }
 
+    const ImmediateAvailability = () => {
+        return Math.round(getRecipeAvailability(recipeData, ingredientData, recipe_name)/numberServings,0);
+    }
     
     const categories = recipe.categories.map((category) => {return category.name});
     
@@ -339,9 +342,9 @@ const Recipe = ({
                 </StyledPhoto>
                 <StyledHr></StyledHr>
                 <StyledMainDetails>
-                    <div>Ingredients: <span>5</span></div>
+                    <div>Ingredients: <span>{getIngredientsFor(ingredientData, recipe).length}</span></div>
                     <div>|</div>
-                    <div>Nutrition info: <span>240</span> calories/serving</div>
+                    <div>Nutrition info: <span>{getCaloriesFor(ingredientData, recipe)}</span> calories/serving</div>
                     <div>|</div>
                     <div>Total cooking time: <span>{TotalRecipeTime()}</span></div>
                     <div>|</div>
@@ -368,12 +371,25 @@ const Recipe = ({
                     <h3>Ingredient list:</h3>
                     {
                         recipe.ingredients.map((ingredient) => {
-                            return (<StyledIngredient><span>{getStockOf(ingredientData, ingredient.name) >= (ingredient.quantity * numberServings / recipe.servings) ? <FontAwesomeIcon icon={faCheck} /> : <FontAwesomeIcon icon={faTimes} />}</span><Link to={`/ingredient/${ingredient.name}`}>{ ingredient.name }</Link> { (ingredient.quantity * numberServings / recipe.servings).toFixed(2) } { ingredient.unit }</StyledIngredient>)
+                            if (ingredient.unit === 'g') {
+                                return (<StyledIngredient><span>{getStockOf(ingredientData, ingredient.name)*1000 >= (ingredient.quantity * numberServings / recipe.servings) ? <FontAwesomeIcon icon={faCheck} /> : <FontAwesomeIcon icon={faTimes} />}</span><Link to={`/ingredient/${ingredient.name}`}>{ ingredient.name }</Link> { (Math.round((ingredient.quantity * numberServings) / recipe.servings,2)) } { ingredient.unit }</StyledIngredient>)
+                            } else {
+                                return (<StyledIngredient><span><FontAwesomeIcon icon={faCheck} /></span><Link to={`/ingredient/${ingredient.name}`}>{ ingredient.name }</Link> { (ingredient.quantity * numberServings) / recipe.servings } { ingredient.unit }</StyledIngredient>)
+                                // return (<StyledIngredient><span>{getStockOf(ingredientData, ingredient.name) >= (ingredient.quantity * numberServings / recipe.servings) ? <FontAwesomeIcon icon={faCheck} /> : <FontAwesomeIcon icon={faTimes} />}</span><Link to={`/ingredient/${ingredient.name}`}>{ ingredient.name }</Link> { (ingredient.quantity * numberServings / recipe.servings).toFixed(2) } { ingredient.unit }</StyledIngredient>)
+                            }
                         })
                     }
                     <StyledSmallHr></StyledSmallHr>
-                    <h3>Immediate availability:</h3>
-                    <h5 className="to_do">Current ingredient stock allows for this dish to be cooked 4 times.</h5>
+                    <h3>Immediate availability</h3>
+                    {
+                        ImmediateAvailability() === 1 ?
+                        <h5>Current ingredient stock allows for this dish to be cooked <span>1</span> time for the selected number of servings ({numberServings}).</h5>
+                        :
+                        ImmediateAvailability() > 1 ?
+                        <h5>Current ingredient stock allows for this dish to be cooked <span>{ImmediateAvailability()}</span> times for the selected number of servings ({numberServings}).</h5>
+                        :
+                        <h5>Current ingredient stock isn't enough for this dish to be cooked with the selected number of servings ({numberServings}).</h5>
+                    }
                     <StyledSmallHr></StyledSmallHr>
                     <h3>Automatic stock management<FontAwesomeIcon icon={faInfoCircle} /></h3>
                     <h5>Minimum availability: {recipe.minimum_availability.value} servings {recipe.minimum_availability.value != recipe.minimum_availability.new_value ? `(new value: ${recipe.minimum_availability.new_value})` : ''}</h5>

@@ -1,5 +1,5 @@
-import { Link, useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Icon, InlineIcon } from '@iconify/react';
 import bxSearch from '@iconify/icons-bx/bx-search';
@@ -34,6 +34,17 @@ const Nav = ({
     console.log(setIsSearchPageVisible);
 
     const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
+
+    
+    /* Hook making sure the search page gets hidden whenever there is a page change */
+    const location = useLocation();
+
+    useEffect(() => {
+        setIsSearchPageVisible(false);
+        setIsSearchBarVisible(false);
+    }, [location]);
+
+    
 
     const toggleSearchBarHandler = () => {
         /* open search page automatically

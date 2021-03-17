@@ -51,6 +51,10 @@ const recipe_categories = () => {
             name: 'drinks',
             image: '/drinks.jpg'
         },
+        {
+            name: 'food',
+            image: '/food.jpg'
+        },
 
 
         // {

@@ -13,21 +13,27 @@ const recipes = () => {
                 {
                     name: 'healthy'
                 },
+                {
+                    name: 'gluten free'
+                },
+                {
+                    name: 'food'
+                },
             ],
             ingredients : [
                 {
                     name: 'tuna',
-                    quantity: 0.2,
-                    unit: 'kg',
+                    quantity: 200,
+                    unit: 'g',
                 },
                 {
                     name: 'rice',
-                    quantity: 0.4,
-                    unit: 'kg',
+                    quantity: 400,
+                    unit: 'g',
                 },
                 {
                     name: 'salt',
-                    quantity: 'n/a',
+                    quantity: 1,
                     unit: 'ts',
                 },
             ],
@@ -67,8 +73,8 @@ const recipes = () => {
             ], 
             servings: 4,
             minimum_availability : {
-                value: 20,
-                new_value: 20,
+                value: 3,
+                new_value: 3,
                 min_input: 0,
                 max_input: 100,
                 step: 1,
@@ -88,6 +94,9 @@ const recipes = () => {
                 {
                     name: 'italian'
                 },
+                {
+                    name: 'food'
+                },
             ],
             ingredients : [
                 {
@@ -98,7 +107,7 @@ const recipes = () => {
                 {
                     name: 'vegetable oil',
                     quantity: 1,
-                    unit: ' tbsp',
+                    unit: 'tbsp',
                 },
                 {
                     name: 'bacon',
@@ -166,7 +175,7 @@ const recipes = () => {
                     unit: 'g',
                 },
             ],
-            preparation_time: 30,
+            preparation_time: 35,
             cooking_time: 90,
             steps: [
                 {
@@ -202,8 +211,8 @@ const recipes = () => {
             ], 
             servings: 4,
             minimum_availability : {
-                value: 20,
-                new_value: 20,
+                value: 5,
+                new_value: 5,
                 min_input: 0,
                 max_input: 100,
                 step: 1,
@@ -219,6 +228,12 @@ const recipes = () => {
             categories : [
                 {
                     name: 'fish'
+                },
+                {
+                    name: 'gluten free'
+                },
+                {
+                    name: 'food'
                 },
             ],
             ingredients : [
@@ -265,8 +280,8 @@ const recipes = () => {
             ], 
             servings: 2,
             minimum_availability : {
-                value: 20,
-                new_value: 20,
+                value: 1,
+                new_value: 1,
                 min_input: 0,
                 max_input: 100,
                 step: 1,
@@ -285,6 +300,12 @@ const recipes = () => {
                 },
                 {
                     name: 'italian'
+                },
+                {
+                    name: 'gluten free'
+                },
+                {
+                    name: 'food'
                 },
             ],
             ingredients : [
@@ -345,8 +366,8 @@ const recipes = () => {
             ], 
             servings: 5,
             minimum_availability : {
-                value: 20,
-                new_value: 20,
+                value: 2,
+                new_value: 2,
                 min_input: 0,
                 max_input: 100,
                 step: 1,
@@ -365,6 +386,9 @@ const recipes = () => {
                 },
                 {
                     name: 'healthy'
+                },
+                {
+                    name: 'food'
                 },
             ],
             ingredients : [
@@ -414,14 +438,14 @@ const recipes = () => {
                 },
                 {
                     number: 3,
-                    time: 5,
+                    time: 15,
                     description: "Cook the salmon in the heated oil until golden brown, about 1 minute per side."
                 },
             ], 
             servings: 2,
             minimum_availability : {
-                value: 20,
-                new_value: 20,
+                value: 1,
+                new_value: 1,
                 min_input: 0,
                 max_input: 100,
                 step: 1,
@@ -440,6 +464,12 @@ const recipes = () => {
                 },
                 {
                     name: 'chicken'
+                },
+                {
+                    name: 'gluten free'
+                },
+                {
+                    name: 'food'
                 },
             ],
             ingredients : [
@@ -486,8 +516,8 @@ const recipes = () => {
             ], 
             servings: 4,
             minimum_availability : {
-                value: 20,
-                new_value: 20,
+                value: 1,
+                new_value: 1,
                 min_input: 0,
                 max_input: 100,
                 step: 1,
@@ -509,6 +539,12 @@ const recipes = () => {
                 },
 {
                     name: 'mexican'
+                },
+                {
+                    name: 'gluten free'
+                },
+                {
+                    name: 'food'
                 },
 
             ],
@@ -562,8 +598,8 @@ const recipes = () => {
             ], 
             servings: 2,
             minimum_availability : {
-                value: 20,
-                new_value: 20,
+                value: 5,
+                new_value: 5,
                 min_input: 0,
                 max_input: 100,
                 step: 1,
@@ -582,6 +618,15 @@ const recipes = () => {
                 },
                 {
                     name: 'healthy'
+                },
+                {
+                    name: 'gluten free'
+                },
+                {
+                    name: 'vegetarian'
+                },
+                {
+                    name: 'food'
                 },
             ],
             ingredients : [
@@ -645,8 +690,8 @@ const recipes = () => {
             ], 
             servings: 8,
             minimum_availability : {
-                value: 20,
-                new_value: 20,
+                value: 1,
+                new_value: 1,
                 min_input: 0,
                 max_input: 100,
                 step: 1,
@@ -666,6 +711,9 @@ const recipes = () => {
                 },
                 {
                     name: 'healthy'
+                },
+                {
+                    name: 'food'
                 },
             ],
             ingredients : [
@@ -729,8 +777,8 @@ const recipes = () => {
             ], 
             servings: 4,
             minimum_availability : {
-                value: 20,
-                new_value: 20,
+                value: 5,
+                new_value: 5,
                 min_input: 0,
                 max_input: 100,
                 step: 1,
@@ -749,6 +797,9 @@ const recipes = () => {
                 },
                 {
                     name: 'healthy'
+                },
+                {
+                    name: 'food'
                 },
             ],
             ingredients : [
@@ -810,8 +861,8 @@ const recipes = () => {
             ], 
             servings: 2,
             minimum_availability : {
-                value: 20,
-                new_value: 20,
+                value: 1,
+                new_value: 1,
                 min_input: 0,
                 max_input: 100,
                 step: 1,
@@ -827,6 +878,9 @@ const recipes = () => {
             categories : [
                 {
                     name: 'fish'
+                },
+                {
+                    name: 'food'
                 },
             ],
             ingredients : [
@@ -867,7 +921,7 @@ const recipes = () => {
             steps: [
                 {
                     number: 1,
-                    time: 2,
+                    time: 4,
                     description: "Preheat oven to 400 degrees F (200 degrees C). Line a shallow baking pan with aluminum foil."
                 },
                 {
@@ -883,8 +937,8 @@ const recipes = () => {
             ], 
             servings: 4,
             minimum_availability : {
-                value: 20,
-                new_value: 20,
+                value: 1,
+                new_value: 1,
                 min_input: 0,
                 max_input: 100,
                 step: 1,
@@ -903,6 +957,9 @@ const recipes = () => {
                 },
                 {
                     name: 'healthy'
+                },
+                {
+                    name: 'drinks'
                 },
             ],
             ingredients : [
@@ -938,8 +995,8 @@ const recipes = () => {
             ], 
             servings: 2,
             minimum_availability : {
-                value: 20,
-                new_value: 20,
+                value: 5,
+                new_value: 5,
                 min_input: 0,
                 max_input: 100,
                 step: 1,
@@ -959,6 +1016,12 @@ const recipes = () => {
                 },
                 {
                     name: 'healthy'
+                },
+                {
+                    name: 'vegetarian'
+                },
+                {
+                    name: 'drinks'
                 },
             ],
             ingredients : [
@@ -994,8 +1057,8 @@ const recipes = () => {
             ], 
             servings: 2,
             minimum_availability : {
-                value: 20,
-                new_value: 20,
+                value: 5,
+                new_value: 5,
                 min_input: 0,
                 max_input: 100,
                 step: 1,
