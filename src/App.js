@@ -7,6 +7,10 @@ import SideNav from './components/SideNav.js';
 import Alerts from './components/Alerts.js';
 import EventPopup from './components/EventPopup.js';
 import SearchPage from './components/search/SearchPage.js';
+
+/* Data */
+import DevicesConnected from "./data/DevicesConnected";
+
 import Dashboard from './pages/Dashboard.js';
 import RecipeFeed from './pages/RecipeFeed.js';
 import DeviceManagement from './pages/DeviceManagement.js';
@@ -41,6 +45,7 @@ import alert_data from './data/alerts';
 
 /* import for feed test */
 import Feed from './components/feed/Feed.js';
+
 
 
 function App() {
@@ -129,9 +134,9 @@ function App() {
           isAlertListVisible={isAlertListVisible}
           setIsAlertListVisible={setIsAlertListVisible} />
       <SideNav />
-      <Alerts 
+      <Alerts
           ingredientData={ingredientData}
-          setIngredientData={setIngredientData} 
+          setIngredientData={setIngredientData}
           recipeData={recipeData}
           setRecipeData={setRecipeData}
           mealPlanning={mealPlanning}
@@ -170,7 +175,7 @@ function App() {
             <Dashboard />
           </Route>
           <Route path="/device_management" exact>
-            <DeviceManagement />
+            <DeviceManagement name={DevicesConnected()[0].nome} activeImage={DevicesConnected()[0].imagem}/>
           </Route>
           <Route path="/tool_management" exact>
             <ToolManagement />

@@ -113,7 +113,7 @@ const StyledPopup = styled.div`
     &.open {
         display: flex;
         opacity: 0.99;
-        z-index: 10;
+        z-index: 10000;
         transition: opacity 0.25s cubic-bezier(0.88, 0.11, 0.83, 0.65);
         transition-delay: 2.5s;
     }
