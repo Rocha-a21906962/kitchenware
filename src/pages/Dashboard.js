@@ -32,7 +32,7 @@ const Dashboard = () => {
                         </CardHeader>
                         <CardFooter>
                             <i className="far fa-comments"/>
-                            <span>Atualiza</span>
+                            <span>Update</span>
                         </CardFooter>
                     </Card>
                     <Card>
@@ -47,7 +47,7 @@ const Dashboard = () => {
                         </CardHeader>
                         <CardFooter>
                             <i className="far fa-comments"/>
-                            <span>Atualiza</span>
+                            <span>Update</span>
                         </CardFooter>
                     </Card>
                     <Card>
@@ -62,7 +62,7 @@ const Dashboard = () => {
                         </CardHeader>
                         <CardFooter>
                             <i className="far fa-comments"/>
-                            <span>Atualiza</span>
+                            <span>Update</span>
                         </CardFooter>
                     </Card>
                     <Card>
@@ -77,7 +77,7 @@ const Dashboard = () => {
                         </CardHeader>
                         <CardFooter>
                             <i className="far fa-comments"/>
-                            <span>Atualiza</span>
+                            <span>Update</span>
                         </CardFooter>
                     </Card>
                 </RowCom4Slots>
@@ -117,7 +117,7 @@ const MainPanel = styled.div.attrs(props => ({
     className: props.className,
 }))`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   border-top: 2px solid #000000;
   //#04BF00
   float: right;
@@ -126,6 +126,7 @@ const MainPanel = styled.div.attrs(props => ({
     right: 0;
     transform: ${({show}) => show ? 'translate3d(0,0,0)' : 'translate3d(0,0,0)'};
     transition: .5s cubic-bezier(.685, .0473, .346, 1);
+    background: #000000e9;
   }
 `;
 const Content = styled.div`

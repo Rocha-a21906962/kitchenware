@@ -28,11 +28,11 @@
 }
 
 .fixed-plugin .dropdown-menu {
-  top: 80px;
+  top: 87px;
   right: 100px;
   left: auto;
   width: 230px;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 111px);
   border-radius: 5px;
   padding: 0 10px;
   position: absolute;

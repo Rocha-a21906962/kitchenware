@@ -7,8 +7,9 @@
 /*}*/
 
 .content.tools {
-    left: 11rem;
-    background-color: transparent;
+    left: 10rem;
+    padding-left: 2rem;
+    background-color: #000000e5;
 }
 
 .ToolsContent {
