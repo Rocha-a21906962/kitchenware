@@ -239,7 +239,7 @@ const GlobalStyles = createGlobalStyle`
     
     .one_line_feed {
         position: relative;
-        height: 22vh;
+        height: 27vh;
         background: #000000dd;
         overflow-x: scroll;
         /* temporary hack to fix the feed height on the orders/meal_planning pages */

@@ -206,7 +206,7 @@ const GlobalCalendarStyles = createGlobalStyle`
 
     .calendar .calendar_body .cell {
         position: relative;
-        height: 5rem;
+        height: 4.7rem;
         // border-right: 1px solid var(--border-color);
         overflow: hidden;
         cursor: pointer;

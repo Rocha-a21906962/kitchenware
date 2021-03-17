@@ -65,11 +65,9 @@ const RecipeCategories = ({
                 <RecipeLine data={recipeData} />
             </div>
         
-            <div className="recipe_categories">
+            {/* <div className="recipe_categories">
                 <StyledHeader>
-                    {/* <h3>Recipe Categories?</h3> */}
                 </StyledHeader>
-                {/* Show N recipe categories */}
                 <StyledCategories>
                     {
                         recipeCategories.map((category) => {
@@ -82,7 +80,7 @@ const RecipeCategories = ({
                         })
                     }
                 </StyledCategories>
-            </div>
+            </div> */}
         </div>
     )
 }

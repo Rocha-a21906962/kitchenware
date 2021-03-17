@@ -8,7 +8,9 @@ const BottomContext = ({
         <StyledBottomContext>
         <div className="one_line_feed">
             <StyledHeader>Upcoming meals</StyledHeader>
-            <Line data={mealPlanningData} />
+            <Line 
+                data={mealPlanningData}
+                type={'recipes'} />
         </div>
         {/* <StyledBlock>
             <h3>Last 30 days</h3>
@@ -32,9 +34,9 @@ const BottomContext = ({
 
 const StyledBottomContext = styled.div`
     position: absolute;
-    top: 66vh;
+    top: 63vh;
     width: 60vw;
-    height: 24vh;
+    height: 27vh;
     display: flex;
     justify-content: space-around;
     /* padding-top: 1rem;
@@ -58,7 +60,7 @@ const StyledHeader = styled.div`
     font-family: GTAmericaRegular;
     font-size: 1rem;
     font-weight: bold;
-    line-height: 2.25rem;
+    line-height: 2.75rem;
 `
 
 export default BottomContext;

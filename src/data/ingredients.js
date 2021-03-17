@@ -5,7 +5,7 @@ const ingredients = () => {
     return [
         {
             name: 'tuna',
-            image: 'https://1.bp.blogspot.com/-_QXjE8zwvNo/WaWEY1LFgcI/AAAAAAAAA1k/aar9QC0qFesVlS2c0dgOh4SqZk3TDJSJgCLcBGAs/s1600/Yellowfin%2BTuna%2BSaku%2B-%2BHigh%2BQuality.jpg',
+            image: '/tuna.jpg',
             categories : [
                 {
                     name: 'fish',
@@ -42,16 +42,19 @@ const ingredients = () => {
                 new_value: true,
             },
         },
-        {
-            name: 'cod',
-            image: 'https://www.portugalresident.com/wp-content/uploads/2013/12/201213_su_cod_shutterstock.jpg',
+{
+            name: 'beef mince',
+            image: '/beef_mince.jpg', 
+            calories_per_unit: 3,
+            unit: 'g',
             categories : [
                 {
-                    name: 'fish'
+                    name: 'meat',
                 },
+                {
+                    name: 'beef',
+                }
             ],
-            calories_per_unit: 240,
-            unit: 'kg',
             in_stock : {
                 value: 12,
                 new_value: 12,
@@ -78,33 +81,33 @@ const ingredients = () => {
                 new_value: false,
             },
         },
-        {
-            name: 'salmon',
-            image: 'https://images.thefishsite.com/fish/articles/processing/salmon-fillet.jpeg?profile=article-inline@maximum',
+{
+            name: ' vegetable oil',
+            image: '/vegetable_oil.jpg', 
+            calories_per_unit: 88,
+            unit: ' tbsp',
             categories : [
                 {
-                    name: 'fish'
+                    name: 'oil and vinegar',
                 },
             ],
-            calories_per_unit: 240,
-            unit: 'kg',
             in_stock : {
-                value: 9,
-                new_value: 9,
+                value: 12,
+                new_value: 12,
                 min_input: 0,
                 max_input: 100,
                 step: 0.1,
             },
             minimum_stock : {
-                value: 2,
-                new_value: 2,
+                value: 3,
+                new_value: 3,
                 min_input: 0,
                 max_input: 5,
                 step: 0.1,
             },
             default_order_quantity : {
-                value: 5,
-                new_value: 5,
+                value: 8,
+                new_value: 8,
                 min_input: 0,
                 max_input: 10,
                 step: 0.1,
@@ -114,9 +117,1469 @@ const ingredients = () => {
                 new_value: false,
             },
         },
-        {
+{	
+            name: 'bacon',
+            image: '/bacon.webp', 
+            calories_per_unit: 5,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'meat',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'onion',
+            image: '/onion.jpg', 
+            calories_per_unit: 0.4,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'vegetables',
+                },
+                {
+                    name: 'healthy',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'celery',
+            image: '/celery.jpg', 
+            calories_per_unit: 0.1,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'vegetables',
+                },
+                {
+                    name: 'healthy',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'carrots',
+            image: '/carrots.jpg', 
+            calories_per_unit: 0.1,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'vegetables',
+                },
+                {
+                    name: 'healthy',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'garlic',
+            image: '/garlic.jpg', 
+            calories_per_unit: 1,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'vegetables',
+                },
+                {
+                    name: 'healthy',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'bay leaves',
+            image: '/bay_leaves.webp', 
+            calories_per_unit: 3,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'condiments',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'red wine vinegar',
+            image: '/red_wine_vinegar.jpg', 
+            calories_per_unit: 3,
+            unit: 'tbsp',
+            categories : [
+                {
+                    name: 'oil and vinegar',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'oregano',
+            image: '/oregano.jpg', 
+            calories_per_unit: 6,
+            unit: 'tbsp',
+            categories : [
+                {
+                    name: 'condiments',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'tomatoes',
+            image: '/tomatoes.jpg', 
+            calories_per_unit: 1,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'vegetables',
+                },
+                {
+                    name: 'healthy',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'mushrooms',
+            image: '/mushrooms.jpg', 
+            calories_per_unit: 1,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'vegetables',
+                },
+                {
+                    name: 'healthy',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'salt',
+            image: '/salt.jpg', 
+            calories_per_unit: 0,
+            unit: 'tsp',
+            categories : [
+                {
+                    name: 'condiments',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'black pepper',
+            image: '/black_pepper.webp', 
+            calories_per_unit: 6,
+            unit: 'tsp',
+            categories : [
+                {
+                    name: 'condiments',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'spaghetti',
+            image: '/spaghetti.jpg', 
+            calories_per_unit: 2,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'pasta',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'salmon',
+            image: '/salmon.webp', 
+            calories_per_unit: 2,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'fish',
+                },
+{
+                    name: 'healthy',
+                },
+
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'basil',
+            image: '/basil.jpg', 
+            calories_per_unit: 0.5,
+            unit: 'tbsp',
+            categories : [
+                {
+                    name: 'condiments',
+                },
+                            ],
+                            in_stock : {
+                                value: 12,
+                                new_value: 12,
+                                min_input: 0,
+                                max_input: 100,
+                                step: 0.1,
+                            },
+                            minimum_stock : {
+                                value: 3,
+                                new_value: 3,
+                                min_input: 0,
+                                max_input: 5,
+                                step: 0.1,
+                            },
+                            default_order_quantity : {
+                                value: 8,
+                                new_value: 8,
+                                min_input: 0,
+                                max_input: 10,
+                                step: 0.1,
+                            },
+                            auto_order: {
+                                value: false,
+                                new_value: false,
+                            },
+        },
+{
+            name: ' olive oil',
+            image: '/olive_oil.jpg', 
+            calories_per_unit: 119,
+            unit: ' tbsp',
+            categories : [
+                {
+                    name: 'oil and vinegar',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+
+{
+            name: 'Parmesan cheese',
+            image: '/parmesan.jpg', 
+            calories_per_unit: 4,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'eggs and dairy products',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'bread crumbs',
+            image: '/bread_crumbs.jpg', 
+            calories_per_unit: 4,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'bread',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{
+            name: 'Eggs',
+            image: '/eggs.jpg', 
+            calories_per_unit: 72,
+            unit: '',
+            categories : [
+                {
+                    name: 'eggs and dairy products',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'chicken breast',
+            image: '/chicken_breast.jpg', 
+            calories_per_unit: 2,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'meat',
+                },
+                {
+                    name: 'healthy',
+                },
+                {
+                    name: 'chicken',
+                }
+
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'red pepper',
+            image: '/red_pepper.jpg', 
+            calories_per_unit: 6,
+            unit: 'tsp',
+            categories : [
+                {
+                    name: 'condiments',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+
+{	
+            name: 'ground turmeric',
+            image: '/ground_turmeric.jpg', 
+            calories_per_unit: 8,
+            unit: 'tsp',
+            categories : [
+                {
+                    name: 'condiments',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'cornstarch',
+            image: '/cornstarch.jpg', 
+            calories_per_unit: 10,
+            unit: 'tsp',
+            categories : [
+                {
+                    name: 'miscellaneous',
+                },
+                           ],
+                           in_stock : {
+                               value: 12,
+                               new_value: 12,
+                               min_input: 0,
+                               max_input: 100,
+                               step: 0.1,
+                           },
+                           minimum_stock : {
+                               value: 3,
+                               new_value: 3,
+                               min_input: 0,
+                               max_input: 5,
+                               step: 0.1,
+                           },
+                           default_order_quantity : {
+                               value: 8,
+                               new_value: 8,
+                               min_input: 0,
+                               max_input: 10,
+                               step: 0.1,
+                           },
+                           auto_order: {
+                               value: false,
+                               new_value: false,
+                           },
+        },
+{	
+            name: 'honey',
+            image: '/honey.jpg', 
+            calories_per_unit: 64,
+            unit: 'tbsp',
+            categories : [
+                {
+                    name: 'miscellaneous',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'Dijon mustard',
+            image: '/dijon.webp', 
+            calories_per_unit: 7,
+            unit: 'tbsp',
+            categories : [
+                {
+                    name: 'condiments',
+                },
+                        ],
+                        in_stock : {
+                            value: 12,
+                            new_value: 12,
+                            min_input: 0,
+                            max_input: 100,
+                            step: 0.1,
+                        },
+                        minimum_stock : {
+                            value: 3,
+                            new_value: 3,
+                            min_input: 0,
+                            max_input: 5,
+                            step: 0.1,
+                        },
+                        default_order_quantity : {
+                            value: 8,
+                            new_value: 8,
+                            min_input: 0,
+                            max_input: 10,
+                            step: 0.1,
+                        },
+                        auto_order: {
+                            value: false,
+                            new_value: false,
+                        },
+        },
+{	
+            name: 'Mexican-style hot sauce',
+            image: '/mexican_sauce.jpg', 
+            calories_per_unit: 2,
+            unit: 'tbsp',
+            categories : [
+                {
+                    name: 'condiments',
+                },
+                            ],
+                            in_stock : {
+                                value: 12,
+                                new_value: 12,
+                                min_input: 0,
+                                max_input: 100,
+                                step: 0.1,
+                            },
+                            minimum_stock : {
+                                value: 3,
+                                new_value: 3,
+                                min_input: 0,
+                                max_input: 5,
+                                step: 0.1,
+                            },
+                            default_order_quantity : {
+                                value: 8,
+                                new_value: 8,
+                                min_input: 0,
+                                max_input: 10,
+                                step: 0.1,
+                            },
+                            auto_order: {
+                                value: false,
+                                new_value: false,
+                            },
+        },
+{	
+            name: 'paprika',
+            image: '/paprika.jpg', 
+            calories_per_unit: 19,
+            unit: 'tbsp',
+            categories : [
+                {
+                    name: 'condiments',
+                },
+                            ],
+                            in_stock : {
+                                value: 12,
+                                new_value: 12,
+                                min_input: 0,
+                                max_input: 100,
+                                step: 0.1,
+                            },
+                            minimum_stock : {
+                                value: 3,
+                                new_value: 3,
+                                min_input: 0,
+                                max_input: 5,
+                                step: 0.1,
+                            },
+                            default_order_quantity : {
+                                value: 8,
+                                new_value: 8,
+                                min_input: 0,
+                                max_input: 10,
+                                step: 0.1,
+                            },
+                            auto_order: {
+                                value: false,
+                                new_value: false,
+                            },
+        },
+{	
+            name: 'brown sugar',
+            image: '/brown_sugar.jpg', 
+            calories_per_unit: 52,
+            unit: 'tbsp',
+            categories : [
+                {
+                    name: 'miscellaneous',
+                },
+                            ],
+                            in_stock : {
+                                value: 12,
+                                new_value: 12,
+                                min_input: 0,
+                                max_input: 100,
+                                step: 0.1,
+                            },
+                            minimum_stock : {
+                                value: 3,
+                                new_value: 3,
+                                min_input: 0,
+                                max_input: 5,
+                                step: 0.1,
+                            },
+                            default_order_quantity : {
+                                value: 8,
+                                new_value: 8,
+                                min_input: 0,
+                                max_input: 10,
+                                step: 0.1,
+                            },
+                            auto_order: {
+                                value: false,
+                                new_value: false,
+                            },
+        },
+{	
+            name: 'chicken thighs',
+            image: '/chicken_thighs.jpg', 
+            calories_per_unit: 3,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'meat',
+                },
+                {
+                    name: 'chicken',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'cauliflower',
+            image: '/cauliflower.jpg', 
+            calories_per_unit: 0.1,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'vegetables',
+                },
+                {
+                    name: 'healthy',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'water',
+            image: '/water.jpg', 
+            calories_per_unit: 0,
+            unit: 'cup',
+            categories : [
+                {
+                    name: 'miscellaneous',
+                },
+                {
+                    name: 'healthy',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+
+{	
+            name: 'cod',
+            image: '/cod.jpg', 
+            calories_per_unit: 2.1,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'fish',
+                },
+                {
+                    name: 'healthy',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'chives',
+            image: '/chives.jpeg', 
+            calories_per_unit: 0.3,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'vegetables',
+                },
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'lemons',
+            image: '/lemons.jpg', 
+            calories_per_unit: 17,
+            unit: '',
+            categories : [
+                {
+                    name: 'fruit',
+                },
+                {
+                    name: 'healthy',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'butter',
+            image: '/butter.jpg', 
+            calories_per_unit: 7,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'eggs and dairy products',
+                },               
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'skimmed milk',
+            image: '/milk.webp', 
+            calories_per_unit: 0.35,
+            unit: 'ml',
+            categories : [
+                {
+                    name: 'eggs and dairy products',
+                },               
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{	
+            name: 'bananas',
+            image: '/bananas.jpg', 
+            calories_per_unit: 107,
+            unit: '',
+            categories : [
+                {
+                    name: 'fruit',
+                },
+                {
+                    name: 'healthy',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+        {	
+            name: 'strawberries',
+            image: '/strawberries.jpg', 
+            calories_per_unit: 0.33,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'fruit',
+                },
+                {
+                    name: 'healthy',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+        {	
+            name: 'avocado',
+            image: '/avocado.webp', 
+            calories_per_unit: 2,
+            unit: 'g',
+            categories : [
+                {
+                    name: 'fruit',
+                },
+                {
+                    name: 'healthy',
+                }
+            ],
+            in_stock : {
+                value: 12,
+                new_value: 12,
+                min_input: 0,
+                max_input: 100,
+                step: 0.1,
+            },
+            minimum_stock : {
+                value: 3,
+                new_value: 3,
+                min_input: 0,
+                max_input: 5,
+                step: 0.1,
+            },
+            default_order_quantity : {
+                value: 8,
+                new_value: 8,
+                min_input: 0,
+                max_input: 10,
+                step: 0.1,
+            },
+            auto_order: {
+                value: false,
+                new_value: false,
+            },
+        },
+{
             name: 'mackerel',
-            image: 'http://www.ingredientes.pt/wp-content/uploads/2016/07/carapaus-com-arroz-de-tomate.jpg',
+            image: '/mackerel.jpg',
             categories : [
                 {
                     name: 'fish'
@@ -152,7 +1615,7 @@ const ingredients = () => {
         },
         {
             name: 'sea bass',
-            image: 'https://orders.booths.co.uk/media/catalog/product/cache/59b906c9f4a6503cc9c6cc39e925f9a1/5/4/544_1.jpg',
+            image: '/sea_bass.jpg',
             categories : [
                 {
                     name: 'fish'
@@ -188,7 +1651,7 @@ const ingredients = () => {
         },
         {
             name: 'sardines',
-            image: 'https://ncultura.pt/wp-content/uploads/2018/10/capa-3-640x320.jpg',
+            image: '/sardines.jpg',
             categories : [
                 {
                     name: 'fish'
@@ -206,114 +1669,6 @@ const ingredients = () => {
             minimum_stock : {
                 value: 2.4,
                 new_value: 2.4,
-                min_input: 0,
-                max_input: 5,
-                step: 0.1,
-            },
-            default_order_quantity : {
-                value: 5,
-                new_value: 5,
-                min_input: 0,
-                max_input: 10,
-                step: 0.1,
-            },
-            auto_order: {
-                value: false,
-                new_value: false,
-            },
-        },
-        {
-            name: 'pescada',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-            categories : [
-                {
-                    name: 'fish'
-                },
-            ],
-            calories_per_unit: 240,
-            unit: 'kg',
-            in_stock : {
-                value: 2,
-                new_value: 2,
-                min_input: 0,
-                max_input: 100,
-                step: 0.1,
-            },
-            minimum_stock : {
-                value: 1,
-                new_value: 1,
-                min_input: 0,
-                max_input: 5,
-                step: 0.1,
-            },
-            default_order_quantity : {
-                value: 5,
-                new_value: 5,
-                min_input: 0,
-                max_input: 10,
-                step: 0.1,
-            },
-            auto_order: {
-                value: false,
-                new_value: false,
-            },
-        },
-        {
-            name: 'peixinho da horta',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-            categories : [
-                {
-                    name: 'fish'
-                },
-            ],
-            calories_per_unit: 240,
-            unit: 'kg',
-            in_stock : {
-                value: 0,
-                new_value: 0,
-                min_input: 0,
-                max_input: 100,
-                step: 0.1,
-            },
-            minimum_stock : {
-                value: 0,
-                new_value: 0,
-                min_input: 0,
-                max_input: 5,
-                step: 0.1,
-            },
-            default_order_quantity : {
-                value: 5,
-                new_value: 5,
-                min_input: 0,
-                max_input: 10,
-                step: 0.1,
-            },
-            auto_order: {
-                value: false,
-                new_value: false,
-            },
-        },
-        {
-            name: 'mais atum',
-            image: 'https://entregaemcasa.pt/entregaemcasa/uploads/2020/03/arawfish3.png',
-            categories : [
-                {
-                    name: 'fish'
-                },
-            ],
-            calories_per_unit: 240,
-            unit: 'kg',
-            in_stock : {
-                value: 0,
-                new_value: 0,
-                min_input: 0,
-                max_input: 100,
-                step: 0.1,
-            },
-            minimum_stock : {
-                value: 0,
-                new_value: 0,
                 min_input: 0,
                 max_input: 5,
                 step: 0.1,

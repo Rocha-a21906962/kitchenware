@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import Cell from './Cell.js';
 
 const Line = ({
-    data
+    data,
+    type
 }) => {
     return (
         <div>
@@ -10,7 +11,8 @@ const Line = ({
                 {
                     data.map((item) => {
                         return <Cell 
-                                    item={item} />
+                                    item={item}
+                                    type={type} />
                         })
                 }
             </StyledLine>
@@ -22,7 +24,7 @@ const StyledLine = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 24vh;
+    height: 19vh;
     overflow-x: auto;
     overflow-y: hidden;
 `
