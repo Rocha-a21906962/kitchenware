@@ -245,8 +245,9 @@ const StyledCloseButton = styled.div`
   
   button {
     font-size: 0.5rem;
-    padding: 0 auto;
-    margin-top: 10px;
+    padding: 0;
+    padding-left: 13px;
+    margin-top: 13px;
     border: none;
 
     svg {

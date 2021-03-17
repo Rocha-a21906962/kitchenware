@@ -227,6 +227,10 @@ const SearchFilters = ({
                                 <button name="" id="" value="running_out" className={`${ingredientSearchFilters.stock_status === 'running_out' ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'stock_status')}>running out</button>
                                 <button name="" id="" value="out_of_stock" className={`${ingredientSearchFilters.stock_status === 'out_of_stock' ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'stock_status')}>out of stock</button>
                             </StyledFilterCategory>
+                            <h5>With incoming orders</h5>
+                            <StyledFilterCategory>
+                                <button name="" id="" value="with_incoming_orders_only" className={`${ingredientSearchFilters.with_incoming_orders_only === true ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'with_incoming_orders_only')}>with incoming orders</button>
+                            </StyledFilterCategory>
                             <h5>Categories</h5>
                             <StyledFilterCategory>
                                 <button name="" id="" value="fish" className={`${ingredientSearchFilters.categories.includes('fish') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>fish</button>
@@ -246,10 +250,6 @@ const SearchFilters = ({
                                 <button name="" id="" value="miscellaneous" className={`${ingredientSearchFilters.categories.includes('miscellaneous') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>miscellaneous</button>
                                 {/* <button name="" id="" value="halal" className={`${ingredientSearchFilters.categories.includes('halal') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>halal</button>
                                 <button name="" id="" value="kids" className={`${ingredientSearchFilters.categories.includes('kids') ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'category')}>kids</button> */}
-                            </StyledFilterCategory>
-                            <h5>With incoming orders</h5>
-                            <StyledFilterCategory>
-                                <button name="" id="" value="with_incoming_orders_only" className={`${ingredientSearchFilters.with_incoming_orders_only === true ? 'active' : ''}`} onClick={(e) => onToggleIngredientFiltersHandler(e, 'with_incoming_orders_only')}>with incoming orders</button>
                             </StyledFilterCategory>
                         </StyledFiltersSection>
                     }
